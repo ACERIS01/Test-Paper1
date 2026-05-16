@@ -4,595 +4,268 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SLC — Business Diagnostic</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  /* ── Website surfaces ── */
-  --bg:           #f5f7f9;
-  --surface:      #ffffff;
-  --surface-low:  #eef1f3;
-  --surface-high: #e6eaed;
-  --border:       rgba(44,47,49,0.10);
-  --border-med:   rgba(44,47,49,0.16);
-  /* ── Website ink ── */
-  --text:         #2c2f31;
-  --muted:        #6b7075;
-  --faint:        #9ea3a8;
-  /* ── Website primary ── */
-  --primary:      #0050d4;
-  --primary-grad: linear-gradient(135deg,#0050d4 0%,#3a73e6 55%,#7b9cff 100%);
-  --primary-soft: rgba(0,80,212,0.07);
-  --primary-mid:  rgba(0,80,212,0.14);
-  /* ── Website inverse (dark panels) ── */
-  --inv:          #14171a;
-  --inv-2:        #1c2024;
-  --on-inv:       #e8ecef;
-  --on-inv-mute:  #9aa1a8;
-  /* ── Accents ── */
-  --green:        #1f8a5b;
-  --green-soft:   rgba(31,138,91,0.10);
-  --amber:        #b07604;
-  --amber-soft:   rgba(176,118,4,0.10);
-  --rose:         #c62b3b;
-  --rose-soft:    rgba(198,43,59,0.10);
-  --violet:       #5b21b6;
-  --violet-soft:  rgba(91,33,182,0.08);
-  --indigo:       #4338ca;
-  --cyan:         #0e7490;
-  /* ── Radii / shadows ── */
-  --r-sm: 4px; --r-md: 10px; --r-lg: 14px; --r-xl: 20px;
-  --shadow-sm: 0 1px 4px rgba(44,47,49,0.06), 0 4px 12px rgba(44,47,49,0.04);
-  --shadow-md: 0 4px 16px rgba(44,47,49,0.08), 0 8px 24px rgba(44,47,49,0.05);
+  --bg:     #0b0e14;
+  --bg2:    #111520;
+  --bg3:    #161c2a;
+  --bg4:    #1c2336;
+  --b:      rgba(255,255,255,0.07);
+  --b2:     rgba(255,255,255,0.13);
+  --text:   #e2e8f0;
+  --muted:  rgba(226,232,240,0.50);
+  --dim:    rgba(226,232,240,0.22);
+  --blue:   #3b82f6;
+  --blue2:  rgba(59,130,246,0.12);
+  --blue3:  rgba(59,130,246,0.06);
+  --amber:  #f59e0b;
+  --amber2: rgba(245,158,11,0.12);
+  --rose:   #f43f5e;
+  --rose2:  rgba(244,63,94,0.12);
+  --green:  #22c55e;
+  --green2: rgba(34,197,94,0.10);
+  --violet: #8b5cf6;
+  --violet2:rgba(139,92,246,0.10);
+  --cyan:   #06b6d4;
+  --indigo: #6366f1;
+  --lime:   #84cc16;
 }
-
 *{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
 body{
   background:var(--bg);color:var(--text);
-  font-family:'Inter',system-ui,sans-serif;font-size:14px;line-height:1.55;
+  font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;line-height:1.5;
   min-height:100vh;overflow-x:hidden;
-  -webkit-font-smoothing:antialiased;
 }
-.shell{max-width:700px;margin:0 auto;padding:36px 24px 100px;}
+.shell{max-width:680px;margin:0 auto;padding:36px 20px 100px;}
 
 /* ── HEADER ── */
-.hdr{
-  display:flex;align-items:center;justify-content:space-between;
-  margin-bottom:32px;padding-bottom:20px;border-bottom:1px solid var(--border);
-}
-.logo{display:flex;align-items:center;gap:12px;}
-.logo-mark{
-  width:32px;height:32px;border-radius:var(--r-md);
-  background:var(--primary-grad);
-  display:flex;align-items:center;justify-content:center;
-  box-shadow:0 4px 12px rgba(0,80,212,0.25);
-}
+.hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:36px;padding-bottom:18px;border-bottom:1px solid var(--b);}
+.logo{display:flex;align-items:center;gap:10px;}
+.logo-mark{width:30px;height:30px;border-radius:7px;background:var(--blue);display:flex;align-items:center;justify-content:center;}
 .logo-mark svg{display:block;}
-.logo-name{
-  font-family:'Manrope',sans-serif;font-weight:800;font-size:14px;
-  color:var(--text);letter-spacing:-0.02em;
-}
-.logo-sub{
-  font-family:'Inter',sans-serif;font-weight:500;font-size:11px;
-  letter-spacing:.04em;color:var(--faint);text-transform:uppercase;margin-top:1px;
-}
+.logo-name{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:13.5px;color:var(--text);letter-spacing:-0.01em;}
+.logo-sub{font-family:'JetBrains Mono',monospace;font-size:7px;letter-spacing:.1em;color:var(--dim);text-transform:uppercase;margin-top:1px;}
 .hdr-right{display:flex;align-items:center;gap:10px;}
-.hdr-meta{
-  font-family:'JetBrains Mono',monospace;font-size:8px;
-  letter-spacing:.1em;color:var(--faint);text-transform:uppercase;
-}
-.lang-toggle{
-  display:flex;border:1px solid var(--border-med);border-radius:var(--r-sm);overflow:hidden;
-}
-.lang-btn{
-  font-family:'Inter',sans-serif;font-size:11px;font-weight:600;letter-spacing:.06em;
-  padding:5px 11px;background:none;border:none;cursor:pointer;
-  color:var(--muted);transition:all .12s;
-}
-.lang-btn.active{background:var(--primary);color:#fff;}
-.lang-btn:not(.active):hover{color:var(--text);background:var(--surface-low);}
+.hdr-meta{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.1em;color:var(--dim);text-transform:uppercase;}
+.lang-toggle{display:flex;border:1px solid var(--b2);border-radius:6px;overflow:hidden;}
+.lang-btn{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08em;font-weight:600;padding:5px 10px;background:none;border:none;cursor:pointer;color:var(--dim);transition:all .12s;}
+.lang-btn.active{background:var(--blue);color:#fff;}
+.lang-btn:not(.active):hover{color:var(--muted);}
 
 /* ── PROGRESS ── */
 .prog{margin-bottom:32px;}
 .prog-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
-.prog-label{
-  font-family:'Inter',sans-serif;font-weight:600;font-size:10px;
-  letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
-}
-.prog-frac{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--faint);}
-.prog-track{height:2px;background:var(--surface-high);border-radius:2px;overflow:hidden;}
-.prog-fill{height:100%;background:var(--primary);border-radius:2px;transition:width .5s cubic-bezier(.4,0,.2,1);}
+.prog-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+.prog-frac{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--dim);}
+.prog-track{height:2px;background:var(--b);border-radius:2px;overflow:hidden;}
+.prog-fill{height:100%;background:var(--blue);border-radius:2px;transition:width .5s cubic-bezier(.4,0,.2,1);}
 
 /* ── ANIMATIONS ── */
-@keyframes up{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+@keyframes up{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
 @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
-@keyframes pulse-dot{0%,100%{box-shadow:0 0 0 0 rgba(31,138,91,.4);}50%{box-shadow:0 0 0 8px rgba(31,138,91,0);}}
+@keyframes pulse{0%,100%{opacity:.3;}50%{opacity:.8;}}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.25;}}
 
 /* ── INTRO ── */
 .intro-screen{animation:up .3s ease;}
-.intro-eyebrow{
-  display:inline-flex;align-items:center;gap:8px;
-  font-family:'Inter',sans-serif;font-weight:600;font-size:11px;
-  letter-spacing:.12em;text-transform:uppercase;color:var(--primary);
-  margin-bottom:18px;
-}
-.intro-eyebrow .live-dot{
-  width:7px;height:7px;border-radius:50%;background:var(--green);
-  box-shadow:0 0 0 3px rgba(31,138,91,.15);
-  animation:pulse-dot 2s infinite;
-}
-.intro-title{
-  font-family:'Manrope',sans-serif;font-weight:800;font-size:28px;
-  color:var(--text);line-height:1.12;letter-spacing:-0.03em;margin-bottom:14px;
-}
-.intro-title em{font-style:normal;color:var(--primary);}
-.intro-sub{
-  font-size:14.5px;color:var(--muted);line-height:1.7;
-  max-width:500px;margin-bottom:32px;
-}
-.intro-steps{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:32px;
-}
-.intro-step{
-  background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);
-  padding:16px 18px;transition:box-shadow .15s;
-}
-.intro-step:hover{box-shadow:var(--shadow-sm);}
-.is-num{
-  font-family:'Inter',sans-serif;font-weight:700;font-size:10px;
-  color:var(--primary);letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px;
-}
-.is-title{
-  font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;
-  color:var(--text);margin-bottom:4px;line-height:1.3;
-}
-.is-desc{font-size:11.5px;color:var(--muted);line-height:1.5;}
-.intro-cta-row{display:flex;align-items:center;gap:18px;}
-.intro-note{
-  font-family:'JetBrains Mono',monospace;font-size:10px;
-  letter-spacing:.05em;color:var(--faint);
-}
+.intro-eyebrow{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);margin-bottom:16px;font-weight:600;}
+.intro-title{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:26px;color:var(--text);line-height:1.15;letter-spacing:-0.025em;margin-bottom:12px;}
+.intro-sub{font-size:13.5px;color:var(--muted);line-height:1.7;max-width:480px;margin-bottom:32px;}
+.intro-steps{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:32px;}
+.intro-step{background:var(--bg2);border:1px solid var(--b);border-radius:10px;padding:14px 16px;}
+.is-num{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;color:var(--blue);letter-spacing:.06em;margin-bottom:8px;}
+.is-title{font-size:12.5px;font-weight:700;color:var(--text);margin-bottom:3px;line-height:1.3;}
+.is-desc{font-size:11px;color:var(--muted);line-height:1.5;}
+.intro-cta-row{display:flex;align-items:center;gap:16px;}
+.intro-note{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.05em;color:var(--dim);}
 
 /* ── DIMENSION QUESTION ── */
 .dim-screen{animation:up .22s ease;}
-.dim-label{
-  font-family:'Inter',sans-serif;font-weight:600;font-size:10px;
-  letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin-bottom:14px;
-}
-.dim-q{
-  background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);
-  padding:28px;margin-bottom:12px;box-shadow:var(--shadow-sm);
-}
-.dim-prompt{
-  font-family:'Manrope',sans-serif;font-weight:700;font-size:18px;
-  color:var(--text);line-height:1.35;margin-bottom:6px;letter-spacing:-0.02em;
-}
-.dim-sub{font-size:12.5px;color:var(--faint);margin-bottom:22px;line-height:1.55;font-style:italic;}
-.dim-opts{display:flex;flex-direction:column;gap:9px;}
-.dim-opt{
-  display:flex;align-items:flex-start;gap:14px;
-  padding:14px 18px;border:1px solid var(--border);border-radius:var(--r-md);
-  background:var(--bg);cursor:pointer;transition:all .12s;position:relative;overflow:hidden;
-}
-.dim-opt::before{
-  content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
-  background:transparent;transition:background .12s;
-}
-.dim-opt:hover{border-color:var(--border-med);background:var(--surface-low);}
-.dim-opt.sel{border-color:rgba(0,80,212,.3);background:rgba(0,80,212,.04);}
-.dim-opt.sel::before{background:var(--primary);}
-.opt-key{
-  width:26px;height:26px;border-radius:var(--r-sm);border:1px solid var(--border-med);
-  display:flex;align-items:center;justify-content:center;flex-shrink:0;
-  font-family:'Manrope',sans-serif;font-size:11px;font-weight:700;
-  color:var(--muted);transition:all .12s;margin-top:1px;
-}
-.dim-opt.sel .opt-key{
-  background:var(--primary);border-color:var(--primary);color:#fff;
-}
+.dim-label{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-bottom:12px;}
+.dim-q{background:var(--bg2);border:1px solid var(--b);border-radius:12px;padding:26px 26px 22px;margin-bottom:10px;}
+.dim-prompt{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:17px;color:var(--text);line-height:1.4;margin-bottom:5px;letter-spacing:-0.01em;}
+.dim-sub{font-size:12px;color:var(--dim);margin-bottom:20px;line-height:1.55;font-style:italic;}
+.dim-opts{display:flex;flex-direction:column;gap:8px;}
+.dim-opt{display:flex;align-items:flex-start;gap:12px;padding:14px 16px;border:1px solid var(--b);border-radius:9px;background:var(--bg3);cursor:pointer;transition:all .12s;position:relative;overflow:hidden;}
+.dim-opt::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:transparent;transition:background .12s;}
+.dim-opt:hover{border-color:var(--b2);background:var(--bg4);}
+.dim-opt.sel{border-color:rgba(59,130,246,.4);background:var(--blue3);}
+.dim-opt.sel::before{background:var(--blue);}
+.opt-key{width:24px;height:24px;border-radius:6px;border:1px solid var(--b2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);transition:all .12s;margin-top:1px;}
+.dim-opt.sel .opt-key{background:var(--blue);border-color:var(--blue);color:#fff;font-weight:600;}
 .opt-body{flex:1;}
-.opt-title{
-  font-family:'Manrope',sans-serif;font-weight:600;font-size:13.5px;
-  color:var(--text);margin-bottom:3px;line-height:1.4;
-}
-.opt-desc{font-size:12px;color:var(--muted);line-height:1.5;}
+.opt-title{font-weight:600;font-size:13px;color:var(--text);margin-bottom:3px;line-height:1.4;}
+.opt-desc{font-size:11.5px;color:var(--muted);line-height:1.5;}
 
 /* ── ARCHETYPE REVEAL ── */
 .reveal-screen{animation:up .3s ease;}
-.reveal-kicker{
-  font-family:'Inter',sans-serif;font-weight:600;font-size:10px;
-  letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;
-}
-.reveal-card{
-  border-radius:var(--r-xl);padding:32px;margin-bottom:14px;
-  position:relative;overflow:hidden;
-  background:var(--inv);
-  border:1px solid rgba(255,255,255,0.06);
-  box-shadow:var(--shadow-md);
-}
-.reveal-card::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:2px;
-  background:var(--primary-grad);
-}
-.rc-eyebrow{
-  font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.14em;
-  text-transform:uppercase;color:rgba(255,255,255,0.28);margin-bottom:12px;
-}
-.rc-name{
-  font-family:'Manrope',sans-serif;font-weight:800;font-size:28px;
-  color:#fff;line-height:1.1;letter-spacing:-0.03em;margin-bottom:6px;
-}
-.rc-code{
-  font-family:'JetBrains Mono',monospace;font-size:10.5px;
-  color:rgba(123,156,255,0.85);letter-spacing:.07em;margin-bottom:18px;
-}
-.rc-desc{
-  font-size:13.5px;color:rgba(255,255,255,0.52);line-height:1.7;
-  max-width:520px;padding-bottom:20px;
-}
-.rc-dims{
-  display:flex;flex-wrap:wrap;gap:6px;
-  padding-top:18px;border-top:1px solid rgba(255,255,255,0.08);
-}
-.rc-dim{
-  display:flex;align-items:center;gap:5px;padding:4px 10px;
-  border-radius:var(--r-sm);background:rgba(255,255,255,0.06);
-  border:1px solid rgba(255,255,255,0.09);
-  font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.04em;
-}
+.reveal-kicker{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;}
+.reveal-card{border-radius:12px;padding:28px 28px 24px;margin-bottom:14px;position:relative;overflow:hidden;background:linear-gradient(135deg,#0f172a 0%,#0d1117 100%);border:1px solid rgba(255,255,255,0.09);box-shadow:0 0 0 1px rgba(59,130,246,0.08),0 8px 32px rgba(0,0,0,0.4);}
+.reveal-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--blue),var(--violet),var(--cyan));}
+.rc-eyebrow{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,0.28);margin-bottom:10px;}
+.rc-name{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:26px;color:#fff;line-height:1.1;letter-spacing:-0.025em;margin-bottom:5px;}
+.rc-code{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:#60a5fa;letter-spacing:.07em;margin-bottom:16px;}
+.rc-desc{font-size:13px;color:rgba(255,255,255,0.55);line-height:1.7;max-width:500px;padding-bottom:18px;}
+.rc-dims{display:flex;flex-wrap:wrap;gap:5px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.07);}
+.rc-dim{display:flex;align-items:center;gap:4px;padding:3px 9px;border-radius:4px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.04em;}
 .rcd-l{color:rgba(255,255,255,0.28);}
-.rcd-v{color:rgba(255,255,255,0.72);font-weight:600;}
-.reveal-bridge{
-  background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);
-  padding:16px 20px;margin-bottom:22px;
-}
-.rb-text{font-size:13.5px;color:var(--muted);line-height:1.65;}
+.rcd-v{color:rgba(255,255,255,0.7);font-weight:600;}
+.reveal-bridge{background:var(--bg2);border:1px solid var(--b);border-radius:9px;padding:14px 18px;margin-bottom:20px;}
+.rb-text{font-size:13px;color:var(--muted);line-height:1.65;}
 .rb-text strong{color:var(--text);font-weight:600;}
 
 /* ── FRICTION SCREEN ── */
 .frx-screen{animation:up .22s ease;}
 .frx-tracker{display:flex;gap:4px;margin-bottom:6px;}
-.frx-seg{
-  height:2px;flex:1;border-radius:2px;background:var(--surface-high);
-  position:relative;overflow:hidden;
-}
-.frx-seg.done{background:var(--primary);}
-.frx-seg.active::after{
-  content:'';position:absolute;left:0;top:0;bottom:0;width:60%;
-  background:var(--primary);border-radius:2px;
-  animation:frx-pulse 1.6s ease-in-out infinite;
-}
-@keyframes frx-pulse{0%,100%{opacity:.3;}50%{opacity:.9;}}
-.frx-tcount{
-  font-family:'JetBrains Mono',monospace;font-size:9px;
-  letter-spacing:.06em;color:var(--faint);margin-bottom:20px;text-align:right;
-}
-.frx-hdr{margin-bottom:16px;}
-.frx-cat{
-  display:inline-flex;align-items:center;gap:6px;
-  font-family:'Inter',sans-serif;font-size:10px;font-weight:600;
-  letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;
-  border-radius:var(--r-sm);margin-bottom:10px;
-}
-.frx-title{
-  font-family:'Manrope',sans-serif;font-weight:800;font-size:20px;
-  color:var(--text);margin-bottom:5px;letter-spacing:-0.02em;
-}
-.frx-desc{font-size:12.5px;color:var(--muted);line-height:1.6;margin-bottom:20px;}
-.frx-card{
-  background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);
-  padding:22px 24px;margin-bottom:12px;box-shadow:var(--shadow-sm);
-}
+.frx-seg{height:2px;flex:1;border-radius:2px;background:var(--b);position:relative;overflow:hidden;}
+.frx-seg.done{background:var(--blue);}
+.frx-seg.active::after{content:'';position:absolute;left:0;top:0;bottom:0;width:50%;background:var(--blue);border-radius:2px;animation:pulse 1.6s ease-in-out infinite;}
+.frx-tcount{font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.06em;color:var(--dim);margin-bottom:18px;text-align:right;}
+.frx-hdr{margin-bottom:14px;}
+.frx-cat{display:inline-flex;align-items:center;gap:5px;font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:4px;margin-bottom:9px;font-weight:600;}
+.frx-title{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:18px;color:var(--text);margin-bottom:4px;letter-spacing:-0.01em;}
+.frx-desc{font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:18px;}
+.frx-card{background:var(--bg2);border:1px solid var(--b);border-radius:11px;padding:20px 22px;margin-bottom:10px;}
 .frx-items{display:flex;flex-direction:column;}
-.frx-item{padding:14px 0;border-bottom:1px solid var(--border);}
+.frx-item{padding:13px 0;border-bottom:1px solid var(--b);}
 .frx-item:last-child{border-bottom:none;padding-bottom:0;}
 .frx-item:first-child{padding-top:0;}
-.frx-stmt{
-  font-size:13.5px;color:var(--text);line-height:1.6;
-  margin-bottom:11px;font-weight:500;
-}
-.rating-row{display:flex;gap:7px;}
-.r-btn{
-  flex:1;padding:8px 6px;border:1px solid var(--border);border-radius:var(--r-md);
-  background:var(--bg);cursor:pointer;transition:all .12s;text-align:center;
-  font-family:'Inter',sans-serif;font-weight:500;font-size:12px;
-  color:var(--muted);line-height:1.3;
-}
-.r-btn:hover{border-color:var(--border-med);color:var(--text);background:var(--surface-low);}
-.r-btn.r0.sel{
-  background:var(--surface-high);border-color:var(--border-med);color:var(--muted);
-}
-.r-btn.r1.sel{
-  background:rgba(176,118,4,0.08);border-color:rgba(176,118,4,0.28);color:var(--amber);
-}
-.r-btn.r2.sel{
-  background:rgba(198,43,59,0.08);border-color:rgba(198,43,59,0.28);color:var(--rose);
-}
-.frx-done-note{
-  text-align:center;margin-top:10px;
-  font-size:12px;color:var(--green);font-weight:600;
-  animation:fadeIn .25s ease;
-}
-.frx-note{
-  text-align:center;margin-top:10px;
-  font-family:'JetBrains Mono',monospace;font-size:9px;
-  letter-spacing:.06em;color:var(--faint);
-}
+.frx-stmt{font-size:13px;color:var(--text);line-height:1.55;margin-bottom:10px;font-weight:500;}
+.rating-row{display:flex;gap:6px;}
+.r-btn{flex:1;padding:8px 6px;border:1px solid var(--b);border-radius:8px;background:var(--bg3);cursor:pointer;transition:all .12s;text-align:center;font-family:'Plus Jakarta Sans',sans-serif;font-weight:500;font-size:11.5px;color:var(--muted);line-height:1.3;}
+.r-btn:hover{border-color:var(--b2);color:var(--text);}
+.r-btn.r0.sel{background:rgba(255,255,255,0.06);border-color:var(--b2);color:var(--dim);}
+.r-btn.r1.sel{background:var(--amber2);border-color:rgba(245,158,11,.3);color:var(--amber);}
+.r-btn.r2.sel{background:var(--rose2);border-color:rgba(244,63,94,.3);color:var(--rose);}
+.frx-done-note{text-align:center;margin-top:8px;font-size:11.5px;color:var(--green);font-weight:600;animation:fadeIn .25s ease;}
+.frx-note{text-align:center;margin-top:8px;font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.06em;color:var(--dim);}
 
 /* ── NAV ── */
-.nav{
-  display:flex;justify-content:space-between;align-items:center;
-  margin-top:20px;padding-top:20px;border-top:1px solid var(--border);
-}
-.btn-back{
-  font-family:'Inter',sans-serif;font-weight:600;font-size:12px;
-  letter-spacing:.04em;color:var(--faint);background:none;border:none;
-  cursor:pointer;padding:8px 0;transition:color .12s;
-}
+.nav{display:flex;justify-content:space-between;align-items:center;margin-top:18px;padding-top:18px;border-top:1px solid var(--b);}
+.btn-back{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);background:none;border:none;cursor:pointer;padding:8px 0;transition:color .12s;}
 .btn-back:hover{color:var(--muted);}
-.btn-back:disabled{opacity:.25;cursor:default;}
-.btn-next{
-  font-family:'Manrope',sans-serif;font-weight:700;font-size:13.5px;
-  padding:11px 24px;background:var(--primary-grad);color:#fff;
-  border:none;border-radius:var(--r-md);cursor:pointer;transition:all .14s;
-  display:flex;align-items:center;gap:6px;
-  box-shadow:0 4px 14px rgba(0,80,212,0.28);
-}
-.btn-next:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(0,80,212,0.35);}
-.btn-next:disabled{
-  background:var(--surface-high);color:var(--faint);
-  cursor:default;box-shadow:none;transform:none;
-}
+.btn-back:disabled{opacity:.2;cursor:default;}
+.btn-next{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:13px;padding:10px 22px;background:var(--blue);color:#fff;border:none;border-radius:8px;cursor:pointer;transition:all .12s;display:flex;align-items:center;gap:5px;}
+.btn-next:hover{background:#2563eb;}
+.btn-next:disabled{background:var(--bg4);color:var(--dim);cursor:default;}
+
+/* ── AI CHAT SCREEN ── */
+.ai-screen{animation:up .22s ease;}
+.ai-hdr{margin-bottom:20px;}
+.ai-eyebrow{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--violet);margin-bottom:8px;font-weight:600;display:flex;align-items:center;gap:6px;}
+.ai-eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--violet);flex-shrink:0;animation:blink 2s ease-in-out infinite;}
+.ai-title{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:18px;color:var(--text);letter-spacing:-0.02em;margin-bottom:4px;}
+.ai-sub{font-size:12px;color:var(--muted);line-height:1.6;}
+.chat-wrap{background:var(--bg2);border:1px solid var(--b);border-radius:12px;overflow:hidden;margin-bottom:10px;}
+.chat-feed{display:flex;flex-direction:column;gap:0;max-height:420px;overflow-y:auto;padding:20px;}
+.msg-row{display:flex;flex-direction:column;margin-bottom:16px;}
+.msg-row:last-child{margin-bottom:0;}
+.msg-role{font-family:'JetBrains Mono',monospace;font-size:7.5px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px;}
+.msg-role.ai-role{color:var(--violet);}
+.msg-role.user-role{color:var(--dim);text-align:right;}
+.msg-bubble{padding:13px 16px;border-radius:10px;font-size:13px;line-height:1.65;}
+.msg-ai .msg-bubble{background:var(--bg3);border:1px solid var(--b);color:var(--text);border-bottom-left-radius:3px;}
+.msg-user{align-items:flex-end;}
+.msg-user .msg-bubble{background:var(--blue2);border:1px solid rgba(59,130,246,.25);color:var(--text);border-bottom-right-radius:3px;max-width:85%;}
+.typing-row{display:flex;flex-direction:column;margin-bottom:4px;}
+.typing-bubble{background:var(--bg3);border:1px solid var(--b);border-radius:10px;border-bottom-left-radius:3px;padding:13px 18px;display:inline-flex;gap:5px;align-items:center;}
+.typing-dot{width:5px;height:5px;border-radius:50%;background:var(--muted);animation:blink 1.4s ease-in-out infinite;}
+.typing-dot:nth-child(2){animation-delay:.2s;}
+.typing-dot:nth-child(3){animation-delay:.4s;}
+.chat-input-area{padding:14px 16px;border-top:1px solid var(--b);display:flex;gap:8px;background:var(--bg2);}
+.chat-input{flex:1;background:var(--bg3);border:1px solid var(--b2);border-radius:8px;padding:10px 14px;color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;outline:none;resize:none;transition:border-color .12s;min-height:42px;max-height:120px;}
+.chat-input:focus{border-color:rgba(59,130,246,.4);}
+.chat-input::placeholder{color:var(--dim);}
+.btn-send{padding:10px 18px;background:var(--blue);color:#fff;border:none;border-radius:8px;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:13px;transition:all .12s;flex-shrink:0;align-self:flex-end;}
+.btn-send:hover{background:#2563eb;}
+.btn-send:disabled{background:var(--bg4);color:var(--dim);cursor:default;}
+.exchange-warn{text-align:center;padding:8px 16px;font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.08em;text-transform:uppercase;color:var(--amber);background:var(--amber2);border-top:1px solid rgba(245,158,11,.15);}
+.ai-error-note{background:var(--rose2);border:1px solid rgba(244,63,94,.2);border-radius:8px;padding:12px 16px;margin-bottom:10px;font-size:12px;color:var(--rose);line-height:1.6;}
+.ai-complete-note{background:var(--green2);border:1px solid rgba(34,197,94,.2);border-radius:8px;padding:12px 16px;margin-bottom:10px;font-size:12px;color:var(--green);display:flex;align-items:center;gap:8px;}
+.btn-skip{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);background:none;border:none;cursor:pointer;padding:6px;transition:color .12s;}
+.btn-skip:hover{color:var(--muted);}
 
 /* ── RESULT ── */
 .result{animation:up .35s ease;}
-
-.arch-card{
-  background:var(--inv);
-  border:1px solid rgba(255,255,255,0.06);border-radius:var(--r-xl);
-  padding:32px;margin-bottom:6px;position:relative;overflow:hidden;
-  box-shadow:var(--shadow-md);
-}
-.arch-card::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:2px;
-  background:var(--primary-grad);
-}
-.arch-kicker{
-  font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.14em;
-  text-transform:uppercase;color:rgba(255,255,255,0.28);margin-bottom:12px;
-}
-.arch-name{
-  font-family:'Manrope',sans-serif;font-weight:800;font-size:24px;
-  color:#fff;line-height:1.15;margin-bottom:5px;letter-spacing:-0.025em;
-}
-.arch-code{
-  font-family:'JetBrains Mono',monospace;font-size:10px;
-  color:rgba(123,156,255,.8);letter-spacing:.06em;margin-bottom:16px;
-}
-.arch-desc{font-size:13px;color:rgba(255,255,255,0.5);line-height:1.7;max-width:560px;}
-.arch-dims{
-  display:flex;flex-wrap:wrap;gap:6px;
-  margin-top:18px;padding-top:18px;border-top:1px solid rgba(255,255,255,0.08);
-}
-/* Clickable dim pills for back-navigation */
-.arch-dim{
-  display:flex;align-items:center;gap:5px;padding:4px 10px;
-  border-radius:var(--r-sm);background:rgba(255,255,255,0.06);
-  border:1px solid rgba(255,255,255,0.09);
-  font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.04em;
-  cursor:pointer;transition:all .12s;
-}
-.arch-dim:hover{background:rgba(255,255,255,0.12);border-color:rgba(255,255,255,0.18);}
-.arch-dim-edit{
-  font-size:7px;color:rgba(123,156,255,0.6);margin-left:2px;
-  opacity:0;transition:opacity .12s;
-}
-.arch-dim:hover .arch-dim-edit{opacity:1;}
+.arch-card{background:linear-gradient(135deg,#0f172a 0%,#0d1117 100%);border:1px solid rgba(255,255,255,0.09);border-radius:12px;padding:28px;margin-bottom:4px;position:relative;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.35);}
+.arch-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--blue),var(--cyan),var(--violet));}
+.arch-kicker{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,0.28);margin-bottom:10px;}
+.arch-name{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:22px;color:#fff;line-height:1.15;margin-bottom:4px;letter-spacing:-0.02em;}
+.arch-code{font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(96,165,250,0.8);letter-spacing:.06em;margin-bottom:14px;}
+.arch-desc{font-size:12.5px;color:rgba(255,255,255,0.5);line-height:1.7;max-width:540px;}
+.arch-dims{display:flex;flex-wrap:wrap;gap:5px;margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.07);}
+.arch-dim{display:flex;align-items:center;gap:4px;padding:3px 8px;border-radius:4px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);font-family:'JetBrains Mono',monospace;font-size:7.5px;letter-spacing:.04em;}
 .adl{color:rgba(255,255,255,0.28);}
-.adv{color:rgba(255,255,255,0.76);font-weight:600;}
-
-/* Edit answers bar */
-.edit-bar{
-  background:var(--surface);border:1px solid var(--border);
-  border-radius:var(--r-md);padding:12px 16px;margin-top:6px;
-  display:flex;align-items:center;justify-content:space-between;gap:12px;
-}
-.edit-bar-text{font-size:12px;color:var(--muted);line-height:1.4;}
-.edit-bar-actions{display:flex;gap:8px;flex-shrink:0;}
-.btn-edit-dim{
-  font-family:'Inter',sans-serif;font-size:11px;font-weight:600;
-  padding:6px 14px;border-radius:var(--r-sm);border:1px solid var(--border-med);
-  background:var(--surface-low);color:var(--muted);cursor:pointer;
-  transition:all .12s;white-space:nowrap;
-}
-.btn-edit-dim:hover{background:var(--primary);border-color:var(--primary);color:#fff;}
-.btn-edit-frx{
-  font-family:'Inter',sans-serif;font-size:11px;font-weight:600;
-  padding:6px 14px;border-radius:var(--r-sm);border:1px solid var(--border-med);
-  background:var(--surface-low);color:var(--muted);cursor:pointer;
-  transition:all .12s;white-space:nowrap;
-}
-.btn-edit-frx:hover{background:var(--primary);border-color:var(--primary);color:#fff;}
-
-/* Insight bridge */
-.insight-bridge{
-  background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);
-  padding:16px 20px;margin:10px 0 14px;
-  border-left:3px solid var(--rose);
-  box-shadow:var(--shadow-sm);
-}
-.ib-tag{
-  font-family:'Inter',sans-serif;font-size:9px;font-weight:600;letter-spacing:.12em;
-  text-transform:uppercase;color:var(--rose);margin-bottom:7px;
-}
-.ib-line{
-  font-family:'Manrope',sans-serif;font-weight:700;font-size:15px;
-  color:var(--text);letter-spacing:-0.01em;line-height:1.35;margin-bottom:5px;
-}
-.ib-sub{font-size:12.5px;color:var(--muted);line-height:1.6;}
-
-/* Spider */
-.spider-wrap{
-  background:var(--surface);border:1px solid var(--border);border-radius:var(--r-xl);
-  padding:26px;margin-bottom:14px;box-shadow:var(--shadow-sm);
-}
-.spider-head{
-  display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px;
-}
-.spider-title{
-  font-family:'Manrope',sans-serif;font-weight:700;font-size:15px;
-  color:var(--text);letter-spacing:-0.01em;
-}
-.spider-sub{font-size:12px;color:var(--muted);margin-top:3px;}
-.spider-legend{display:flex;flex-direction:column;gap:6px;align-items:flex-end;}
-.leg-item{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--muted);}
+.adv{color:rgba(255,255,255,0.72);font-weight:600;}
+.insight-block{background:var(--bg2);border:1px solid var(--b);border-radius:10px;padding:18px 20px;margin:10px 0 14px;border-left:3px solid var(--violet);}
+.ib-tag{font-family:'JetBrains Mono',monospace;font-size:7.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--violet);margin-bottom:8px;font-weight:600;}
+.ib-text{font-size:13px;color:var(--muted);line-height:1.7;}
+.ib-text strong{color:var(--text);}
+.friction-bridge{background:var(--bg2);border:1px solid var(--b);border-radius:10px;padding:14px 18px;margin-bottom:14px;border-left:3px solid var(--rose);}
+.fb-tag{font-family:'JetBrains Mono',monospace;font-size:7.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--rose);margin-bottom:5px;font-weight:600;}
+.fb-line{font-size:14px;font-weight:700;color:var(--text);letter-spacing:-0.01em;line-height:1.35;margin-bottom:3px;}
+.fb-cause{font-size:12px;color:var(--muted);line-height:1.6;}
+.spider-wrap{background:var(--bg2);border:1px solid var(--b);border-radius:12px;padding:24px;margin-bottom:12px;}
+.spider-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px;}
+.spider-title{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:14px;color:var(--text);letter-spacing:-0.01em;}
+.spider-sub{font-size:11.5px;color:var(--muted);margin-top:2px;}
+.spider-legend{display:flex;flex-direction:column;gap:5px;align-items:flex-end;}
+.leg-item{display:flex;align-items:center;gap:5px;font-size:10.5px;color:var(--muted);}
 .leg-dot{width:7px;height:7px;border-radius:50%;}
-.spider-container{display:flex;justify-content:center;margin-bottom:20px;}
+.spider-container{display:flex;justify-content:center;margin-bottom:18px;}
 svg.spider{overflow:visible;}
-.axis-bars{display:flex;flex-direction:column;gap:8px;}
-.axis-row{display:flex;align-items:center;gap:12px;}
-.axis-name{
-  font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.05em;
-  text-transform:uppercase;color:var(--muted);width:82px;flex-shrink:0;text-align:right;
-}
-.axis-track{flex:1;height:3px;background:var(--surface-high);border-radius:2px;overflow:hidden;}
+.axis-bars{display:flex;flex-direction:column;gap:7px;}
+.axis-row{display:flex;align-items:center;gap:10px;}
+.axis-name{font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);width:82px;flex-shrink:0;text-align:right;}
+.axis-track{flex:1;height:3px;background:var(--b);border-radius:2px;overflow:hidden;}
 .axis-bar{height:100%;border-radius:2px;}
-.axis-pct{
-  font-family:'JetBrains Mono',monospace;font-size:8.5px;color:var(--faint);
-  width:30px;flex-shrink:0;text-align:right;
-}
-.axis-interp{font-size:11px;color:var(--muted);width:120px;flex-shrink:0;}
-
-/* r-section head */
-.r-sec{
-  font-family:'Inter',sans-serif;font-size:9px;font-weight:600;letter-spacing:.12em;
-  text-transform:uppercase;color:var(--muted);
-  margin:22px 0 12px;display:flex;align-items:center;gap:10px;
-}
-.r-sec::after{content:'';flex:1;height:1px;background:var(--border);}
-
-/* hero module */
-.mod-hero{
-  background:var(--surface);border:1px solid var(--border-med);border-radius:var(--r-lg);
-  padding:24px 26px;margin-bottom:10px;position:relative;overflow:hidden;
-  box-shadow:var(--shadow-sm);
-}
-.mod-hero::before{
-  content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
-  background:var(--primary);
-}
-.mod-hero-tag{
-  font-family:'Inter',sans-serif;font-size:9px;font-weight:600;letter-spacing:.12em;
-  text-transform:uppercase;color:var(--primary);margin-bottom:10px;
-}
-.mod-hero-headline{
-  font-family:'Manrope',sans-serif;font-weight:700;font-size:15px;
-  color:var(--text);line-height:1.35;margin-bottom:14px;letter-spacing:-0.01em;
-}
-.scenario-box{
-  background:var(--bg);border:1px solid var(--border);border-radius:var(--r-md);
-  padding:14px 16px;margin-bottom:12px;
-}
-.scenario-label{
-  font-family:'Inter',sans-serif;font-size:9px;font-weight:600;letter-spacing:.1em;
-  text-transform:uppercase;color:var(--amber);margin-bottom:6px;
-}
-.scenario-text{font-size:12.5px;color:var(--muted);line-height:1.65;}
-.scenario-text em{color:var(--text);font-style:normal;font-weight:600;}
-.mod-solution{
-  display:flex;align-items:flex-start;gap:12px;
-  padding:13px 16px;background:var(--primary-soft);border-radius:var(--r-md);
-  border:1px solid rgba(0,80,212,0.14);
-}
-.mod-name-pill{
-  font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.04em;
-  color:var(--primary);font-weight:600;flex-shrink:0;padding-top:2px;
-}
-.mod-solve-text{font-size:12.5px;color:var(--muted);line-height:1.55;}
-
-/* secondary modules */
-.mod-secondary{
-  background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);
-  padding:14px 18px;margin-bottom:8px;
-  display:flex;align-items:flex-start;gap:12px;
-  position:relative;overflow:hidden;box-shadow:var(--shadow-sm);
-}
-.mod-secondary::before{
-  content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--amber);
-}
-.sec-pill{
-  padding:3px 8px;border-radius:var(--r-sm);background:rgba(176,118,4,0.09);
-  font-family:'Inter',sans-serif;font-size:9px;font-weight:600;letter-spacing:.08em;
-  text-transform:uppercase;color:var(--amber);flex-shrink:0;margin-top:2px;
-}
-.sec-body{flex:1;}
-.sec-name{
-  font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;
-  color:var(--text);margin-bottom:3px;
-}
-.sec-apply{font-size:12px;color:var(--muted);line-height:1.5;margin-bottom:4px;}
-.sec-onboard{font-size:11.5px;color:var(--primary);line-height:1.4;}
-
-/* pricing */
-.pricing-card{
-  background:var(--inv);
-  border:1px solid rgba(255,255,255,0.06);
-  border-radius:var(--r-xl);padding:28px 32px;margin-top:16px;
-  display:flex;align-items:center;justify-content:space-between;
-  gap:20px;flex-wrap:wrap;position:relative;overflow:hidden;
-  box-shadow:var(--shadow-md);
-}
-.pricing-card::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:2px;
-  background:var(--primary-grad);
-}
-.pricing-card::after{
-  content:'';position:absolute;top:-120px;right:-80px;width:360px;height:360px;
-  background:radial-gradient(circle,rgba(123,156,255,.12) 0%,transparent 60%);
-  pointer-events:none;
-}
-.p-label{
-  font-family:'Inter',sans-serif;font-size:9px;font-weight:600;letter-spacing:.12em;
-  text-transform:uppercase;color:rgba(123,156,255,0.8);margin-bottom:5px;
-}
-.p-price{
-  font-family:'Manrope',sans-serif;font-weight:800;font-size:32px;
-  color:#fff;line-height:1;letter-spacing:-0.025em;
-}
-.p-price-suffix{font-size:14px;font-weight:400;color:var(--on-inv-mute);margin-left:2px;}
-.p-period{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--on-inv-mute);margin-top:4px;}
-.p-basis{font-size:12.5px;color:var(--on-inv-mute);line-height:1.6;max-width:240px;}
-.btn-waitlist{
-  font-family:'Manrope',sans-serif;font-weight:700;font-size:14px;
-  padding:13px 28px;background:var(--primary-grad);color:#fff;
-  border:none;border-radius:var(--r-md);cursor:pointer;transition:all .14s;
-  white-space:nowrap;flex-shrink:0;position:relative;z-index:1;
-  box-shadow:0 4px 16px rgba(0,80,212,0.35);
-}
-.btn-waitlist:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,80,212,0.45);}
-.btn-restart{
-  display:block;margin:16px auto 0;
-  font-family:'Inter',sans-serif;font-size:11px;font-weight:500;
-  letter-spacing:.06em;text-transform:uppercase;
-  color:var(--faint);background:none;border:none;cursor:pointer;transition:color .12s;
-}
+.axis-pct{font-family:'JetBrains Mono',monospace;font-size:8.5px;color:var(--dim);width:30px;flex-shrink:0;text-align:right;}
+.axis-interp{font-size:10.5px;color:var(--muted);width:120px;flex-shrink:0;}
+.r-sec{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:20px 0 10px;display:flex;align-items:center;gap:8px;}
+.r-sec::after{content:'';flex:1;height:1px;background:var(--b);}
+.mod-pri{background:var(--bg2);border:1px solid var(--b2);border-radius:10px;padding:14px 16px;margin-bottom:8px;display:flex;align-items:flex-start;gap:10px;position:relative;overflow:hidden;}
+.mod-pri::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--rose);}
+.mp-tag{padding:2px 7px;border-radius:4px;background:var(--rose2);font-family:'JetBrains Mono',monospace;font-size:7px;letter-spacing:.08em;text-transform:uppercase;color:var(--rose);flex-shrink:0;margin-top:2px;font-weight:600;}
+.mp-body{flex:1;}
+.mp-name{font-weight:700;font-size:12.5px;color:var(--text);margin-bottom:3px;}
+.mp-reason{font-size:11.5px;color:var(--muted);line-height:1.5;}
+.mod-act{background:var(--bg2);border:1px solid var(--b);border-radius:10px;padding:14px 16px;margin-bottom:8px;display:flex;align-items:flex-start;gap:10px;position:relative;overflow:hidden;}
+.mod-act::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--amber);}
+.ma-tag{padding:2px 7px;border-radius:4px;background:var(--amber2);font-family:'JetBrains Mono',monospace;font-size:7px;letter-spacing:.08em;text-transform:uppercase;color:var(--amber);flex-shrink:0;margin-top:2px;font-weight:600;}
+.ma-body{flex:1;}
+.ma-name{font-weight:700;font-size:12.5px;color:var(--text);margin-bottom:3px;}
+.ma-reason{font-size:11.5px;color:var(--muted);line-height:1.5;}
+.mod-bg{background:var(--bg2);border:1px solid var(--b);border-radius:10px;padding:12px 16px;margin-bottom:6px;display:flex;align-items:flex-start;gap:10px;position:relative;overflow:hidden;opacity:.65;}
+.mod-bg::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--dim);}
+.mbg-tag{padding:2px 7px;border-radius:4px;background:rgba(255,255,255,0.04);font-family:'JetBrains Mono',monospace;font-size:7px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);flex-shrink:0;margin-top:2px;font-weight:600;}
+.mbg-body{flex:1;}
+.mbg-name{font-weight:600;font-size:12px;color:var(--muted);margin-bottom:2px;}
+.mbg-reason{font-size:11px;color:var(--dim);line-height:1.5;}
+.pricing-card{background:var(--bg2);border:1px solid rgba(59,130,246,.2);border-radius:12px;padding:22px 24px;margin-top:12px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;position:relative;overflow:hidden;}
+.pricing-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--blue);}
+.p-label{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:4px;font-weight:600;}
+.p-price{font-family:'JetBrains Mono',monospace;font-weight:800;font-size:26px;color:var(--text);line-height:1;}
+.p-period{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--muted);margin-top:3px;}
+.p-basis{font-size:11.5px;color:var(--muted);line-height:1.6;max-width:240px;}
+.btn-waitlist{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:13px;padding:12px 26px;background:var(--blue);color:#fff;border:none;border-radius:8px;cursor:pointer;transition:all .12s;white-space:nowrap;flex-shrink:0;}
+.btn-waitlist:hover{background:#2563eb;transform:translateY(-1px);}
+.btn-restart{display:block;margin:14px auto 0;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);background:none;border:none;cursor:pointer;transition:color .12s;}
 .btn-restart:hover{color:var(--muted);}
+.confidence-badge{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:5px;font-family:'JetBrains Mono',monospace;font-size:7.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;margin-top:8px;}
+.conf-high{background:var(--green2);color:var(--green);}
+.conf-standard{background:var(--amber2);color:var(--amber);}
 
-@media(max-width:560px){
-  .intro-steps{grid-template-columns:1fr 1fr;}
-  .dim-opts{gap:7px;}
+@media(max-width:540px){
+  .intro-steps{grid-template-columns:1fr;}
+  .dim-opts{gap:6px;}
   .rating-row{flex-direction:column;}
   .pricing-card{flex-direction:column;align-items:flex-start;}
   .spider-legend{display:none;}
   .axis-interp{display:none;}
   .axis-name{width:66px;}
   .hdr-meta{display:none;}
-  .edit-bar{flex-direction:column;align-items:flex-start;}
-}
-@media(max-width:400px){
-  .intro-steps{grid-template-columns:1fr;}
 }
 </style>
 </head>
@@ -603,9 +276,9 @@ svg.spider{overflow:visible;}
       <div class="logo-mark">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
           <rect x="2" y="2" width="5" height="5" rx="1.5" fill="white"/>
-          <rect x="9" y="2" width="5" height="5" rx="1.5" fill="white" opacity="0.65"/>
-          <rect x="2" y="9" width="5" height="5" rx="1.5" fill="white" opacity="0.65"/>
-          <rect x="9" y="9" width="5" height="5" rx="1.5" fill="white" opacity="0.35"/>
+          <rect x="9" y="2" width="5" height="5" rx="1.5" fill="white" opacity="0.55"/>
+          <rect x="2" y="9" width="5" height="5" rx="1.5" fill="white" opacity="0.55"/>
+          <rect x="9" y="9" width="5" height="5" rx="1.5" fill="white" opacity="0.25"/>
         </svg>
       </div>
       <div>
@@ -614,7 +287,7 @@ svg.spider{overflow:visible;}
       </div>
     </div>
     <div class="hdr-right">
-      <div class="hdr-meta">v2 · Confidential</div>
+      <div class="hdr-meta">v3 · Confidential</div>
       <div class="lang-toggle">
         <button class="lang-btn active" id="btn-en" onclick="setLang('EN')">EN</button>
         <button class="lang-btn" id="btn-th" onclick="setLang('TH')">TH</button>
@@ -633,150 +306,200 @@ svg.spider{overflow:visible;}
 
 <script>
 // ══════════════════════════════════════════════════════════════════════════════
+// HARDCODED API KEY — no user input required
+// ══════════════════════════════════════════════════════════════════════════════
+const GEMINI_API_KEY = 'AIzaSyDz3f9suQa5cTW71O4U9-lSVhj9YwkHGTE';
+
+// ══════════════════════════════════════════════════════════════════════════════
 // LANGUAGE STRINGS
 // ══════════════════════════════════════════════════════════════════════════════
 const LANG = {
   EN: {
     logoSub: 'Business Diagnostic',
     ui: {
-      begin:'Begin →', next:'Next →', back:'← Back',
-      seeArchetype:'See your archetype →', editProfile:'← Edit profile',
-      startFriction:'Start friction map →', seeResults:'See results →',
-      retake:'↺ Retake Diagnostic',
-      joinWaitlist:'Join the Waitlist →',
-      editAnswers:'Edit answers',
-      editProfileBtn:'Edit profile',
-      editFrictionBtn:'Edit friction map',
-      editNote:'Click any dimension above to jump back and change it.',
-      notUs:'Not us', weFeelThis:'We feel this', realIssue:'This is a real issue',
-      rateEvery:'Rate every statement to continue',
-      mapped:'mapped', of:'of',
-      phase1:'Phase 1 — Business Profile', phase1complete:'Profile complete',
-      phase2:'Phase 2 — Friction Map', complete:'Complete',
-      configuration:'Configuration', perMonth:'/mo',
-      frictionAreasFlagged:'of 7 friction areas flagged',
-      diagnosticResult:'Diagnostic Result ·',
-      phase1Complete:'Phase 1 complete · Your archetype',
-      slcArchetype:'SLC Business Archetype ·',
-      tenMin:'~10 min · no account needed',
-      primarySignal:'Primary signal',
-      highestCostGap:'— your highest-cost gap.',
-      forArchetype:'For', thatMeans:'that means',
-      frictionProfile:'Friction Profile', allSevenAxes:'All seven axes — scored from your answers',
-      high:'High', moderate:'Moderate', low:'Low',
-      priorityModule:'Priority module ·',
-      additionalModules:'Additional modules · your configuration',
-      theSituation:'The situation',
-      yourSLCPlan:'Your SLC Plan',
-      configBuilt:'Configuration built from your answers. Adjusted for your archetype and friction profile.',
-      included:'Included', configuredFor:'Configured to your specific operation, not a generic setup.',
-      alsoIncludes:'also includes', frictionIn:'Friction in',
+      begin: 'Begin →', next: 'Next →', back: '← Back',
+      seeArchetype: 'See your archetype →', editProfile: '← Edit profile',
+      startFriction: 'Start friction map →', startAI: 'Start AI interview →',
+      seeResult: 'See your result →', retake: '↺ Retake Diagnostic',
+      joinWaitlist: 'Join the Waitlist →', skipAI: 'Skip to friction-based result',
+      notUs: 'Not us', feelThis: 'We feel this', realIssue: 'This is a real issue',
+      rateAll: 'Rate every statement to continue', mapped: 'mapped', of: 'of',
+      phase1: 'Phase 1 — Business Profile', phase1done: 'Profile complete',
+      phase2: 'Phase 2 — Friction Map', phase3: 'Phase 3 — AI Diagnostic',
+      complete: 'Complete',
+      aiEyebrow: 'Phase 3 · AI Diagnostic', aiTitle: 'AI Business Advisor',
+      aiSub: 'Answer naturally. There are no right or wrong answers.',
+      aiConnecting: 'Connecting to AI Advisor', aiConnectSub: 'Analysing your profile and friction map…',
+      aiDone: '✓ Diagnostic complete — preparing your result',
+      aiError: 'The AI conversation could not be completed. Your result will be generated from your friction map answers.',
+      aiWrapping: 'Wrapping up…', aiSend: 'Send', aiPlaceholder: 'Type your answer…',
+      aiAdvisor: 'SLC Advisor', aiYou: 'You',
+      priorityModules: 'Priority modules · activate first',
+      activeModules: 'Active modules · your configuration',
+      bgModules: 'Background modules · monitor',
+      priorityTag: 'Priority', activeTag: 'Active', monitorTag: 'Monitor',
+      frictionProfile: 'Friction Profile', allAxes: 'All axes — scored from your answers',
+      high: 'High', moderate: 'Moderate', low: 'Low',
+      piTag: 'Personalised insight · AI Diagnostic',
+      primarySignal: 'Primary signal', confHigh: '✓ High confidence', confStd: 'From friction map',
+      primaryFriction: 'Primary friction · ', rootCause: 'Root cause identified in AI conversation.',
+      secondary: 'Secondary: ',
+      yourPlan: 'Your SLC Plan', perMonth: '/mo', flagged: 'friction areas flagged',
+      configBuilt: 'Configuration built from your answers. Adjusted for your archetype, vertical, and friction profile.',
+      phase1Complete: 'Phase 1 complete · Your archetype',
+      archetypeLabel: 'SLC Business Archetype ·',
+      configuration: 'Configuration',
+      diagResult: 'Diagnostic Result ·',
     },
     intro: {
-      eyebrow:'AI Business Diagnostic · Free',
-      title:'Find out where your\nbusiness is losing ground.',
-      sub:'Answer honestly. You get a business archetype, an operational friction map, and a module prescription built from your actual answers — not a template.',
-      steps:[
-        {num:'01 · PROFILE',title:'Business archetype',desc:'Five scenario questions across stage, model, growth, marketing, and ops.'},
-        {num:'02 · FRICTION',title:'Operational audit',desc:'Seven categories. Rate each statement against your business today.'},
-        {num:'03 · RESULT',title:'Your configuration',desc:'Friction radar, module prescription, and a plan built from your profile.'},
-      ]
+      eyebrow: 'AI Business Diagnostic · Free',
+      title: 'Find out where your\nbusiness is losing ground.',
+      sub: 'Answer honestly. You get a business archetype, a friction map, an AI diagnostic conversation, and a personalised module prescription — built from your actual answers.',
+      steps: [
+        { num: '01 · PROFILE',     title: 'Business archetype',       desc: 'Six questions across stage, model, vertical, growth, marketing, and ops.' },
+        { num: '02 · FRICTION',    title: 'Operational audit',        desc: 'Seven categories. Rate each statement against your business today.' },
+        { num: '03 · AI INTERVIEW',title: 'Diagnostic conversation',  desc: 'A focused conversation to understand the specific cause behind each friction signal.' },
+        { num: '04 · RESULT',      title: 'Your configuration',       desc: 'Module prescription, personalised insight, and a plan built from your profile.' },
+      ],
+      cta: '~15 min · no account needed',
     },
-    dimLabels:{
-      stage:{P:'Pre-launch',L:'Live'},
-      model:{D:'Product',S:'Service'},
-      growth:{B:'Building',G:'Scaling'},
-      marketing:{O:'Organic',F:'Performance'},
-      ops:{X:'Solo',E:'Extended'}
+    revealBridge: {
+      entry: 'Now we map the friction — the gaps between your plan and a launch that holds.',
+      live:  'Now we find where the operation is quietly bleeding. Seven categories. Rate what\'s real, not what you\'re working on fixing.',
     },
-    costByAxis:{
-      planning:'unvalidated assumptions that become structural problems at launch',
-      finance:'cash surprises that arrive when it is already too late to act',
-      operations:'manual overhead that scales with every new order — invisible until it breaks',
-      marketing:'spend without attribution — investing without knowing the return',
-      customers:'leads and repeat revenue falling through the gaps between platforms',
-      people:'process fragility and compliance exposure that compounds as you grow',
-      strategy:'daily effort without measurable direction — busy without forward movement',
+    dimLabels: {
+      stage:    { P: 'Pre-launch', L: 'Live' },
+      model:    { D: 'Product', S: 'Service', J: 'Project-based' },
+      vertical: {
+        D1: 'Food & Beverage', D2: 'Retail & Commerce', D3: 'Beauty & Wellness Products',
+        S1: 'Professional & Creative Services', S2: 'Education & Coaching', S3: 'Health, Beauty & Wellness Services',
+        J1: 'Construction & Interior', J2: 'Events & Production', J3: 'Technology & Integration',
+      },
+      growth:    { B: 'Building', G: 'Scaling' },
+      marketing: { O: 'Organic', F: 'Performance' },
+      ops:       { X: 'Solo', E: 'Extended' },
     },
-    interpText:{minimal:'Minimal',low:'Low',moderate:'Moderate',high:'High',critical:'Critical'},
-    revealBridge:{
-      entry:'Now we map the friction — the gaps between your plan and a launch that holds.',
-      live:'Now we find where the operation is quietly bleeding. Seven categories. Rate what\'s real, not what you\'re working on fixing.',
-    },
+    interpText: { minimal: 'Minimal', low: 'Low', moderate: 'Moderate', high: 'High', critical: 'Critical' },
+    fallbackInsight: (axis, score) => `Your highest friction area is <strong>${axis}</strong> at ${score}%. The module prescription below has been built from your diagnostic answers.`,
+    fallbackReason:  (score, axis) => `High friction — ${score}% in ${axis}`,
+    fallbackFallback: (score, axis) => `Moderate friction — ${score}% in ${axis}`,
+    fallbackBg: 'Low friction — monitor',
+    fallbackInsightFull: (name, axis, score) => `Based on your ${name} profile, your primary focus is <strong>${axis}</strong> — where friction is highest at ${score}%. Your module configuration has been built from your diagnostic answers.`,
+    fallbackCause: 'Identified from friction mapping',
   },
   TH: {
     logoSub: 'การวินิจฉัยธุรกิจ',
     ui: {
-      begin:'เริ่มต้น →', next:'ถัดไป →', back:'← กลับ',
-      seeArchetype:'ดูประเภทธุรกิจของคุณ →', editProfile:'← แก้ไขโปรไฟล์',
-      startFriction:'เริ่มแผนที่ปัญหา →', seeResults:'ดูผลลัพธ์ →',
-      retake:'↺ ทำแบบทดสอบอีกครั้ง',
-      joinWaitlist:'เข้าร่วมรายชื่อรอ →',
-      editAnswers:'แก้ไขคำตอบ',
-      editProfileBtn:'แก้ไขโปรไฟล์',
-      editFrictionBtn:'แก้ไขแผนที่ปัญหา',
-      editNote:'แตะมิติด้านบนเพื่อกลับไปเปลี่ยนคำตอบ',
-      notUs:'ไม่ใช่เรา', weFeelThis:'เรารู้สึกแบบนี้', realIssue:'นี่คือปัญหาจริง',
-      rateEvery:'ประเมินทุกข้อเพื่อดำเนินการต่อ',
-      mapped:'แผนที่แล้ว', of:'จาก',
-      phase1:'ระยะที่ 1 — โปรไฟล์ธุรกิจ', phase1complete:'โปรไฟล์สมบูรณ์',
-      phase2:'ระยะที่ 2 — แผนที่ปัญหา', complete:'เสร็จสมบูรณ์',
-      configuration:'การกำหนดค่า', perMonth:'/เดือน',
-      frictionAreasFlagged:'จาก 7 พื้นที่ปัญหาที่ตรวจพบ',
-      diagnosticResult:'ผลการวินิจฉัย ·',
-      phase1Complete:'ระยะที่ 1 สมบูรณ์ · ประเภทธุรกิจของคุณ',
-      slcArchetype:'ประเภทธุรกิจ SLC ·',
-      tenMin:'~10 นาที · ไม่ต้องสมัครสมาชิก',
-      primarySignal:'สัญญาณหลัก',
-      highestCostGap:'— ช่องว่างที่มีต้นทุนสูงสุดของคุณ',
-      forArchetype:'สำหรับ', thatMeans:'หมายความว่า',
-      frictionProfile:'โปรไฟล์ปัญหา', allSevenAxes:'ทั้งเจ็ดมิติ — คะแนนจากคำตอบของคุณ',
-      high:'สูง', moderate:'ปานกลาง', low:'ต่ำ',
-      priorityModule:'โมดูลลำดับความสำคัญ ·',
-      additionalModules:'โมดูลเพิ่มเติม · การกำหนดค่าของคุณ',
-      theSituation:'สถานการณ์',
-      yourSLCPlan:'แผน SLC ของคุณ',
-      configBuilt:'การกำหนดค่าสร้างจากคำตอบของคุณ ปรับให้เหมาะกับประเภทธุรกิจและโปรไฟล์ปัญหาของคุณ',
-      included:'รวมอยู่ด้วย', configuredFor:'กำหนดค่าสำหรับการดำเนินงานเฉพาะของคุณ ไม่ใช่การตั้งค่าทั่วไป',
-      alsoIncludes:'รวมถึง', frictionIn:'ปัญหาใน',
+      begin: 'เริ่มต้น →', next: 'ถัดไป →', back: '← กลับ',
+      seeArchetype: 'ดูประเภทธุรกิจของคุณ →', editProfile: '← แก้ไขโปรไฟล์',
+      startFriction: 'เริ่มแผนที่ปัญหา →', startAI: 'เริ่มสัมภาษณ์ AI →',
+      seeResult: 'ดูผลลัพธ์ของคุณ →', retake: '↺ ทำแบบทดสอบอีกครั้ง',
+      joinWaitlist: 'เข้าร่วมรายชื่อรอ →', skipAI: 'ข้ามไปยังผลลัพธ์จากข้อมูลปัญหา',
+      notUs: 'ไม่ใช่เรา', feelThis: 'เรารู้สึกแบบนี้', realIssue: 'นี่คือปัญหาจริง',
+      rateAll: 'ประเมินทุกข้อเพื่อดำเนินการต่อ', mapped: 'แผนที่แล้ว', of: 'จาก',
+      phase1: 'ระยะที่ 1 — โปรไฟล์ธุรกิจ', phase1done: 'โปรไฟล์สมบูรณ์',
+      phase2: 'ระยะที่ 2 — แผนที่ปัญหา', phase3: 'ระยะที่ 3 — การวินิจฉัย AI',
+      complete: 'เสร็จสมบูรณ์',
+      aiEyebrow: 'ระยะที่ 3 · การวินิจฉัย AI', aiTitle: 'ที่ปรึกษาธุรกิจ AI',
+      aiSub: 'ตอบตามธรรมชาติ ไม่มีคำตอบที่ถูกหรือผิด',
+      aiConnecting: 'กำลังเชื่อมต่อที่ปรึกษา AI', aiConnectSub: 'กำลังวิเคราะห์โปรไฟล์และแผนที่ปัญหาของคุณ…',
+      aiDone: '✓ การวินิจฉัยเสร็จสมบูรณ์ — กำลังเตรียมผลลัพธ์ของคุณ',
+      aiError: 'ไม่สามารถดำเนินการสนทนา AI ได้ ผลลัพธ์ของคุณจะถูกสร้างจากคำตอบแผนที่ปัญหา',
+      aiWrapping: 'กำลังสรุป…', aiSend: 'ส่ง', aiPlaceholder: 'พิมพ์คำตอบของคุณ…',
+      aiAdvisor: 'ที่ปรึกษา SLC', aiYou: 'คุณ',
+      priorityModules: 'โมดูลลำดับความสำคัญ · เปิดใช้งานก่อน',
+      activeModules: 'โมดูลที่ใช้งาน · การกำหนดค่าของคุณ',
+      bgModules: 'โมดูลเบื้องหลัง · ติดตาม',
+      priorityTag: 'ลำดับความสำคัญ', activeTag: 'ใช้งาน', monitorTag: 'ติดตาม',
+      frictionProfile: 'โปรไฟล์ปัญหา', allAxes: 'ทุกมิติ — คะแนนจากคำตอบของคุณ',
+      high: 'สูง', moderate: 'ปานกลาง', low: 'ต่ำ',
+      piTag: 'ข้อมูลเชิงลึกส่วนตัว · การวินิจฉัย AI',
+      primarySignal: 'สัญญาณหลัก', confHigh: '✓ ความเชื่อมั่นสูง', confStd: 'จากแผนที่ปัญหา',
+      primaryFriction: 'ปัญหาหลัก · ', rootCause: 'ระบุสาเหตุหลักจากการสนทนา AI',
+      secondary: 'รอง: ',
+      yourPlan: 'แผน SLC ของคุณ', perMonth: '/เดือน', flagged: 'พื้นที่ปัญหาที่ตรวจพบ',
+      configBuilt: 'การกำหนดค่าสร้างจากคำตอบของคุณ ปรับให้เหมาะกับประเภทธุรกิจ แนวดิ่ง และโปรไฟล์ปัญหาของคุณ',
+      phase1Complete: 'ระยะที่ 1 สมบูรณ์ · ประเภทธุรกิจของคุณ',
+      archetypeLabel: 'ประเภทธุรกิจ SLC ·',
+      configuration: 'การกำหนดค่า',
+      diagResult: 'ผลการวินิจฉัย ·',
     },
-    intro:{
-      eyebrow:'วิเคราะห์ธุรกิจด้วย AI · ฟรี',
-      title:'ค้นหาว่าธุรกิจของคุณ\nกำลังเสียโอกาสตรงไหน',
-      sub:'ตอบอย่างตรงไปตรงมา คุณจะได้รับประเภทธุรกิจ แผนที่ปัญหาเชิงปฏิบัติการ และคำแนะนำโมดูลที่สร้างจากคำตอบจริงของคุณ — ไม่ใช่เทมเพลต',
-      steps:[
-        {num:'01 · โปรไฟล์',title:'ประเภทธุรกิจ',desc:'คำถาม 5 ข้อเกี่ยวกับขั้นตอน โมเดล การเติบโต การตลาด และการดำเนินงาน'},
-        {num:'02 · ปัญหา',title:'การตรวจสอบเชิงปฏิบัติการ',desc:'เจ็ดหมวดหมู่ ประเมินแต่ละข้อตามธุรกิจของคุณวันนี้'},
-        {num:'03 · ผลลัพธ์',title:'การกำหนดค่าของคุณ',desc:'เรดาร์ปัญหา คำแนะนำโมดูล และแผนที่สร้างจากโปรไฟล์ของคุณ'},
-      ]
+    intro: {
+      eyebrow: 'วิเคราะห์ธุรกิจด้วย AI · ฟรี',
+      title: 'ค้นหาว่าธุรกิจของคุณ\nกำลังเสียโอกาสตรงไหน',
+      sub: 'ตอบอย่างตรงไปตรงมา คุณจะได้รับประเภทธุรกิจ แผนที่ปัญหาเชิงปฏิบัติการ การสัมภาษณ์ AI และคำแนะนำโมดูลส่วนตัว — สร้างจากคำตอบจริงของคุณ',
+      steps: [
+        { num: '01 · โปรไฟล์',        title: 'ประเภทธุรกิจ',            desc: 'คำถาม 6 ข้อเกี่ยวกับขั้นตอน โมเดล แนวดิ่ง การเติบโต การตลาด และการดำเนินงาน' },
+        { num: '02 · ปัญหา',           title: 'การตรวจสอบเชิงปฏิบัติการ', desc: 'เจ็ดหมวดหมู่ ประเมินแต่ละข้อตามธุรกิจของคุณวันนี้' },
+        { num: '03 · สัมภาษณ์ AI',     title: 'การสนทนาวินิจฉัย',        desc: 'การสนทนามุ่งเน้นเพื่อทำความเข้าใจสาเหตุเฉพาะเบื้องหลังสัญญาณปัญหา' },
+        { num: '04 · ผลลัพธ์',         title: 'การกำหนดค่าของคุณ',       desc: 'คำแนะนำโมดูล ข้อมูลเชิงลึกส่วนตัว และแผนที่สร้างจากโปรไฟล์ของคุณ' },
+      ],
+      cta: '~15 นาที · ไม่ต้องสมัครสมาชิก',
     },
-    dimLabels:{
-      stage:{P:'ก่อนเปิดตัว',L:'ดำเนินการแล้ว'},
-      model:{D:'สินค้า',S:'บริการ'},
-      growth:{B:'กำลังสร้าง',G:'กำลังขยาย'},
-      marketing:{O:'ออร์แกนิก',F:'โฆษณาชำระเงิน'},
-      ops:{X:'คนเดียว',E:'มีทีม'}
+    revealBridge: {
+      entry: 'ตอนนี้เราจะทำแผนที่ปัญหา — ช่องว่างระหว่างแผนของคุณกับการเปิดตัวที่มั่นคง',
+      live:  'ตอนนี้เราจะหาว่าการดำเนินงานกำลังเสียเลือดอยู่ตรงไหน เจ็ดหมวดหมู่ ประเมินสิ่งที่เป็นจริง ไม่ใช่สิ่งที่คุณกำลังพยายามแก้ไข',
     },
-    costByAxis:{
-      planning:'สมมติฐานที่ไม่ได้รับการตรวจสอบซึ่งกลายเป็นปัญหาเชิงโครงสร้างเมื่อเปิดตัว',
-      finance:'ความประหลาดใจด้านเงินสดที่มาถึงเมื่อสายเกินไปที่จะแก้ไข',
-      operations:'ภาระงานด้วยมือที่เพิ่มขึ้นตามทุกออเดอร์ — มองไม่เห็นจนกว่าจะพัง',
-      marketing:'การใช้จ่ายโดยไม่มีการติดตาม — ลงทุนโดยไม่รู้ผลตอบแทน',
-      customers:'ลูกค้าและรายได้ซ้ำที่หลุดลอดผ่านช่องว่างระหว่างแพลตฟอร์ม',
-      people:'ความเปราะบางของกระบวนการและความเสี่ยงด้านการปฏิบัติตามกฎหมาย',
-      strategy:'ความพยายามรายวันโดยไม่มีทิศทางที่วัดได้ — ยุ่งแต่ไม่ก้าวหน้า',
+    dimLabels: {
+      stage:    { P: 'ก่อนเปิดตัว', L: 'ดำเนินการแล้ว' },
+      model:    { D: 'สินค้า', S: 'บริการ', J: 'โปรเจกต์' },
+      vertical: {
+        D1: 'อาหารและเครื่องดื่ม', D2: 'ค้าปลีกและพาณิชย์', D3: 'ผลิตภัณฑ์ความงามและสุขภาพ',
+        S1: 'บริการมืออาชีพและสร้างสรรค์', S2: 'การศึกษาและการโค้ช', S3: 'บริการสุขภาพ ความงาม และสุขภาวะ',
+        J1: 'ก่อสร้างและตกแต่งภายใน', J2: 'อีเวนต์และการผลิต', J3: 'เทคโนโลยีและการผสานระบบ',
+      },
+      growth:    { B: 'กำลังสร้าง', G: 'กำลังขยาย' },
+      marketing: { O: 'ออร์แกนิก', F: 'โฆษณาชำระเงิน' },
+      ops:       { X: 'คนเดียว', E: 'มีทีม' },
     },
-    interpText:{minimal:'น้อยมาก',low:'ต่ำ',moderate:'ปานกลาง',high:'สูง',critical:'วิกฤต'},
-    revealBridge:{
-      entry:'ตอนนี้เราจะทำแผนที่ปัญหา — ช่องว่างระหว่างแผนของคุณกับการเปิดตัวที่มั่นคง',
-      live:'ตอนนี้เราจะหาว่าการดำเนินงานกำลังเสียเลือดอยู่ตรงไหน เจ็ดหมวดหมู่ ประเมินสิ่งที่เป็นจริง ไม่ใช่สิ่งที่คุณกำลังพยายามแก้ไข',
-    },
+    interpText: { minimal: 'น้อยมาก', low: 'ต่ำ', moderate: 'ปานกลาง', high: 'สูง', critical: 'วิกฤต' },
+    fallbackInsight: (axis, score) => `พื้นที่ที่มีปัญหาสูงสุดของคุณคือ <strong>${axis}</strong> ที่ ${score}% คำแนะนำโมดูลด้านล่างสร้างจากคำตอบของคุณ`,
+    fallbackReason:  (score, axis) => `ปัญหาสูง — ${score}% ใน ${axis}`,
+    fallbackFallback: (score, axis) => `ปัญหาปานกลาง — ${score}% ใน ${axis}`,
+    fallbackBg: 'ปัญหาต่ำ — ติดตาม',
+    fallbackInsightFull: (name, axis, score) => `จากโปรไฟล์ ${name} ของคุณ โฟกัสหลักอยู่ที่ <strong>${axis}</strong> — ที่มีปัญหาสูงสุดที่ ${score}% การกำหนดค่าโมดูลสร้างจากคำตอบของคุณ`,
+    fallbackCause: 'ระบุจากแผนที่ปัญหา',
   },
 };
 
 // ══════════════════════════════════════════════════════════════════════════════
-// DIMENSION DATA
+// DIMENSION DATA — EN/TH pairs
 // ══════════════════════════════════════════════════════════════════════════════
+const VERTICAL_OPTS_EN = {
+  D:[
+    {key:'D1',letter:'A',title:'Food & Beverage',desc:'Cafés, restaurants, takeaway, street food, home kitchens, food production, bakeries, and catering.'},
+    {key:'D2',letter:'B',title:'Retail & Commerce',desc:'E-commerce on Shopee/Lazada/TikTok, physical retail, wholesale distribution, and multi-channel product sales.'},
+    {key:'D3',letter:'C',title:'Beauty & Wellness Products',desc:'Skincare, cosmetics, supplements, OEM beauty brands, and wellness product manufacturing or resale.'},
+  ],
+  S:[
+    {key:'S1',letter:'A',title:'Professional & Creative Services',desc:'Consulting, design, photography, accounting, digital marketing, legal, and any B2B or B2C expertise-based service.'},
+    {key:'S2',letter:'B',title:'Education & Coaching',desc:'Tutoring, online courses, coaching, training programmes, workshops, and structured knowledge transfer.'},
+    {key:'S3',letter:'C',title:'Health, Beauty & Wellness Services',desc:'Clinics, spas, salons, therapy, massage, and aesthetics — where practitioners deliver the value directly.'},
+  ],
+  J:[
+    {key:'J1',letter:'A',title:'Construction & Interior',desc:'Interior design, renovation, fit-out, construction, and any project where you design, procure, and build.'},
+    {key:'J2',letter:'B',title:'Events & Production',desc:'Event planning, wedding coordination, corporate events, AV production, and scoped event delivery.'},
+    {key:'J3',letter:'C',title:'Technology & Integration',desc:'IT implementation, system integration, custom software, POS installation, and tech project delivery.'},
+  ]
+};
+const VERTICAL_OPTS_TH = {
+  D:[
+    {key:'D1',letter:'A',title:'อาหารและเครื่องดื่ม',desc:'คาเฟ่ ร้านอาหาร เดลิเวอรี่ อาหารข้างทาง ครัวบ้าน การผลิตอาหาร เบเกอรี่ และบริการจัดเลี้ยง'},
+    {key:'D2',letter:'B',title:'ค้าปลีกและพาณิชย์',desc:'อีคอมเมิร์ซบน Shopee/Lazada/TikTok ค้าปลีกทั่วไป การขายส่ง และการขายสินค้าหลายช่องทาง'},
+    {key:'D3',letter:'C',title:'ผลิตภัณฑ์ความงามและสุขภาพ',desc:'สกินแคร์ เครื่องสำอาง อาหารเสริม แบรนด์ OEM ความงาม และการผลิตหรือจำหน่ายผลิตภัณฑ์สุขภาวะ'},
+  ],
+  S:[
+    {key:'S1',letter:'A',title:'บริการมืออาชีพและสร้างสรรค์',desc:'ที่ปรึกษา ดีไซน์ ถ่ายภาพ การบัญชี ดิจิทัลมาร์เก็ตติ้ง กฎหมาย และบริการที่ใช้ความเชี่ยวชาญ B2B หรือ B2C'},
+    {key:'S2',letter:'B',title:'การศึกษาและการโค้ช',desc:'ติวเตอร์ คอร์สออนไลน์ การโค้ช โปรแกรมฝึกอบรม เวิร์กช็อป และการถ่ายทอดความรู้แบบมีโครงสร้าง'},
+    {key:'S3',letter:'C',title:'บริการสุขภาพ ความงาม และสุขภาวะ',desc:'คลินิก สปา ร้านเสริมสวย บำบัด นวด และสุนทรียศาสตร์ — ที่นักปฏิบัติส่งมอบคุณค่าโดยตรง'},
+  ],
+  J:[
+    {key:'J1',letter:'A',title:'ก่อสร้างและตกแต่งภายใน',desc:'ออกแบบภายใน รีโนเวท ตกแต่ง ก่อสร้าง และโปรเจกต์ที่คุณออกแบบ จัดซื้อ และสร้าง'},
+    {key:'J2',letter:'B',title:'อีเวนต์และการผลิต',desc:'วางแผนงาน จัดงานแต่งงาน อีเวนต์องค์กร การผลิต AV และการส่งมอบงานอีเวนต์ตามขอบเขต'},
+    {key:'J3',letter:'C',title:'เทคโนโลยีและการผสานระบบ',desc:'การติดตั้ง IT การผสานระบบ ซอฟต์แวร์กำหนดเอง การติดตั้ง POS และการส่งมอบโปรเจกต์เทคโนโลยี'},
+  ]
+};
+
 const DIMS_EN = [
   {id:'stage',label:'Dimension 1 · Business Stage',
    prompt:'Looking at your calendar for the coming week — which best describes your primary focus right now?',
@@ -791,7 +514,12 @@ const DIMS_EN = [
    opts:[
      {key:'D',letter:'A',title:'Sourcing raw materials, managing inventory, packaging, and shipping physical goods',desc:'You sell or produce tangible products — e-commerce, retail, food, skincare, manufacturing.'},
      {key:'S',letter:'B',title:'Finding enough hours, scheduling qualified people, and maintaining quality of expertise',desc:'You deliver expertise, time, or intangible value — consulting, services, education, creative work.'},
+     {key:'J',letter:'C',title:'Scoping new projects, coordinating contractors, and delivering to client specifications',desc:'You win and execute discrete projects — construction, events, tech integration, or bespoke delivery.'},
    ]},
+  {id:'vertical',label:'Dimension 2b · Industry Vertical',
+   prompt:'Which sector best describes your business?',
+   sub:'This focuses the diagnostic on your specific operating environment.',
+   dynOpts:true},
   {id:'growth',label:'Dimension 3 · Growth Mode',
    prompt:'When you evaluate your monthly results — what is your most critical definition of success right now?',
    sub:null,
@@ -829,7 +557,12 @@ const DIMS_TH = [
    opts:[
      {key:'D',letter:'A',title:'การจัดหาวัตถุดิบ การจัดการสินค้าคงคลัง การแพ็ค และการส่งสินค้า',desc:'คุณขายหรือผลิตสินค้าที่จับต้องได้ — อีคอมเมิร์ซ ค้าปลีก อาหาร สกินแคร์ การผลิต'},
      {key:'S',letter:'B',title:'การหาเวลาเพียงพอ การจัดตารางคนที่มีคุณสมบัติ และการรักษาคุณภาพความเชี่ยวชาญ',desc:'คุณให้บริการความเชี่ยวชาญ เวลา หรือคุณค่าที่จับต้องไม่ได้ — ที่ปรึกษา บริการ การศึกษา งานสร้างสรรค์'},
+     {key:'J',letter:'C',title:'การกำหนดขอบเขตโปรเจกต์ ประสานผู้รับเหมา และส่งมอบตามข้อกำหนดลูกค้า',desc:'คุณชนะและดำเนินโปรเจกต์แยก — ก่อสร้าง อีเวนต์ การผสานเทคโนโลยี หรืองานเฉพาะ'},
    ]},
+  {id:'vertical',label:'มิติที่ 2b · แนวดิ่งอุตสาหกรรม',
+   prompt:'ภาคส่วนใดที่อธิบายธุรกิจของคุณได้ดีที่สุด?',
+   sub:'นี่จะมุ่งเน้นการวินิจฉัยไปยังสภาพแวดล้อมการดำเนินงานเฉพาะของคุณ',
+   dynOpts:true},
   {id:'growth',label:'มิติที่ 3 · โหมดการเติบโต',
    prompt:'เมื่อคุณประเมินผลลัพธ์รายเดือน — นิยามความสำเร็จที่สำคัญที่สุดของคุณในตอนนี้คืออะไร?',
    sub:null,
@@ -854,262 +587,225 @@ const DIMS_TH = [
 ];
 
 // ══════════════════════════════════════════════════════════════════════════════
-// FRICTION CATEGORIES
+// FRICTION CATEGORIES — EN/TH (same ids, translated display)
 // ══════════════════════════════════════════════════════════════════════════════
 const FRICTION_CATS_EN = [
-  {id:'planning',axis:'Planning',label:'Planning & New Ventures',color:'#1f8a5b',colorBg:'rgba(31,138,91,0.08)',
-   desc:'Direction, financial foundations, and the clarity you need before committing to something new.',
-   items:[
-     {id:'P01',stmt:'You are planning something new — a business, product line, or channel — but the financial numbers have not been properly validated.'},
-     {id:'P03',stmt:'Your pricing feels more like an estimate than a decision. You are not confident it covers your costs, beats competitors, or matches what customers will pay.'},
-     {id:'P05',stmt:'Your value proposition is still vague — you struggle to explain exactly who your best customer is and why they choose you over anyone else.'},
-     {id:'P06',stmt:'You lack a structured marketing plan — no clarity on which platforms to use, what to create, or in what order to launch.'},
-     {id:'P07',stmt:'You need to pitch to investors or a bank but have no professional deck or structured financial model to present.'},
-   ]},
-  {id:'finance',axis:'Finance',label:'Cash & Financial Visibility',color:'#0050d4',colorBg:'rgba(0,80,212,0.08)',
+  {id:'finance',axis:'Finance',label:'Cash & Financial Visibility',color:'#3b82f6',colorBg:'rgba(59,130,246,0.08)',
    desc:'How clearly you can see your financial reality — past, present, and forward.',
    items:[
-     {id:'P09',stmt:'Money comes in, but you genuinely cannot say whether the business is profitable after all costs are accounted for.'},
-     {id:'P10',stmt:'You have no clear forward view of whether you will have enough liquidity to cover upcoming supplier payments, operating costs, and staff commitments.'},
-     {id:'P09b',stmt:'Your business expenses are tracked inconsistently — or not tracked at all — making your actual margin unknown.'},
+     {id:'F01',stmt:'Money comes in, but you genuinely cannot say whether the business is profitable after all costs are accounted for.'},
+     {id:'F02',stmt:'You have no clear forward view of whether you will have enough cash to cover upcoming obligations — supplier payments, operating costs, and staff commitments.'},
+     {id:'F03',stmt:'Your business expenses are tracked inconsistently — or not tracked at all — making your actual margin per product, service, or project unknown.'},
+     {id:'F04',stmt:'You use revenue from new orders or upcoming projects to pay off costs from previous ones — and if one deal falls through, the whole chain is at risk.'},
    ]},
-  {id:'operations',axis:'Operations',label:'Orders, Stock & Fulfilment',color:'#4338ca',colorBg:'rgba(67,56,202,0.08)',
-   desc:'How orders move, how stock is managed, and whether your fulfilment holds under load.',
+  {id:'operations',axis:'Operations',label:'Orders, Stock & Fulfilment',color:'#6366f1',colorBg:'rgba(99,102,241,0.08)',
+   desc:'How work moves through your business — orders, inventory, fulfilment, logistics, capacity, and production.',
    items:[
-     {id:'P08',stmt:'You have no single system tracking each order from confirmation through to delivered and paid — things fall through the gaps.'},
-     {id:'P11',stmt:'Your actual stock levels do not match what you think you have — your chatbot or team promises availability that does not exist.'},
-     {id:'P12',stmt:'You run out of stock at the wrong moment, or over-order and end up with dead inventory that ties up cash.'},
-     {id:'P14',stmt:'You commit to timelines and take on new work — then realise mid-week you do not have enough time or people to deliver everything.'},
+     {id:'O01',stmt:'You commit to delivery timelines or take on new work — then realise mid-week that you do not have enough time or people to actually deliver everything.'},
+     {id:'O02',stmt:'Your business operates without a single system that tracks each piece of work from the moment it is confirmed through to completed and paid.'},
+     {id:'O03',stmt:'Your actual stock levels do not match what you think you have — you promise availability that does not exist, or discover shortages too late.',
+      swap:{S:'You have no structured view of your upcoming availability — clients try to book and you check your calendar manually each time, sometimes double-booking or leaving gaps you did not need to.',J:'You have no reliable system to track which materials have been ordered, which have arrived on site, and which are still outstanding — leading to delays when something is missing mid-project.'}},
+     {id:'O04',stmt:'You run out of stock at the wrong moment, or over-order and end up with dead inventory that ties up cash.',
+      swap:{S:'Clients change the scope of what they need after you have agreed on a price — and you absorb the extra work rather than renegotiating, quietly destroying your margin.',J:'The cost of materials, labour, or logistics changes between when you quoted the project and when you actually execute it — and your margin absorbs the difference every time.'}},
    ]},
-  {id:'marketing',axis:'Marketing',label:'Marketing & Growth Intelligence',color:'#5b21b6',colorBg:'rgba(91,33,182,0.08)',
-   desc:'Whether your marketing spend is traceable, your channels are coordinated, and your decisions are data-driven.',
+  {id:'marketing',axis:'Marketing',label:'Marketing & Sales',color:'#8b5cf6',colorBg:'rgba(139,92,246,0.08)',
+   desc:'How you acquire customers and convert interest into revenue.',
    items:[
-     {id:'P15',stmt:'With so many platforms available, your marketing spend feels too messy to evaluate — you cannot tell which activities are actually bringing in customers.'},
-     {id:'P16',stmt:'You run ads, campaigns, and influencer collaborations simultaneously with no coordination — competing messages reach the same people.'},
-     {id:'P18',stmt:'You make decisions about what to post, who to partner with, and what to launch based on feel rather than structured customer or market signals.'},
-     {id:'P21',stmt:'When a competitor changes their price or launches a promotion, you have no system to detect it and decide how to respond.'},
+     {id:'M01',stmt:'With so many platforms available, your marketing spend feels too messy to evaluate — you cannot tell which activities are actually bringing in customers.'},
+     {id:'M02',stmt:'You make decisions about what to post, who to partner with, and what to launch based on gut feel rather than structured customer or market signals.'},
+     {id:'M03',stmt:'When a potential customer chats with you but does not buy, they simply disappear — no record captured, no follow-up triggered, no way to bring them back.',
+      swap:{S:'Potential clients enquire about your services, seem interested, but then go silent — and you have no structured follow-up process to re-engage them before they hire someone else.',J:'Potential clients enquire about your project, seem interested, but then go silent — and you have no structured follow-up process to re-engage them before they hire someone else.'}},
+     {id:'M04',stmt:'You run ads, campaigns, or influencer collaborations simultaneously with no coordination — competing or contradictory messages reach the same people.'},
    ]},
-  {id:'customers',axis:'Customers',label:'Customer Communication & Retention',color:'#be185d',colorBg:'rgba(190,24,93,0.07)',
-   desc:'How you communicate across platforms, capture leads, and keep people coming back.',
+  {id:'customers',axis:'Customers',label:'Customer Experience',color:'#ec4899',colorBg:'rgba(236,72,153,0.08)',
+   desc:'How you communicate with customers, retain them, and manage the post-sale relationship.',
    items:[
-     {id:'PB1',stmt:'You spend significant time manually answering the same routine questions — stock, pricing, shipping, payment confirmation — across multiple platforms every day.'},
-     {id:'P28',stmt:'Potential customers chat with you and then disappear — no record captured, no follow-up triggered, no way to bring them back.'},
-     {id:'P20',stmt:'You have past customers you could re-engage, but there is no structured method to bring them back or identify who is at risk of churning.'},
-     {id:'P27',stmt:'Your chatbot answers are based on a static, outdated list — when you update your policies or products, the chatbot keeps giving wrong answers.'},
+     {id:'C01',stmt:'You spend significant time manually answering the same routine questions — pricing, availability, shipping, payment confirmation — across multiple platforms every day.'},
+     {id:'C02',stmt:'Your chatbot or auto-reply answers are based on a static, outdated list — when you update your products, policies, or prices, the chatbot keeps giving wrong answers.'},
+     {id:'C03',stmt:'You have past customers who bought from you and could buy again, but there is no structured method to bring them back or identify who is at risk of not returning.',
+      swap:{S:'Clients who used your service and were satisfied have not returned — and you have no system to remind them, offer them something new, or detect when they are drifting to a competitor.',J:'Clients who completed a project with you have not returned — and you have no system to remind them, offer them something new, or detect when they are drifting to a competitor.'}},
+     {id:'C04',stmt:'You have no structured way to collect feedback after a sale or delivery — you only hear from customers when something goes wrong, never when things go right.'},
    ]},
-  {id:'people',axis:'People',label:'Team, Process & Compliance',color:'#4d7c0f',colorBg:'rgba(77,124,15,0.08)',
-   desc:'Whether your operation can function without you in the room — and whether you are legally covered.',
+  {id:'people',axis:'People',label:'People & Team',color:'#84cc16',colorBg:'rgba(132,204,22,0.08)',
+   desc:'Whether your operation can function without you in the room. Shown only for Extended (E) archetypes.',
    items:[
-     {id:'P22',stmt:'Your business operates without documented procedures — how things get done depends on who is available and what they remember.'},
-     {id:'P23',stmt:'Staying on top of Thai regulatory obligations — VAT, SSO, licence renewals, permit deadlines — is reactive, not systematic.'},
-     {id:'P24',stmt:'Pay increase and performance decisions for staff are based on your personal observation, not recorded data or documented evidence.'},
-     {id:'P25',stmt:'Leave tracking, attendance, and SSO contributions are calculated manually each time — from scratch, case by case.'},
+     {id:'P01',stmt:'Your business operates without documented procedures — how things get done depends on who is available and what they remember that day.'},
+     {id:'P02',stmt:'Pay increase and performance decisions for staff are based on your personal observation rather than recorded data or documented evidence.'},
+     {id:'P03',stmt:'Leave tracking, attendance, and monthly SSO contributions are calculated manually each time — from scratch, case by case.'},
+     {id:'P04',stmt:'You find yourself re-explaining the same tasks and standards to every new person you bring in — there is nothing written down for them to follow independently.'},
    ]},
-  {id:'strategy',axis:'Strategy',label:'Strategic Direction',color:'#0e7490',colorBg:'rgba(14,116,144,0.08)',
+  {id:'compliance',axis:'Compliance',label:'Compliance & Legal',color:'#f59e0b',colorBg:'rgba(245,158,11,0.08)',
+   desc:'Regulatory obligations, permits, contracts, tax filing, and legal protection.',
+   items:[
+     {id:'L01',stmt:'Staying on top of Thai regulatory obligations — VAT filings, licence renewals, permit deadlines — is reactive, not systematic. You deal with it when you remember or when someone reminds you.'},
+     {id:'L02',stmt:'You operate without formal contracts with some or all of your suppliers, freelancers, or clients — agreements are verbal or via LINE messages.'},
+     {id:'L03',stmt:'You are unsure whether your current business setup — registration type, permits, and licences — is complete and legally correct for the way you actually operate today.'},
+     {id:'L04',stmt:'If a customer, employee, or supplier filed a formal complaint or legal claim against you today, you do not have documented records to defend your position.'},
+   ]},
+  {id:'strategy',axis:'Strategy',label:'Strategy & Planning',color:'#06b6d4',colorBg:'rgba(6,182,212,0.08)',
    desc:'Whether the business is moving in a direction — or just moving.',
    items:[
-     {id:'P29',stmt:'You are busy every day but have no formal targets — at the end of the month you cannot clearly say whether the business moved forward or stood still.'},
-     {id:'P29b',stmt:'You are questioning whether your current model, channel mix, or product focus is still the right long-term direction — but have no data framework to evaluate a change.'},
-     {id:'P13',stmt:'If a customer reported a product problem, you could not trace which batch or production run it came from or which other customers were affected.'},
+     {id:'S01',stmt:'You are busy every day but have no formal targets — at the end of the month you cannot clearly say whether the business moved forward or stood still.'},
+     {id:'S02',stmt:'Your pricing feels more like an estimate than a structured decision — you are not confident it covers all your costs, reflects what competitors charge, or matches what customers will actually pay.'},
+     {id:'S03',stmt:'You are questioning whether your current model, channel mix, or product focus is still the right long-term direction — but have no data framework to evaluate a change.'},
+     {id:'S04',stmt:'You are planning something new — a product line, a new channel, or an expansion — but the financial numbers have not been properly validated before committing resources.',
+      swap:{S:'You are considering offering a new service, entering a new market, or changing your pricing structure — but you have no model to show whether the change will be financially viable.',J:'You are considering taking on a different type of project, entering a new market, or scaling your team — but you have no financial model to evaluate whether the change will work at your current margins.'}},
+     {id:'S05',stmt:'When a competitor changes their price, launches a promotion, or enters your space, you have no system to detect it and decide how to respond.'},
    ]},
 ];
 
 const FRICTION_CATS_TH = [
-  {id:'planning',axis:'การวางแผน',label:'การวางแผนและการลงทุนใหม่',color:'#1f8a5b',colorBg:'rgba(31,138,91,0.08)',
-   desc:'ทิศทาง รากฐานทางการเงิน และความชัดเจนที่คุณต้องการก่อนผูกมัดกับสิ่งใหม่',
-   items:[
-     {id:'P01',stmt:'คุณกำลังวางแผนสิ่งใหม่ — ธุรกิจ สายผลิตภัณฑ์ หรือช่องทาง — แต่ตัวเลขทางการเงินยังไม่ได้รับการตรวจสอบอย่างเหมาะสม'},
-     {id:'P03',stmt:'การตั้งราคาของคุณรู้สึกเหมือนการประมาณการมากกว่าการตัดสินใจ คุณไม่มั่นใจว่าครอบคลุมต้นทุน แซงคู่แข่ง หรือตรงกับสิ่งที่ลูกค้าจะจ่าย'},
-     {id:'P05',stmt:'คุณค่าที่นำเสนอของคุณยังคลุมเครือ — คุณยากที่จะอธิบายว่าลูกค้าที่ดีที่สุดของคุณคือใครและทำไมพวกเขาเลือกคุณมากกว่าคนอื่น'},
-     {id:'P06',stmt:'คุณขาดแผนการตลาดที่มีโครงสร้าง — ไม่ชัดเจนว่าใช้แพลตฟอร์มใด สร้างอะไร หรือในลำดับใดที่จะเปิดตัว'},
-     {id:'P07',stmt:'คุณต้องการนำเสนอต่อนักลงทุนหรือธนาคารแต่ไม่มีเดคที่เป็นมืออาชีพหรือโมเดลทางการเงินที่มีโครงสร้างที่จะนำเสนอ'},
-   ]},
-  {id:'finance',axis:'การเงิน',label:'เงินสดและความชัดเจนทางการเงิน',color:'#0050d4',colorBg:'rgba(0,80,212,0.08)',
+  {id:'finance',axis:'การเงิน',label:'เงินสดและความชัดเจนทางการเงิน',color:'#3b82f6',colorBg:'rgba(59,130,246,0.08)',
    desc:'ความชัดเจนที่คุณมองเห็นความเป็นจริงทางการเงิน — อดีต ปัจจุบัน และอนาคต',
    items:[
-     {id:'P09',stmt:'เงินเข้ามา แต่คุณไม่สามารถบอกได้จริงๆ ว่าธุรกิจทำกำไรหรือไม่หลังจากคิดต้นทุนทั้งหมดแล้ว'},
-     {id:'P10',stmt:'คุณไม่มีมุมมองล่วงหน้าที่ชัดเจนว่าจะมีสภาพคล่องเพียงพอครอบคลุมการชำระเงินซัพพลายเออร์ที่จะมาถึง ต้นทุนดำเนินงาน และพันธะเงินเดือนพนักงานหรือไม่'},
-     {id:'P09b',stmt:'ค่าใช้จ่ายธุรกิจของคุณถูกติดตามอย่างไม่สม่ำเสมอ — หรือไม่ได้ติดตามเลย — ทำให้กำไรขั้นต้นที่แท้จริงไม่ทราบ'},
+     {id:'F01',stmt:'เงินเข้ามา แต่คุณไม่สามารถบอกได้จริงๆ ว่าธุรกิจทำกำไรหรือไม่หลังจากคิดต้นทุนทั้งหมดแล้ว'},
+     {id:'F02',stmt:'คุณไม่มีมุมมองล่วงหน้าที่ชัดเจนว่าจะมีเงินสดเพียงพอครอบคลุมภาระผูกพันที่จะมาถึง — การชำระเงินซัพพลายเออร์ ต้นทุนดำเนินงาน และพันธะเงินเดือน'},
+     {id:'F03',stmt:'ค่าใช้จ่ายธุรกิจของคุณถูกติดตามอย่างไม่สม่ำเสมอ — หรือไม่ได้ติดตามเลย — ทำให้กำไรขั้นต้นที่แท้จริงต่อผลิตภัณฑ์ บริการ หรือโปรเจกต์ไม่ทราบ'},
+     {id:'F04',stmt:'คุณใช้รายได้จากออเดอร์ใหม่หรือโปรเจกต์ที่จะมาถึงเพื่อชำระต้นทุนจากโปรเจกต์ก่อนหน้า — และถ้าดีลหนึ่งล้มเหลว ทั้งระบบเสี่ยง'},
    ]},
-  {id:'operations',axis:'การดำเนินงาน',label:'ออเดอร์ สต็อก และการจัดส่ง',color:'#4338ca',colorBg:'rgba(67,56,202,0.08)',
-   desc:'ออเดอร์เคลื่อนไหวอย่างไร สต็อกจัดการอย่างไร และการจัดส่งรับมือกับการโหลดได้หรือไม่',
+  {id:'operations',axis:'การดำเนินงาน',label:'ออเดอร์ สต็อก และการจัดส่ง',color:'#6366f1',colorBg:'rgba(99,102,241,0.08)',
+   desc:'งานเคลื่อนผ่านธุรกิจของคุณอย่างไร — ออเดอร์ สินค้าคงคลัง การจัดส่ง โลจิสติกส์ ความสามารถ และการผลิต',
    items:[
-     {id:'P08',stmt:'คุณไม่มีระบบเดียวที่ติดตามแต่ละออเดอร์จากการยืนยันจนถึงการส่งมอบและการชำระเงิน — สิ่งต่างๆ หลุดออกไปจากช่องว่าง'},
-     {id:'P11',stmt:'ระดับสต็อกจริงของคุณไม่ตรงกับสิ่งที่คุณคิดว่ามี — แชทบอตหรือทีมของคุณสัญญาความพร้อมที่ไม่มีอยู่จริง'},
-     {id:'P12',stmt:'คุณหมดสต็อกในเวลาที่ผิด หรือสั่งเกินและได้สินค้าคงคลังที่ตายแล้วซึ่งผูกเงินสดไว้'},
-     {id:'P14',stmt:'คุณผูกมัดกับกำหนดเวลาและรับงานใหม่ — แล้วรู้ในช่วงกลางสัปดาห์ว่าไม่มีเวลาหรือคนเพียงพอที่จะส่งมอบทุกอย่าง'},
+     {id:'O01',stmt:'คุณผูกมัดกับกำหนดเวลาหรือรับงานใหม่ — แล้วรู้กลางสัปดาห์ว่าไม่มีเวลาหรือคนเพียงพอที่จะส่งมอบทุกอย่างจริงๆ'},
+     {id:'O02',stmt:'ธุรกิจของคุณดำเนินการโดยไม่มีระบบเดียวที่ติดตามแต่ละชิ้นงานจากการยืนยันจนถึงเสร็จสมบูรณ์และชำระเงิน'},
+     {id:'O03',stmt:'ระดับสต็อกจริงของคุณไม่ตรงกับสิ่งที่คุณคิดว่ามี — คุณสัญญาความพร้อมที่ไม่มีอยู่จริง หรือค้นพบการขาดแคลนช้าเกินไป',
+      swap:{S:'คุณไม่มีมุมมองที่มีโครงสร้างเกี่ยวกับความพร้อมที่จะมาถึง — ลูกค้าพยายามจองและคุณตรวจปฏิทินด้วยมือทุกครั้ง บางครั้งจองซ้ำหรือปล่อยช่องว่างที่ไม่จำเป็น',J:'คุณไม่มีระบบที่เชื่อถือได้ในการติดตามว่าวัสดุใดถูกสั่ง ใดมาถึงไซต์งาน และใดยังค้างอยู่ — นำไปสู่ความล่าช้าเมื่อขาดอะไรกลางโปรเจกต์'}},
+     {id:'O04',stmt:'คุณหมดสต็อกในเวลาที่ผิด หรือสั่งเกินและได้สินค้าคงคลังที่ตายแล้วซึ่งผูกเงินสดไว้',
+      swap:{S:'ลูกค้าเปลี่ยนขอบเขตที่ต้องการหลังจากคุณตกลงราคา — และคุณรับงานพิเศษแทนที่จะเจรจาใหม่ ทำลายกำไรอย่างเงียบๆ',J:'ต้นทุนวัสดุ แรงงาน หรือโลจิสติกส์เปลี่ยนระหว่างที่คุณเสนอราคาโปรเจกต์และเมื่อคุณดำเนินการจริง — และกำไรของคุณรับส่วนต่างทุกครั้ง'}},
    ]},
-  {id:'marketing',axis:'การตลาด',label:'การตลาดและข้อมูลการเติบโต',color:'#5b21b6',colorBg:'rgba(91,33,182,0.08)',
-   desc:'การใช้จ่ายด้านการตลาดของคุณติดตามได้หรือไม่ ช่องทางประสานกันหรือไม่ และการตัดสินใจขับเคลื่อนด้วยข้อมูลหรือไม่',
+  {id:'marketing',axis:'การตลาด',label:'การตลาดและการขาย',color:'#8b5cf6',colorBg:'rgba(139,92,246,0.08)',
+   desc:'คุณหาลูกค้าและแปลงความสนใจเป็นรายได้อย่างไร',
    items:[
-     {id:'P15',stmt:'ด้วยแพลตฟอร์มมากมายที่มีอยู่ การใช้จ่ายด้านการตลาดของคุณรู้สึกยุ่งเกินไปที่จะประเมิน — คุณไม่สามารถบอกได้ว่ากิจกรรมใดที่นำลูกค้าเข้ามาจริงๆ'},
-     {id:'P16',stmt:'คุณรันโฆษณา แคมเปญ และการร่วมมือกับ Influencer พร้อมกันโดยไม่มีการประสานงาน — ข้อความที่แข่งขันกันถึงกลุ่มคนเดิม'},
-     {id:'P18',stmt:'คุณตัดสินใจเกี่ยวกับสิ่งที่จะโพสต์ ใครจะร่วมมือ และสิ่งที่จะเปิดตัวตามความรู้สึกมากกว่าสัญญาณลูกค้าหรือตลาดที่มีโครงสร้าง'},
-     {id:'P21',stmt:'เมื่อคู่แข่งเปลี่ยนราคาหรือเปิดตัวโปรโมชัน คุณไม่มีระบบในการตรวจจับและตัดสินใจว่าจะตอบสนองอย่างไร'},
+     {id:'M01',stmt:'ด้วยแพลตฟอร์มมากมายที่มีอยู่ การใช้จ่ายด้านการตลาดของคุณรู้สึกยุ่งเกินไปที่จะประเมิน — คุณไม่สามารถบอกได้ว่ากิจกรรมใดที่นำลูกค้าเข้ามาจริงๆ'},
+     {id:'M02',stmt:'คุณตัดสินใจเกี่ยวกับสิ่งที่จะโพสต์ ใครจะร่วมมือ และสิ่งที่จะเปิดตัวตามความรู้สึกมากกว่าสัญญาณลูกค้าหรือตลาดที่มีโครงสร้าง'},
+     {id:'M03',stmt:'เมื่อลูกค้าเป้าหมายแชทกับคุณแต่ไม่ซื้อ พวกเขาหายไปง่ายๆ — ไม่มีการจับบันทึก ไม่มีการติดตาม ไม่มีทางนำพวกเขากลับมา',
+      swap:{S:'ลูกค้าเป้าหมายสอบถามบริการของคุณ ดูสนใจ แต่แล้วเงียบ — และคุณไม่มีกระบวนการติดตามที่มีโครงสร้างเพื่อดึงพวกเขากลับมาก่อนที่จะจ้างคนอื่น',J:'ลูกค้าเป้าหมายสอบถามโปรเจกต์ของคุณ ดูสนใจ แต่แล้วเงียบ — และคุณไม่มีกระบวนการติดตามที่มีโครงสร้างเพื่อดึงพวกเขากลับมาก่อนที่จะจ้างคนอื่น'}},
+     {id:'M04',stmt:'คุณรันโฆษณา แคมเปญ หรือการร่วมมือกับ Influencer พร้อมกันโดยไม่มีการประสานงาน — ข้อความที่แข่งขันหรือขัดแย้งกันถึงกลุ่มคนเดิม'},
    ]},
-  {id:'customers',axis:'ลูกค้า',label:'การสื่อสารและการรักษาลูกค้า',color:'#be185d',colorBg:'rgba(190,24,93,0.07)',
-   desc:'คุณสื่อสารข้ามแพลตฟอร์มอย่างไร จับลูกค้าเป้าหมายอย่างไร และทำให้ผู้คนกลับมาอย่างไร',
+  {id:'customers',axis:'ลูกค้า',label:'ประสบการณ์ลูกค้า',color:'#ec4899',colorBg:'rgba(236,72,153,0.08)',
+   desc:'คุณสื่อสารกับลูกค้า รักษาพวกเขา และจัดการความสัมพันธ์หลังการขายอย่างไร',
    items:[
-     {id:'PB1',stmt:'คุณใช้เวลาอย่างมากในการตอบคำถามเดิมๆ ด้วยมือ — สต็อก ราคา การจัดส่ง การยืนยันการชำระเงิน — ข้ามแพลตฟอร์มต่างๆ ทุกวัน'},
-     {id:'P28',stmt:'ลูกค้าเป้าหมายแชทกับคุณแล้วหายไป — ไม่มีการจับบันทึก ไม่มีการติดตามผล ไม่มีทางนำพวกเขากลับมา'},
-     {id:'P20',stmt:'คุณมีลูกค้าเก่าที่สามารถติดต่อซ้ำได้ แต่ไม่มีวิธีการที่มีโครงสร้างในการดึงพวกเขากลับมาหรือระบุว่าใครเสี่ยงที่จะหายไป'},
-     {id:'P27',stmt:'คำตอบแชทบอทของคุณอิงจากรายการที่หยุดนิ่งและล้าสมัย — เมื่อคุณอัปเดตนโยบายหรือผลิตภัณฑ์ แชทบอทยังคงให้คำตอบที่ผิด'},
+     {id:'C01',stmt:'คุณใช้เวลาอย่างมากในการตอบคำถามเดิมๆ ด้วยมือ — ราคา ความพร้อม การจัดส่ง การยืนยันการชำระเงิน — ข้ามแพลตฟอร์มต่างๆ ทุกวัน'},
+     {id:'C02',stmt:'คำตอบแชทบอทหรือการตอบกลับอัตโนมัติของคุณอิงจากรายการที่หยุดนิ่งและล้าสมัย — เมื่อคุณอัปเดตผลิตภัณฑ์ นโยบาย หรือราคา แชทบอทยังคงให้คำตอบที่ผิด'},
+     {id:'C03',stmt:'คุณมีลูกค้าเก่าที่ซื้อจากคุณและสามารถซื้ออีกได้ แต่ไม่มีวิธีการที่มีโครงสร้างในการดึงพวกเขากลับมาหรือระบุว่าใครเสี่ยงที่จะไม่กลับมา',
+      swap:{S:'ลูกค้าที่ใช้บริการของคุณและพึงพอใจไม่กลับมา — และคุณไม่มีระบบเพื่อเตือนพวกเขา เสนอสิ่งใหม่ หรือตรวจจับเมื่อพวกเขาเริ่มไปหาคู่แข่ง',J:'ลูกค้าที่ดำเนินโปรเจกต์กับคุณเสร็จแล้วไม่กลับมา — และคุณไม่มีระบบเพื่อเตือนพวกเขา เสนอสิ่งใหม่ หรือตรวจจับเมื่อพวกเขาเริ่มไปหาคู่แข่ง'}},
+     {id:'C04',stmt:'คุณไม่มีวิธีการที่มีโครงสร้างในการเก็บข้อเสนอแนะหลังการขายหรือการส่งมอบ — คุณได้ยินจากลูกค้าเฉพาะเมื่อมีปัญหา ไม่ใช่เมื่อทุกอย่างดี'},
    ]},
-  {id:'people',axis:'ทีมงาน',label:'ทีม กระบวนการ และการปฏิบัติตามกฎ',color:'#4d7c0f',colorBg:'rgba(77,124,15,0.08)',
-   desc:'การดำเนินงานของคุณสามารถทำงานได้โดยไม่มีคุณอยู่ในห้องหรือไม่ — และคุณได้รับการคุ้มครองทางกฎหมายหรือไม่',
+  {id:'people',axis:'ทีมงาน',label:'ทีมงานและบุคลากร',color:'#84cc16',colorBg:'rgba(132,204,22,0.08)',
+   desc:'การดำเนินงานของคุณสามารถทำงานได้โดยไม่มีคุณอยู่ในห้องหรือไม่ แสดงเฉพาะสำหรับประเภท Extended (E)',
    items:[
-     {id:'P22',stmt:'ธุรกิจของคุณดำเนินการโดยไม่มีขั้นตอนที่บันทึกไว้ — วิธีการทำสิ่งต่างๆ ขึ้นอยู่กับว่าใครพร้อมใช้งานและสิ่งที่พวกเขาจำได้'},
-     {id:'P23',stmt:'การติดตามภาระผูกพันด้านกฎระเบียบไทย — ภาษีมูลค่าเพิ่ม ประกันสังคม การต่ออายุใบอนุญาต — เป็นเชิงปฏิกิริยา ไม่ใช่เชิงระบบ'},
-     {id:'P24',stmt:'การตัดสินใจเพิ่มเงินเดือนและผลการปฏิบัติงานของพนักงานขึ้นอยู่กับการสังเกตส่วนตัวของคุณ ไม่ใช่ข้อมูลที่บันทึกไว้หรือหลักฐานที่บันทึก'},
-     {id:'P25',stmt:'การติดตามวันลา การเข้างาน และเงินสมทบประกันสังคมคำนวณด้วยมือทุกครั้ง — ตั้งแต่ต้น กรณีต่อกรณี'},
+     {id:'P01',stmt:'ธุรกิจของคุณดำเนินการโดยไม่มีขั้นตอนที่บันทึกไว้ — วิธีการทำสิ่งต่างๆ ขึ้นอยู่กับว่าใครพร้อมใช้งานและสิ่งที่พวกเขาจำได้ในวันนั้น'},
+     {id:'P02',stmt:'การตัดสินใจเพิ่มเงินเดือนและผลการปฏิบัติงานของพนักงานขึ้นอยู่กับการสังเกตส่วนตัวของคุณมากกว่าข้อมูลที่บันทึกไว้หรือหลักฐานที่บันทึก'},
+     {id:'P03',stmt:'การติดตามวันลา การเข้างาน และเงินสมทบประกันสังคมรายเดือนคำนวณด้วยมือทุกครั้ง — ตั้งแต่ต้น กรณีต่อกรณี'},
+     {id:'P04',stmt:'คุณพบว่าตัวเองอธิบายงานและมาตรฐานเดิมซ้ำให้กับทุกคนที่เข้ามาใหม่ — ไม่มีอะไรเขียนไว้ให้พวกเขาปฏิบัติตามอย่างอิสระ'},
    ]},
-  {id:'strategy',axis:'กลยุทธ์',label:'ทิศทางเชิงกลยุทธ์',color:'#0e7490',colorBg:'rgba(14,116,144,0.08)',
+  {id:'compliance',axis:'การปฏิบัติตาม',label:'การปฏิบัติตามกฎหมายและกฎระเบียบ',color:'#f59e0b',colorBg:'rgba(245,158,11,0.08)',
+   desc:'ภาระผูกพันด้านกฎระเบียบ ใบอนุญาต สัญญา การยื่นภาษี และการคุ้มครองทางกฎหมาย',
+   items:[
+     {id:'L01',stmt:'การติดตามภาระผูกพันด้านกฎระเบียบไทย — การยื่นภาษีมูลค่าเพิ่ม การต่ออายุใบอนุญาต กำหนดเวลาใบอนุญาต — เป็นเชิงปฏิกิริยา ไม่ใช่เชิงระบบ คุณจัดการเมื่อจำได้หรือเมื่อมีคนเตือน'},
+     {id:'L02',stmt:'คุณดำเนินการโดยไม่มีสัญญาที่เป็นทางการกับซัพพลายเออร์ ฟรีแลนซ์ หรือลูกค้าบางส่วนหรือทั้งหมด — ข้อตกลงเป็นแบบปากเปล่าหรือผ่านข้อความ LINE'},
+     {id:'L03',stmt:'คุณไม่แน่ใจว่าการตั้งค่าธุรกิจปัจจุบัน — ประเภทการจดทะเบียน ใบอนุญาต — ครบถ้วนและถูกต้องตามกฎหมายสำหรับวิธีที่คุณดำเนินการจริงในปัจจุบันหรือไม่'},
+     {id:'L04',stmt:'หากลูกค้า พนักงาน หรือซัพพลายเออร์ยื่นการร้องเรียนหรือคดีทางกฎหมายกับคุณวันนี้ คุณไม่มีบันทึกที่บันทึกไว้เพื่อปกป้องตำแหน่งของคุณ'},
+   ]},
+  {id:'strategy',axis:'กลยุทธ์',label:'กลยุทธ์และการวางแผน',color:'#06b6d4',colorBg:'rgba(6,182,212,0.08)',
    desc:'ธุรกิจกำลังเคลื่อนไปในทิศทาง — หรือแค่เคลื่อนไหว',
    items:[
-     {id:'P29',stmt:'คุณยุ่งทุกวันแต่ไม่มีเป้าหมายที่เป็นทางการ — ในตอนท้ายเดือนคุณไม่สามารถบอกได้อย่างชัดเจนว่าธุรกิจก้าวหน้าหรือหยุดนิ่ง'},
-     {id:'P29b',stmt:'คุณตั้งคำถามว่าโมเดล ช่องทาง หรือโฟกัสผลิตภัณฑ์ปัจจุบันยังคงเป็นทิศทางระยะยาวที่ถูกต้องหรือไม่ — แต่ไม่มีกรอบข้อมูลที่จะประเมินการเปลี่ยนแปลง'},
-     {id:'P13',stmt:'ถ้าลูกค้ารายงานปัญหาผลิตภัณฑ์ คุณไม่สามารถสืบหาว่ามาจากแบทช์หรือรอบการผลิตใด หรือลูกค้ารายอื่นใดได้รับผลกระทบ'},
+     {id:'S01',stmt:'คุณยุ่งทุกวันแต่ไม่มีเป้าหมายที่เป็นทางการ — ในตอนท้ายเดือนคุณไม่สามารถบอกได้อย่างชัดเจนว่าธุรกิจก้าวหน้าหรือหยุดนิ่ง'},
+     {id:'S02',stmt:'การตั้งราคาของคุณรู้สึกเหมือนการประมาณการมากกว่าการตัดสินใจที่มีโครงสร้าง — คุณไม่มั่นใจว่าครอบคลุมต้นทุนทั้งหมด สะท้อนสิ่งที่คู่แข่งเรียกเก็บ หรือตรงกับสิ่งที่ลูกค้าจะจ่ายจริง'},
+     {id:'S03',stmt:'คุณตั้งคำถามว่าโมเดล ช่องทาง หรือโฟกัสผลิตภัณฑ์ปัจจุบันยังคงเป็นทิศทางระยะยาวที่ถูกต้องหรือไม่ — แต่ไม่มีกรอบข้อมูลที่จะประเมินการเปลี่ยนแปลง'},
+     {id:'S04',stmt:'คุณกำลังวางแผนสิ่งใหม่ — สายผลิตภัณฑ์ ช่องทางใหม่ หรือการขยาย — แต่ตัวเลขทางการเงินยังไม่ได้รับการตรวจสอบอย่างเหมาะสมก่อนผูกมัดทรัพยากร',
+      swap:{S:'คุณกำลังพิจารณาเสนอบริการใหม่ เข้าตลาดใหม่ หรือเปลี่ยนโครงสร้างราคา — แต่คุณไม่มีโมเดลที่จะแสดงว่าการเปลี่ยนแปลงจะเป็นไปได้ทางการเงินหรือไม่',J:'คุณกำลังพิจารณารับโปรเจกต์ประเภทต่างๆ เข้าตลาดใหม่ หรือขยายทีม — แต่คุณไม่มีโมเดลทางการเงินที่จะประเมินว่าการเปลี่ยนแปลงจะทำงานได้ที่กำไรปัจจุบันของคุณหรือไม่'}},
+     {id:'S05',stmt:'เมื่อคู่แข่งเปลี่ยนราคา เปิดตัวโปรโมชัน หรือเข้าพื้นที่ของคุณ คุณไม่มีระบบในการตรวจจับและตัดสินใจว่าจะตอบสนองอย่างไร'},
    ]},
 ];
 
 // ══════════════════════════════════════════════════════════════════════════════
-// ARCHETYPES
+// ARCHETYPES — EN + TH
 // ══════════════════════════════════════════════════════════════════════════════
 const ARCHETYPES_EN = {
-  'P-D-B-O-X':{name:'The Careful Launcher',tier:'Entry',desc:'Planning a physical product launch before the first sale. Every decision is deliberate — the numbers need to be right before anything moves. Frictions are prospective: feasibility, pricing architecture, supplier discovery, launch sequencing.'},
-  'P-S-B-O-X':{name:'The Freelance Initiator',tier:'Entry',desc:'Formalising a solo service practice. The core challenge is defining value clearly enough that clients pay without negotiating. Needs a business model that holds up under scrutiny, contracts that protect you, and authority-building content before you have case studies.'},
+  'P-D-B-O-X':{name:'The Kitchen Table Planner',tier:'Entry',desc:'Developing a food or physical product from home or a small rented space. Recipe or design is proven informally. Now facing the real questions: FDA registration, packaging compliance, supplier sourcing, and whether the unit economics actually work.'},
   'P-D-B-F-X':{name:'The Ambitious Starter',tier:'Mid',desc:'A product founder planning aggressive market entry with paid acquisition from day one. The financial model and performance marketing plan must be locked before a single baht is spent. Over-spending before product-market fit is the primary risk.'},
-  'P-S-B-F-X':{name:'The Market Disruptor',tier:'Mid',desc:'A service provider planning heavy ad spend to build a client roster immediately on launch. Lead capture architecture and go-to-market sequencing are the priorities — every paid click needs a conversion mechanism before campaigns go live.'},
-  'L-D-B-O-X':{name:'The Steady Product Owner',tier:'Mid',desc:'Live and generating revenue, but the operation runs on manual effort. Orders across chat threads, stock in a spreadsheet, cash flow a weekly surprise. The goal is not aggressive scaling — it is building something that does not depend on you being available every hour.'},
-  'L-S-B-O-X':{name:'The Solo Service Operator',tier:'Mid',desc:'A live consultant or service provider managing everything alone. Friction is almost entirely administrative — chasing invoices, rescheduling clients, answering the same questions repeatedly. Every hour on admin is an hour not on the work clients pay for.'},
-  'L-D-B-F-X':{name:'The Emerging Merchant',tier:'Mid',desc:'Live with paid ads building market position. The gap between what you spend on ads and what you can attribute to revenue is the core problem. Tight integration between order data, inventory, and campaign results is required before scaling spend.'},
-  'L-S-B-F-X':{name:'The Promoted Professional',tier:'Mid',desc:'A solo service provider running continuous lead-generation campaigns. Traffic comes in but conversion is inefficient — leads enter the chat and disappear without a record. The revenue is there if the conversion architecture catches what the campaigns attract.'},
-  'L-D-B-O-E':{name:'The Delegating Merchant',tier:'Mid-High',desc:'A product business using external fulfilment, part-time staff, or delivery networks. Vendor coordination, capacity awareness, and supplier reliability are the daily variables. Growth is organic — the marketing is not the problem; the operations are.'},
-  'L-S-B-O-E':{name:'The Boutique Collective',tier:'Mid-High',desc:'A newly formed agency or creative studio running on freelance talent. Contractor payroll, quality alignment, and word-of-mouth acquisition define the reality. Every project depends on freelancers following standards that mostly exist in the founder\'s head.'},
-  'L-D-B-F-E':{name:'The Aggressive Operator',tier:'High',desc:'A product business building through extended team and paid acquisition simultaneously. Rapid cash burn, campaign attribution, and capacity management in parallel — the defining challenge. Moving fast on all fronts creates coordination gaps that compound quickly.'},
-  'L-S-B-F-E':{name:'The Scaling Consultancy',tier:'High',desc:'Paid leads, execution delegated to subcontractors — high complexity. Quality control, capacity planning, and CRM personalisation must all work simultaneously. One bad delivery while marketing is still running is a reputational and financial double hit.'},
-  'L-D-G-O-X':{name:'The Growing Product Solo',tier:'Mid-High',desc:'A highly efficient solo operator experiencing rapid organic growth. Fulfilment is becoming the constraint. Needs operations intelligence and competitor awareness without paid marketing complexity. The risk is growth outpacing the ability to deliver.'},
-  'L-S-G-O-X':{name:'The Elite Expert',tier:'Mid-High',desc:'A sought-after expert scaling through premium pricing rather than volume. Time is the product — maximising its value is the only lever. Pricing optimisation, retention, and reputation management determine whether you earn more for the same hours.'},
-  'L-D-G-F-X':{name:'The Performance Product Solo',tier:'High',desc:'An agile e-commerce operator running large ad campaigns alone. Margin compression and ad fatigue are constant threats. Without deep analytics and automated inventory synchronisation, you are flying at speed with no instruments.'},
-  'L-S-G-F-X':{name:'The Digital Course Creator',tier:'High',desc:'A solo digital educator scaling through aggressive performance marketing. Automated lead capture, dynamic CRM sequences, and behavioural insights are not nice-to-haves — they are the infrastructure that determines whether the business is profitable at scale.'},
-  'L-D-G-O-E':{name:'The Established Retailer',tier:'High',desc:'A mature brand scaling through B2B partnerships or deep organic networks. Complex supply chain orchestration, team scheduling, and multi-node inventory management are the operational reality. Any system failure has visible financial consequences.'},
-  'L-S-G-O-E':{name:'The Scaling Service Team',tier:'High',desc:'A thriving studio or B2B service firm expanding its contractor base on referrals. Every new project requires capacity the team may or may not have. Operational modules must work at maximum depth to keep profitability from collapsing under volume.'},
-  'L-D-G-F-E':{name:'The Full Stack Operator',tier:'Full',desc:'Maximum product configuration. Complex ad structures, substantial inventory, large external workforce — simultaneously. Every relevant module is required not as aspiration, but as functional necessity.'},
-  'L-S-G-F-E':{name:'The Scaling Agency',tier:'Full',desc:'Maximum service configuration. Deep attribution across multiple channels, robust vendor management, financial forecasting, and HR compliance are all live requirements. An enterprise-level agency that needs every system working in concert to maintain margin at scale.'},
+  'P-S-B-O-X':{name:'The Emerging Professional',tier:'Entry',desc:'Formalising a solo service practice. The core challenge is defining value clearly enough that clients pay without negotiating. Needs a business model that holds up under scrutiny and authority-building content before the first client engagement.'},
+  'P-S-B-F-X':{name:'The Digital Course Launcher',tier:'Mid',desc:'A service or education founder running ads to build an audience before the offering launches. Lead capture architecture and go-to-market sequencing are the priorities — every paid click needs a conversion mechanism before campaigns go live.'},
+  'P-J-B-O-X':{name:'The Pre-Launch Contractor',tier:'Entry',desc:'Preparing to formalise a project-based practice. Scoping methodology, contract templates, supplier relationships, and regulatory compliance must be in place before the first client project is accepted.'},
+  'L-D-B-O-X':{name:'The Local Food Maker',tier:'Mid',desc:'Solo food vendor or product maker — street stall, home kitchen, small batch production. Sells through LINE, walk-in, and local delivery. Revenue is real but unpredictable. No financial records beyond checking the bank app.'},
+  'L-D-B-F-X':{name:'The Ad-Driven Reseller',tier:'Mid',desc:'Solo reseller running Facebook or TikTok ads to drive traffic. Revenue is real and growing but entirely dependent on ad spend. When ads stop, sales stop. The operation is still manual — one person managing everything.'},
+  'L-D-B-O-E':{name:'The Family Food Operation',tier:'Mid',desc:'Family-run food business with part-time staff — a small restaurant, production kitchen, or food stall with hired riders. Coordinating with ingredient suppliers whose prices fluctuate. Staff may include family members whose compensation is informal.'},
+  'L-D-B-F-E':{name:'The Aggressive Operator',tier:'High',desc:'A product business building through extended team and paid acquisition simultaneously. Rapid cash burn, campaign attribution, and capacity management in parallel — the defining challenge.'},
+  'L-D-G-O-X':{name:'The Viral Food Maker',tier:'Mid-High',desc:'Solo food producer whose product went viral organically. Orders are flooding in but production capacity is capped. The product is proven. The demand is proven. The operation cannot keep up.'},
+  'L-D-G-F-X':{name:'The High-Velocity Solo Seller',tier:'High',desc:'Solo e-commerce operator running large ad campaigns. Revenue is high but the margin between profitable and unprofitable is razor-thin. One algorithm change can destroy the business overnight.'},
+  'L-D-G-O-E':{name:'The Scaling Food Producer',tier:'High',desc:'Established food producer with staff, scaling through B2B, wholesale, or delivery partnerships. Supply chain coordination — ingredient sourcing, production scheduling, quality control, logistics — is the core operational challenge.'},
+  'L-D-G-F-E':{name:'The Full-Scale Food Enterprise',tier:'Full',desc:'Full-scale F&B operation — factory or large production facility, logistics team, paid marketing, multi-channel distribution. Maximum operational complexity. Every system must work simultaneously.'},
+  'L-S-B-O-X':{name:'The Independent Professional',tier:'Mid',desc:'Solo freelancer — designer, photographer, social media manager, consultant, accountant. Managing everything alone. All referral-based. Revenue is real but every hour on admin is an hour not on billable work.'},
+  'L-S-B-F-X':{name:'The Ad-Driven Educator',tier:'Mid',desc:'Online course creator or coach running ads to fill classes. Revenue is growing but conversion from lead to paying student is inefficient — people enter the funnel and disappear.'},
+  'L-S-B-O-E':{name:'The Emerging Studio',tier:'Mid-High',desc:'Small agency or creative studio with 2-5 freelancers. The founder is creative director, project manager, and client relationship owner simultaneously. Quality depends entirely on the founder\'s ability to oversee every project.'},
+  'L-S-B-F-E':{name:'The Scaling Consultancy',tier:'High',desc:'Paid leads, execution delegated to subcontractors. Quality control, capacity planning, and CRM personalisation must all work simultaneously.'},
+  'L-S-G-O-X':{name:'The Elite Expert',tier:'Mid-High',desc:'Sought-after consultant or specialist scaling through premium pricing rather than volume. Time is the product — maximising its value is the only lever.'},
+  'L-S-G-F-X':{name:'The Digital Course Machine',tier:'High',desc:'Solo digital educator scaling through aggressive performance marketing. Automated lead capture, dynamic CRM sequences, and behavioural insights are the infrastructure.'},
+  'L-S-G-O-E':{name:'The Thriving Agency',tier:'High',desc:'Thriving agency or B2B service firm expanding its contractor base through referrals. Every new project requires capacity the team may not have.'},
+  'L-S-G-F-E':{name:'The Scaling Agency',tier:'Full',desc:'Maximum service configuration. Deep attribution across multiple channels, robust vendor management, financial forecasting, and HR compliance are all live requirements.'},
+  'L-J-B-O-E':{name:'The Master Contractor',tier:'Mid-High',desc:'Interior designer, renovation contractor, or project manager. Coordinates outsourced labour, sources materials from suppliers. Cash flow is project-cycled — large upfront costs, payment in milestones, and constant temptation to use the next project\'s deposit to cover the current project\'s shortfall.'},
+  'L-J-B-F-E':{name:'The Marketed Contractor',tier:'High',desc:'Project-based business running paid campaigns to attract clients. Managing simultaneous projects with a contractor network while investing in acquisition. Attribution, capacity planning, and project costing must all work together.'},
+  'L-J-G-O-E':{name:'The Growing Project Firm',tier:'High',desc:'Project-based firm scaling on reputation and referrals. Multiple concurrent projects require capacity the team may or may not have. Operational modules must work at maximum depth to keep profitability from collapsing under volume.'},
+  'L-J-G-F-E':{name:'The Scaling Contractor',tier:'Full',desc:'Large-scale project firm managing multiple concurrent projects with paid marketing, project managers, and outsourced labour. Maximum project-based complexity. Quality assurance without the founder\'s physical presence is the core operational challenge.'},
 };
 
 const ARCHETYPES_TH = {
-  'P-D-B-O-X':{name:'ผู้เปิดตัวอย่างรอบคอบ',tier:'Entry',desc:'วางแผนการเปิดตัวผลิตภัณฑ์ทางกายภาพก่อนการขายครั้งแรก ทุกการตัดสินใจเป็นไปอย่างมีเจตนา — ตัวเลขต้องถูกต้องก่อนที่อะไรจะเคลื่อนไหว ปัญหาเป็นเชิงคาดการณ์: ความเป็นไปได้ โครงสร้างการตั้งราคา การค้นหาซัพพลายเออร์ การจัดลำดับการเปิดตัว'},
-  'P-S-B-O-X':{name:'ผู้ริเริ่มฟรีแลนซ์',tier:'Entry',desc:'ทำให้การปฏิบัติบริการเดี่ยวเป็นทางการ ความท้าทายหลักคือการกำหนดคุณค่าให้ชัดเจนพอที่ลูกค้าจะจ่ายโดยไม่ต้องต่อรอง ต้องการโมเดลธุรกิจที่ทนต่อการตรวจสอบ สัญญาที่ปกป้องคุณ และเนื้อหาสร้างอำนาจก่อนมีกรณีศึกษา'},
-  'P-D-B-F-X':{name:'ผู้เริ่มต้นที่ทะเยอทะยาน',tier:'Mid',desc:'ผู้ก่อตั้งผลิตภัณฑ์วางแผนการเข้าสู่ตลาดอย่างเชิงรุกด้วยการหาลูกค้าโดยจ่ายเงินตั้งแต่วันแรก โมเดลทางการเงินและแผนการตลาดตามผลงานต้องล็อคก่อนที่จะใช้จ่ายแม้แต่บาทเดียว'},
-  'P-S-B-F-X':{name:'ผู้ก่อกวนตลาด',tier:'Mid',desc:'ผู้ให้บริการวางแผนการใช้จ่ายโฆษณาจำนวนมากเพื่อสร้างรายชื่อลูกค้าทันทีในการเปิดตัว สถาปัตยกรรมการจับลูกค้าและการจัดลำดับการเข้าสู่ตลาดเป็นสิ่งสำคัญ'},
-  'L-D-B-O-X':{name:'เจ้าของผลิตภัณฑ์ที่มั่นคง',tier:'Mid',desc:'ดำเนินการอยู่และสร้างรายได้ แต่การดำเนินงานทำงานด้วยความพยายามด้วยมือ ออเดอร์ผ่านเธรดแชท สต็อกในสเปรดชีต กระแสเงินสดเซอร์ไพรส์รายสัปดาห์'},
-  'L-S-B-O-X':{name:'ผู้ดำเนินการบริการเดี่ยว',tier:'Mid',desc:'ที่ปรึกษาหรือผู้ให้บริการสดที่จัดการทุกอย่างคนเดียว ปัญหาเกือบทั้งหมดเป็นด้านการดูแลระบบ — ตามใบแจ้งหนี้ จัดตารางใหม่กับลูกค้า ตอบคำถามเดิมซ้ำแล้วซ้ำเล่า'},
-  'L-D-B-F-X':{name:'พ่อค้าที่กำลังเติบโต',tier:'Mid',desc:'ดำเนินการอยู่ด้วยโฆษณาที่จ่ายเงินสร้างตำแหน่งในตลาด ช่องว่างระหว่างสิ่งที่คุณใช้จ่ายในโฆษณาและสิ่งที่คุณสามารถระบุต่อรายได้คือปัญหาหลัก'},
-  'L-S-B-F-X':{name:'มืออาชีพที่ได้รับการโปรโมต',tier:'Mid',desc:'ผู้ให้บริการเดี่ยวที่รันแคมเปญสร้างลูกค้าอย่างต่อเนื่อง ทราฟฟิกเข้ามา แต่การแปลงไม่มีประสิทธิภาพ — ลูกค้าเป้าหมายเข้าแชทและหายไปโดยไม่มีบันทึก'},
-  'L-D-B-O-E':{name:'พ่อค้าที่มอบหมายงาน',tier:'Mid-High',desc:'ธุรกิจผลิตภัณฑ์ที่ใช้การจัดส่งภายนอก พนักงานพาร์ทไทม์ หรือเครือข่ายการส่งมอบ การประสานงานผู้ขาย การตระหนักถึงความสามารถ และความน่าเชื่อถือของซัพพลายเออร์เป็นตัวแปรรายวัน'},
-  'L-S-B-O-E':{name:'กลุ่มบูทิค',tier:'Mid-High',desc:'เอเจนซี่ที่เพิ่งก่อตั้งใหม่หรือสตูดิโอสร้างสรรค์ที่ทำงานด้วยพรสวรรค์ฟรีแลนซ์ เงินเดือนผู้รับเหมา การสอดคล้องด้านคุณภาพ และการหาลูกค้าจากการบอกปาก กำหนดความจริง'},
+  'P-D-B-O-X':{name:'นักวางแผนจากโต๊ะครัว',tier:'Entry',desc:'กำลังพัฒนาผลิตภัณฑ์อาหารหรือสินค้าจากบ้านหรือพื้นที่เช่าขนาดเล็ก สูตรหรือดีไซน์ผ่านการพิสูจน์อย่างไม่เป็นทางการ ตอนนี้เผชิญคำถามจริง: การขึ้นทะเบียน อย. การปฏิบัติตามบรรจุภัณฑ์ การค้นหาซัพพลายเออร์ และเศรษฐศาสตร์ต่อหน่วย'},
+  'P-D-B-F-X':{name:'ผู้เริ่มต้นที่ทะเยอทะยาน',tier:'Mid',desc:'ผู้ก่อตั้งผลิตภัณฑ์วางแผนการเข้าสู่ตลาดเชิงรุกด้วยการหาลูกค้าโดยจ่ายเงินตั้งแต่วันแรก โมเดลทางการเงินและแผนการตลาดตามผลงานต้องล็อคก่อนที่จะใช้จ่ายแม้แต่บาทเดียว'},
+  'P-S-B-O-X':{name:'มืออาชีพที่กำลังเกิดใหม่',tier:'Entry',desc:'ทำให้การปฏิบัติบริการเดี่ยวเป็นทางการ ความท้าทายหลักคือการกำหนดคุณค่าให้ชัดเจนพอที่ลูกค้าจะจ่ายโดยไม่ต้องต่อรอง ต้องการโมเดลธุรกิจที่ทนต่อการตรวจสอบและเนื้อหาสร้างอำนาจก่อนการมีส่วนร่วมลูกค้ารายแรก'},
+  'P-S-B-F-X':{name:'ผู้เปิดตัวหลักสูตรดิจิทัล',tier:'Mid',desc:'ผู้ก่อตั้งบริการหรือการศึกษาที่รันโฆษณาเพื่อสร้างผู้ชมก่อนที่ข้อเสนอจะเปิดตัว สถาปัตยกรรมการจับลูกค้าและการจัดลำดับการเข้าสู่ตลาดเป็นสิ่งสำคัญ'},
+  'P-J-B-O-X':{name:'ผู้รับเหมาก่อนเปิดตัว',tier:'Entry',desc:'กำลังทำให้การปฏิบัติงานตามโปรเจกต์เป็นทางการ ระเบียบวิธีการกำหนดขอบเขต เทมเพลตสัญญา ความสัมพันธ์ซัพพลายเออร์ และการปฏิบัติตามกฎระเบียบต้องมีก่อนที่จะรับโปรเจกต์ลูกค้ารายแรก'},
+  'L-D-B-O-X':{name:'ผู้ผลิตอาหารท้องถิ่น',tier:'Mid',desc:'ผู้จำหน่ายอาหารเดี่ยวหรือผู้ผลิตสินค้า — แผงริมทาง ครัวบ้าน การผลิตแบบ small batch ขายผ่าน LINE การเข้าร้าน และเดลิเวอรี่ท้องถิ่น รายได้มีจริงแต่คาดเดาไม่ได้'},
+  'L-D-B-F-X':{name:'นักขายที่ขับเคลื่อนด้วยโฆษณา',tier:'Mid',desc:'นักขายเดี่ยวที่รันโฆษณา Facebook หรือ TikTok เพื่อดึงทราฟฟิก รายได้มีจริงและเติบโต แต่ขึ้นอยู่กับการใช้จ่ายโฆษณาทั้งหมด เมื่อโฆษณาหยุด การขายหยุด'},
+  'L-D-B-O-E':{name:'กิจการอาหารครอบครัว',tier:'Mid',desc:'ธุรกิจอาหารครอบครัวที่มีพนักงานพาร์ทไทม์ — ร้านอาหารขนาดเล็ก ครัวผลิต หรือแผงอาหารที่มีไรเดอร์รับจ้าง ประสานงานกับซัพพลายเออร์วัตถุดิบที่ราคาผันผวน'},
   'L-D-B-F-E':{name:'ผู้ดำเนินการเชิงรุก',tier:'High',desc:'ธุรกิจผลิตภัณฑ์ที่สร้างผ่านทีมขยายและการหาลูกค้าโดยจ่ายเงินพร้อมกัน การเผาผลาญเงินสดอย่างรวดเร็ว การระบุแหล่งที่มาของแคมเปญ และการจัดการความสามารถพร้อมกัน'},
-  'L-S-B-F-E':{name:'บริษัทที่ปรึกษาที่กำลังขยาย',tier:'High',desc:'ลูกค้าที่จ่ายเงิน การดำเนินการมอบหมายให้ผู้รับเหมาช่วง — ความซับซ้อนสูง การควบคุมคุณภาพ การวางแผนความสามารถ และการปรับแต่ง CRM ต้องทำงานพร้อมกันทั้งหมด'},
-  'L-D-G-O-X':{name:'ผู้ดำเนินการผลิตภัณฑ์เดี่ยวที่กำลังเติบโต',tier:'Mid-High',desc:'ผู้ดำเนินการเดี่ยวที่มีประสิทธิภาพสูงที่ประสบการเติบโตออร์แกนิกอย่างรวดเร็ว การจัดส่งกำลังกลายเป็นข้อจำกัด'},
-  'L-S-G-O-X':{name:'ผู้เชี่ยวชาญชั้นนำ',tier:'Mid-High',desc:'ผู้เชี่ยวชาญที่เป็นที่ต้องการที่ขยายตัวผ่านการตั้งราคาพรีเมียมแทนปริมาณ เวลาคือผลิตภัณฑ์ — การเพิ่มมูลค่าสูงสุดเป็นตัวชักใย'},
-  'L-D-G-F-X':{name:'ผู้ดำเนินการผลิตภัณฑ์เดี่ยวตามผลงาน',tier:'High',desc:'ผู้ดำเนินการอีคอมเมิร์ซที่คล่องตัวที่รันแคมเปญโฆษณาขนาดใหญ่คนเดียว การบีบอัดกำไรขั้นต้นและความเหนื่อยล้าจากโฆษณาเป็นภัยคุกคามต่อเนื่อง'},
-  'L-S-G-F-X':{name:'ผู้สร้างหลักสูตรดิจิทัล',tier:'High',desc:'นักการศึกษาดิจิทัลเดี่ยวที่ขยายตัวผ่านการตลาดตามผลงานเชิงรุก การจับลูกค้าเป้าหมายอัตโนมัติ ลำดับ CRM ที่ไดนามิก และข้อมูลเชิงพฤติกรรมคือโครงสร้างพื้นฐาน'},
-  'L-D-G-O-E':{name:'ผู้ค้าปลีกที่มั่นคง',tier:'High',desc:'แบรนด์ที่โตเต็มที่ที่ขยายตัวผ่านพาร์ทเนอร์ชิป B2B หรือเครือข่ายออร์แกนิกที่ลึก การจัดการห่วงโซ่อุปทานที่ซับซ้อน การจัดตารางทีม และการจัดการสินค้าคงคลังหลายโหนด'},
-  'L-S-G-O-E':{name:'ทีมบริการที่กำลังขยาย',tier:'High',desc:'สตูดิโอหรือบริษัทบริการ B2B ที่เจริญรุ่งเรืองที่กำลังขยายฐานผู้รับเหมาจากการแนะนำ ทุกโปรเจกต์ใหม่ต้องการความสามารถที่ทีมอาจมีหรือไม่มี'},
-  'L-D-G-F-E':{name:'ผู้ดำเนินการครบวงจร',tier:'Full',desc:'การกำหนดค่าผลิตภัณฑ์สูงสุด โครงสร้างโฆษณาที่ซับซ้อน สินค้าคงคลังจำนวนมาก แรงงานภายนอกขนาดใหญ่ — พร้อมกัน ทุกโมดูลที่เกี่ยวข้องจำเป็น'},
+  'L-D-G-O-X':{name:'ผู้ผลิตอาหารไวรัล',tier:'Mid-High',desc:'ผู้ผลิตอาหารเดี่ยวที่ผลิตภัณฑ์ไวรัลแบบออร์แกนิก ออเดอร์ท่วมเข้ามาแต่ความสามารถการผลิตถูกจำกัด ผลิตภัณฑ์ได้รับการพิสูจน์ ความต้องการได้รับการพิสูจน์ การดำเนินงานตามไม่ทัน'},
+  'L-D-G-F-X':{name:'นักขายเดี่ยวความเร็วสูง',tier:'High',desc:'ผู้ดำเนินการอีคอมเมิร์ซเดี่ยวที่รันแคมเปญโฆษณาขนาดใหญ่ รายได้สูงแต่ช่องว่างระหว่างทำกำไรและขาดทุนบางมาก การเปลี่ยนแปลงอัลกอริทึมหนึ่งอย่างสามารถทำลายธุรกิจข้ามคืน'},
+  'L-D-G-O-E':{name:'ผู้ผลิตอาหารที่กำลังขยาย',tier:'High',desc:'ผู้ผลิตอาหารที่มั่นคงพร้อมพนักงาน ขยายผ่านพาร์ทเนอร์ชิป B2B ขายส่ง หรือการส่งมอบ การประสานงานห่วงโซ่อุปทาน — การจัดหาวัตถุดิบ การกำหนดตารางการผลิต การควบคุมคุณภาพ โลจิสติกส์'},
+  'L-D-G-F-E':{name:'กิจการอาหารเต็มรูปแบบ',tier:'Full',desc:'การดำเนินงาน F&B เต็มรูปแบบ — โรงงานหรือโรงผลิตขนาดใหญ่ ทีมโลจิสติกส์ การตลาดที่จ่ายเงิน การจัดจำหน่ายหลายช่องทาง ความซับซ้อนการดำเนินงานสูงสุด'},
+  'L-S-B-O-X':{name:'มืออาชีพอิสระ',tier:'Mid',desc:'ฟรีแลนซ์เดี่ยว — ดีไซเนอร์ ช่างภาพ โซเชียลมีเดียผู้จัดการ ที่ปรึกษา นักบัญชี จัดการทุกอย่างคนเดียว ทั้งหมดจากการแนะนำ รายได้มีจริงแต่ทุกชั่วโมงในงานดูแลระบบคือชั่วโมงที่ไม่ได้ทำงานที่เรียกเก็บได้'},
+  'L-S-B-F-X':{name:'นักการศึกษาที่ขับเคลื่อนด้วยโฆษณา',tier:'Mid',desc:'ผู้สร้างคอร์สออนไลน์หรือโค้ชที่รันโฆษณาเพื่อเติมชั้นเรียน รายได้กำลังเติบโตแต่การแปลงจากลูกค้าเป้าหมายเป็นนักเรียนที่จ่ายเงินไม่มีประสิทธิภาพ — คนเข้าสู่ฟันเนลและหายไป'},
+  'L-S-B-O-E':{name:'สตูดิโอที่กำลังเกิดใหม่',tier:'Mid-High',desc:'เอเจนซี่เล็กหรือสตูดิโอสร้างสรรค์ที่มีฟรีแลนซ์ 2-5 คน ผู้ก่อตั้งเป็นผู้กำกับครีเอทีฟ ผู้จัดการโปรเจกต์ และเจ้าของความสัมพันธ์ลูกค้าพร้อมกัน คุณภาพขึ้นอยู่กับความสามารถของผู้ก่อตั้งทั้งหมด'},
+  'L-S-B-F-E':{name:'บริษัทที่ปรึกษาที่กำลังขยาย',tier:'High',desc:'ลูกค้าที่จ่ายเงิน การดำเนินการมอบหมายให้ผู้รับเหมาช่วง การควบคุมคุณภาพ การวางแผนความสามารถ และการปรับแต่ง CRM ต้องทำงานพร้อมกันทั้งหมด'},
+  'L-S-G-O-X':{name:'ผู้เชี่ยวชาญชั้นนำ',tier:'Mid-High',desc:'ที่ปรึกษาหรือผู้เชี่ยวชาญที่เป็นที่ต้องการซึ่งขยายตัวผ่านการตั้งราคาพรีเมียมแทนปริมาณ เวลาคือผลิตภัณฑ์ — การเพิ่มมูลค่าสูงสุดเป็นตัวชักใยเดียว'},
+  'L-S-G-F-X':{name:'เครื่องจักรหลักสูตรดิจิทัล',tier:'High',desc:'นักการศึกษาดิจิทัลเดี่ยวที่ขยายตัวผ่านการตลาดตามผลงานเชิงรุก การจับลูกค้าเป้าหมายอัตโนมัติ ลำดับ CRM ที่ไดนามิก และข้อมูลเชิงพฤติกรรมคือโครงสร้างพื้นฐาน'},
+  'L-S-G-O-E':{name:'เอเจนซี่ที่เจริญรุ่งเรือง',tier:'High',desc:'เอเจนซี่ที่เจริญรุ่งเรืองหรือบริษัทบริการ B2B ที่ขยายฐานผู้รับเหมาจากการแนะนำ ทุกโปรเจกต์ใหม่ต้องการความสามารถที่ทีมอาจไม่มี'},
   'L-S-G-F-E':{name:'เอเจนซี่ที่กำลังขยาย',tier:'Full',desc:'การกำหนดค่าบริการสูงสุด การระบุแหล่งที่มาเชิงลึกข้ามหลายช่องทาง การจัดการผู้ขายที่แข็งแกร่ง การพยากรณ์ทางการเงิน และการปฏิบัติตาม HR ล้วนเป็นข้อกำหนดสด'},
-};
-
-// ══════════════════════════════════════════════════════════════════════════════
-// PRESCRIPTIONS
-// ══════════════════════════════════════════════════════════════════════════════
-const PRESCRIPTIONS_EN = {
-  planning:{module:'Feasibility + Scenario Simulator',
-    secondaryModules:['Go-to-Market + Content Strategy','Pricing Strategy','BMC Builder','Legal + Compliance Starter'],
-    getScenario:(arch,th)=>th?({
-      headline:`${arch.name} — วางแผนโดยไม่มีโมเดลทางการเงินที่ได้รับการตรวจสอบ`,
-      situation:`คุณกำลังเตรียมเคลื่อนไหว — ธุรกิจใหม่ สายผลิตภัณฑ์ หรือช่องทาง ตัวเลขมีอยู่ที่ไหนสักแห่ง แต่ไม่เคยถูกทดสอบความเครียด หากรายได้ต่ำกว่าการคาดการณ์ 30% คุณไม่รู้ว่าจะรอดถึงเดือนที่สามหรือไม่`,
-      resolution:`<em>Feasibility + Scenario Simulator</em> สร้างโมเดลทางการเงินของคุณและให้คุณปรับทุกตัวแปรแบบเรียลไทม์ — ราคา ปริมาณ ต้นทุน พนักงาน การใช้จ่ายด้านการตลาด กำไรอัปเดตทันที`
-    }):({
-      headline:`${arch.name} — planning without a validated financial model`,
-      situation:`You are preparing to move — a new business, product line, or channel. The numbers exist somewhere, but they have never been stress-tested. If revenue comes in 30% below projection, you do not know whether you survive month three.`,
-      resolution:`<em>Feasibility + Scenario Simulator</em> builds your financial model and lets you adjust every variable in real time — price, volume, cost, staff, marketing spend. Profit updates instantly. The danger zone alerts before you commit.`
-    })},
-  finance:{module:'Rolling Cash Flow Forecast',
-    secondaryModules:['Basic Auditor','Accounts Payable Tracker','Performance Dashboard'],
-    getScenario:(arch,th)=>th?({
-      headline:`${arch.name} — ดำเนินการโดยไม่มีความโปร่งใสเงินสดล่วงหน้า`,
-      situation:`คุณมีเงินในบัญชีวันนี้ แต่ใบแจ้งหนี้ซัพพลายเออร์ครบกำหนดวันที่ 15 การชำระเงินฟรีแลนซ์ถึงวันที่ 20 และการชำระเงินลูกค้าสามรายยังรอ คุณรู้ว่าไม่สามารถครอบคลุมทั้งสามรายในวันที่ 14`,
-      resolution:`<em>Rolling Cash Flow Forecast</em> ดึงทุกกระแสเข้าที่ยืนยันแล้ว ทุกกระแสออกที่กำหนดไว้เข้ามุมมองล่วงหน้า 30/60/90 วัน การแจ้งเตือนเกิดขึ้นก่อนที่คุณจะลดต่ำกว่าบัฟเฟอร์ขั้นต่ำ`
-    }):({
-      headline:`${arch.name} — operating without forward cash visibility`,
-      situation:`You have money in the account today. But your supplier invoice is due on the 15th, your freelancer payment hits on the 20th, and three customer payments are still pending. You find out you cannot cover all three on the 14th — when it is already too late to act.`,
-      resolution:`<em>Rolling Cash Flow Forecast</em> pulls every confirmed inflow, every scheduled outflow into a 30/60/90-day forward view. The alert fires before you drop below your minimum buffer — not after.`
-    })},
-  operations:{module:'Order Management Hub',
-    secondaryModules:['Inventory Keeper','Purchase Order Generator','Capacity Planner','Courier Integration'],
-    getScenario:(arch,th)=>th?({
-      headline:`${arch.name} — ออเดอร์จัดการผ่านแชท สเปรดชีต และความจำ`,
-      situation:`ออเดอร์เข้ามาทาง LINE อีกอันทาง Instagram อีกอันทาง Shopee ระหว่างการขายแฟลช ออเดอร์ 80 รายการมาในสองชั่วโมง สิบสองรายการถูกพลาด ลูกค้าสามรายได้รับสินค้าที่หมดสต็อก`,
-      resolution:`<em>Order Management Hub</em> ให้ทุกออเดอร์มีบันทึกเดียว — จากการยืนยันถึงการส่งมอบและการชำระเงิน ทุกช่องทางป้อนหน้าจอเดียว ไม่มีอะไรหลุดออก`
-    }):({
-      headline:`${arch.name} — orders managed across chat, spreadsheet, and memory`,
-      situation:`An order comes in through LINE. Another through Instagram. A third through Shopee. During a flash sale, 80 orders arrive in two hours. Twelve get missed. Three customers receive items that were out of stock.`,
-      resolution:`<em>Order Management Hub</em> gives every order a single record — from confirmation to delivery and payment. Every channel feeds one screen. Nothing falls through.`
-    })},
-  marketing:{module:'Marketing Analytics + Attribution',
-    secondaryModules:['Campaign Builder','Competitor Monitor + Pricing Intelligence','Behavioural Insights Engine','KOL + Influencer Analyser'],
-    getScenario:(arch,th)=>th?({
-      headline:`${arch.name} — ใช้จ่ายด้านการตลาดโดยไม่รู้ว่าอะไรได้ผล`,
-      situation:`เดือนที่แล้วคุณรันแคมเปญ Facebook ร่วมมือกับ KOL สองราย และส่งประกาศ LINE KOL ที่มีผู้ติดตาม 180k สร้างออเดอร์ที่ระบุได้ 3 ออเดอร์ คนที่มีผู้ติดตาม 40k สร้าง 31 ออเดอร์ คุณจะรู้สิ่งนี้เมื่อพยายามทำซ้ำ — และจองคนผิดอีกครั้ง`,
-      resolution:`<em>Marketing Analytics + Attribution</em> กำหนดรหัสเฉพาะให้แต่ละแคมเปญและ KOL ก่อนที่อะไรจะเริ่ม ทุกออเดอร์ถูกติดแท็กในขณะขาย คุณเห็น ROI ช่องทางและ ROI KOL ในมุมมองเดียว`
-    }):({
-      headline:`${arch.name} — spending on marketing with no trace of what works`,
-      situation:`Last month you ran a Facebook campaign, partnered with two KOLs, and sent a LINE broadcast. The KOL with 180k followers generated 3 attributable orders. The one with 40k generated 31. You will not know this until you try to repeat it.`,
-      resolution:`<em>Marketing Analytics + Attribution</em> assigns a unique code to every campaign and KOL before anything goes live. Every order is tagged at the moment of sale. You see channel ROI and KOL ROI in one view.`
-    })},
-  customers:{module:'Business Chatbot + Unified Inbox',
-    secondaryModules:['Dynamic CRM + Personalisation','Customer Retention Module','SOP + Knowledge Base','Post-Purchase Feedback Loop'],
-    getScenario:(arch,th)=>th?({
-      headline:`${arch.name} — ตอบคำถามเดิมข้ามสี่แพลตฟอร์มทุกวัน`,
-      situation:`ลูกค้าส่งข้อความหาคุณบน LINE Instagram Facebook และ WhatsApp พร้อมกัน คุณสลับระหว่างสี่แอป คำถามเดิม — "สินค้ามีอยู่ไหม?" — มาถึง 40 ครั้งต่อวัน ช่วงบ่ายที่ยุ่งคุณพลาด 8 ข้อความ สองรายพร้อมซื้อ หนึ่งรายโพสต์การร้องเรียนต่อสาธารณะ`,
-      resolution:`<em>Business Chatbot + Unified Inbox</em> ดึงทุกช่องทางมาที่หน้าจอเดียว คำถามประจำตอบโดยอัตโนมัติจากห้องสมุด SOP คุณเข้าสู่การสนทนาเมื่อจำเป็นต้องตัดสินใจของมนุษย์จริงๆ เท่านั้น`
-    }):({
-      headline:`${arch.name} — answering the same questions across four platforms every day`,
-      situation:`Customers message you on LINE, Instagram, Facebook, and WhatsApp simultaneously. The same question — "Is this in stock?" — arrives 40 times a day. During a busy afternoon you miss 8 messages. Two were ready to buy. One posts a complaint publicly.`,
-      resolution:`<em>Business Chatbot + Unified Inbox</em> pulls every channel into one screen. Routine questions are answered automatically from your SOP Library. You only enter the conversation when a human decision is genuinely needed.`
-    })},
-  people:{module:'Ops Scheduler + Compliance Calendar',
-    secondaryModules:['SOP + Knowledge Base','Staff KPI Tracker','SSO Contribution Tracker','Payroll Tracker + History','Performance Review Cycle'],
-    getScenario:(arch,th)=>th?({
-      headline:`${arch.name} — กำหนดเวลาการปฏิบัติตามกฎหมายจัดการจากความจำ`,
-      situation:`การยื่นภาษีมูลค่าเพิ่มครบกำหนดวันที่ 15 การลงทะเบียนประกันสังคมของพนักงานควรเกิดขึ้นภายใน 30 วันหลังจากวันที่เริ่มงาน วันนี้เป็นวันที่ 34 คุณรู้จากนักบัญชีที่ถามขึ้นมา`,
-      resolution:`<em>Ops Scheduler + Compliance Calendar</em> โหลดกำหนดเวลากฎระเบียบไทยล่วงหน้าทุกอย่าง — ภาษีมูลค่าเพิ่ม เงินสมทบประกันสังคม การต่ออายุใบอนุญาต การแจ้งเตือนเกิดขึ้นที่ 30 วัน 7 วัน และวันที่กำหนด`
-    }):({
-      headline:`${arch.name} — compliance deadlines managed from memory`,
-      situation:`Your VAT filing is due on the 15th. A staff member's SSO registration was meant to happen within 30 days of their start date. Today is day 34. You found out from an accountant who happened to ask.`,
-      resolution:`<em>Ops Scheduler + Compliance Calendar</em> pre-loads every Thai regulatory deadline — VAT, SSO contributions, licence renewals. Alerts fire at 30 days, 7 days, and day-of. The task is automatically created so it cannot be missed.`
-    })},
-  strategy:{module:'OKR / Goal Tracker',
-    secondaryModules:['Competitor Monitor + Pricing Intelligence','Pivot Suggester','Performance Dashboard'],
-    getScenario:(arch,th)=>th?({
-      headline:`${arch.name} — ยุ่งทุกวัน ไม่มีการวัดว่าได้ผลหรือไม่`,
-      situation:`รายได้ถึง ฿142,000 เดือนที่แล้ว นั่นดีไหม? คุณไม่รู้ — เพราะคุณไม่เคยตั้งเป้าหมาย คู่แข่งลดราคาลง ฿120 คุณรู้สองสัปดาห์ต่อมาเมื่อลูกค้าพูดถึง`,
-      resolution:`<em>OKR / Goal Tracker</em> ตั้งเป้าหมายรายเดือนห้าอย่าง และแสดงความคืบหน้ารายวันเทียบกับแต่ละอย่าง ดึงมาอัตโนมัติจากโมดูลที่ติดตามข้อมูลนั้น คุณรู้ในวันที่ 10 ว่าคุณกำลังไปถึงเป้าหมายหรือต้องดำเนินการ`
-    }):({
-      headline:`${arch.name} — busy every day, no measure of whether it is working`,
-      situation:`Revenue hit ฿142,000 last month. Is that good? You do not know — because you never set a target. A competitor dropped their price by ฿120. You found out two weeks later when a customer mentioned it.`,
-      resolution:`<em>OKR / Goal Tracker</em> sets five monthly targets and shows daily progress against each, automatically pulled from the modules tracking that data. You know on day 10 whether you are on pace or need to act.`
-    })},
+  'L-J-B-O-E':{name:'ผู้รับเหมาหลัก',tier:'Mid-High',desc:'นักออกแบบภายใน ผู้รับเหมารีโนเวท หรือผู้จัดการโปรเจกต์ ประสานงานแรงงานที่จ้างภายนอก จัดหาวัสดุจากซัพพลายเออร์ กระแสเงินสดเป็นรอบโปรเจกต์ — ต้นทุนล่วงหน้าสูง การชำระเป็นงวด'},
+  'L-J-B-F-E':{name:'ผู้รับเหมาที่ตลาดตัวเอง',tier:'High',desc:'ธุรกิจตามโปรเจกต์ที่รันแคมเปญที่จ่ายเงินเพื่อดึงลูกค้า จัดการโปรเจกต์พร้อมกันด้วยเครือข่ายผู้รับเหมาขณะลงทุนในการหาลูกค้า การระบุแหล่งที่มา การวางแผนความสามารถ และการคิดต้นทุนโปรเจกต์ต้องทำงานร่วมกัน'},
+  'L-J-G-O-E':{name:'บริษัทโปรเจกต์ที่กำลังเติบโต',tier:'High',desc:'บริษัทตามโปรเจกต์ที่ขยายตัวจากชื่อเสียงและการแนะนำ โปรเจกต์หลายรายการพร้อมกันต้องการความสามารถที่ทีมอาจมีหรือไม่มี'},
+  'L-J-G-F-E':{name:'ผู้รับเหมาที่กำลังขยาย',tier:'Full',desc:'บริษัทโปรเจกต์ขนาดใหญ่ที่จัดการโปรเจกต์พร้อมกันหลายรายการด้วยการตลาดที่จ่ายเงิน ผู้จัดการโปรเจกต์ และแรงงานที่จ้างภายนอก ความซับซ้อนตามโปรเจกต์สูงสุด'},
 };
 
 const TIER_PRICE = {'Entry':'฿2,900','Mid':'฿4,900','Mid-High':'฿7,900','High':'฿11,900','Full':'฿16,900'};
 
+const FALLBACK_MODULES = {
+  Finance:    [{id:'cashflow',name:'Rolling Cash Flow Forecast'},{id:'auditor',name:'Basic Auditor'},{id:'aptracker',name:'Accounts Payable Tracker'}],
+  Operations: [{id:'orderhub',name:'Order Management Hub'},{id:'capacity',name:'Capacity Planner'},{id:'inventory',name:'Inventory Keeper'}],
+  Marketing:  [{id:'mktanalytics',name:'Marketing Analytics + Attribution'},{id:'campaignbuilder',name:'Campaign Builder'},{id:'dyncrm',name:'Dynamic CRM + Personalisation'}],
+  Customers:  [{id:'chatbot',name:'Business Chatbot + Unified Inbox'},{id:'retention',name:'Customer Retention Module'},{id:'postpurchase',name:'Post-Purchase Feedback Loop'}],
+  People:     [{id:'sop',name:'SOP + Knowledge Base'},{id:'staffkpi',name:'Staff KPI Tracker'},{id:'payrolltrack',name:'Payroll Tracker'}],
+  Compliance: [{id:'compliance',name:'Compliance Calendar'},{id:'legal',name:'Legal + Compliance Starter'}],
+  Strategy:   [{id:'okr',name:'OKR / Goal Tracker'},{id:'pricing',name:'Pricing Strategy'},{id:'competitor',name:'Competitor Monitor'}],
+  // TH axis keys map to EN fallback module keys
+  'การเงิน':       [{id:'cashflow',name:'Rolling Cash Flow Forecast'},{id:'auditor',name:'Basic Auditor'},{id:'aptracker',name:'Accounts Payable Tracker'}],
+  'การดำเนินงาน':  [{id:'orderhub',name:'Order Management Hub'},{id:'capacity',name:'Capacity Planner'},{id:'inventory',name:'Inventory Keeper'}],
+  'การตลาด':       [{id:'mktanalytics',name:'Marketing Analytics + Attribution'},{id:'campaignbuilder',name:'Campaign Builder'},{id:'dyncrm',name:'Dynamic CRM + Personalisation'}],
+  'ลูกค้า':        [{id:'chatbot',name:'Business Chatbot + Unified Inbox'},{id:'retention',name:'Customer Retention Module'},{id:'postpurchase',name:'Post-Purchase Feedback Loop'}],
+  'ทีมงาน':        [{id:'sop',name:'SOP + Knowledge Base'},{id:'staffkpi',name:'Staff KPI Tracker'},{id:'payrolltrack',name:'Payroll Tracker'}],
+  'การปฏิบัติตาม': [{id:'compliance',name:'Compliance Calendar'},{id:'legal',name:'Legal + Compliance Starter'}],
+  'กลยุทธ์':       [{id:'okr',name:'OKR / Goal Tracker'},{id:'pricing',name:'Pricing Strategy'},{id:'competitor',name:'Competitor Monitor'}],
+};
+
 // ══════════════════════════════════════════════════════════════════════════════
 // STATE
 // ══════════════════════════════════════════════════════════════════════════════
-let ST = {phase:'p1intro',dimIdx:0,dims:{},frxIdx:0,frx:{},lang:'EN'};
+let ST = {
+  phase:'p1intro', dimIdx:0, dims:{}, frxIdx:0, frx:{}, lang:'EN',
+  ai:{history:[],exchangeCount:0,isComplete:false,resultData:null,
+      isLoading:false,initialized:false,nearEnd:false,error:false}
+};
 
 // ══════════════════════════════════════════════════════════════════════════════
 // GETTERS
@@ -1118,11 +814,13 @@ function L()       { return LANG[ST.lang]; }
 function isTH()    { return ST.lang === 'TH'; }
 function getDIMS() { return isTH() ? DIMS_TH : DIMS_EN; }
 function getFRX()  { return isTH() ? FRICTION_CATS_TH : FRICTION_CATS_EN; }
+function getVOPTS(model) { return (isTH() ? VERTICAL_OPTS_TH : VERTICAL_OPTS_EN)[model] || []; }
 function getARCH(code) {
   const set = isTH() ? ARCHETYPES_TH : ARCHETYPES_EN;
   return set[code] || {name:isTH()?'โปรไฟล์ธุรกิจของคุณ':'Your Business Profile',tier:'Mid',
-    desc:isTH()?'การกำหนดค่าถูกคำนวณจากคำตอบของคุณ':'Your configuration has been calculated from your answers.'};
+    desc:isTH()?'การกำหนดค่าถูกคำนวณจากคำตอบของคุณ':'Your configuration has been calculated from your diagnostic answers.'};
 }
+function getDimLabels() { return L().dimLabels; }
 
 function setLang(lang) {
   ST.lang = lang;
@@ -1138,38 +836,59 @@ function setLang(lang) {
 // ══════════════════════════════════════════════════════════════════════════════
 function getArchCode() {
   const {stage,model,growth,marketing,ops} = ST.dims;
-  const g = stage==='P' ? 'B' : (growth||'B');
-  const o = stage==='P' ? 'X' : (ops||'X');
-  return `${stage}-${model}-${g}-${marketing}-${o}`;
+  const g = stage==='P'?'B':(growth||'B');
+  const o = stage==='P'?'X':(ops||'X');
+  return `${stage||'?'}-${model||'?'}-${g}-${marketing||'?'}-${o}`;
+}
+function getVerticalLabel() { return getDimLabels().vertical?.[ST.dims.vertical] || ST.dims.vertical || '—'; }
+function getArchetype() { return getARCH(getArchCode()); }
+
+function getActiveFrxCats() {
+  return getFRX().filter(cat => {
+    const id = cat.id;
+    if (id === 'people') return ST.dims.ops === 'E';
+    return true;
+  });
+}
+
+function getItemsForCat(cat) {
+  const model = ST.dims.model || 'D';
+  return cat.items.map(item => {
+    if (item.swap && item.swap[model]) return Object.assign({},item,{stmt:item.swap[model]});
+    return item;
+  });
 }
 
 function getAxisScore(catId) {
   const cat = getFRX().find(c=>c.id===catId); if(!cat) return 0;
   const ratings = ST.frx[catId]||{};
-  let total=0; cat.items.forEach(item=>{total+=(ratings[item.id]||0);});
-  return Math.max(15, Math.round((total/(cat.items.length*2))*100));
+  const items = getItemsForCat(cat);
+  let total=0; items.forEach(item=>{total+=(ratings[item.id]||0);});
+  return Math.max(15, Math.round((total/(items.length*2))*100));
 }
 
 function getFrxSummary() {
-  return getFRX().map(cat=>({
-    catId:cat.id,axis:cat.axis,color:cat.color,
+  return getActiveFrxCats().map(cat=>({
+    catId:cat.id, axis:cat.axis, color:cat.color,
     score:getAxisScore(cat.id),
-    rawScore:cat.items.reduce((a,item)=>a+(ST.frx[cat.id]?.[item.id]||0),0),
+    rawScore:getItemsForCat(cat).reduce((a,item)=>a+(ST.frx[cat.id]?.[item.id]||0),0),
   })).sort((a,b)=>b.score-a.score);
 }
 
 function isFrxScreenComplete() {
-  const cat=getFRX()[ST.frxIdx];
-  const ratings=ST.frx[cat.id]||{};
-  return cat.items.every(item=>ratings[item.id]!==undefined);
+  const activeCats = getActiveFrxCats();
+  const cat = activeCats[ST.frxIdx]; if(!cat) return false;
+  const ratings = ST.frx[cat.id]||{};
+  return getItemsForCat(cat).every(item=>ratings[item.id]!==undefined);
 }
 
-function totalScreens()  { return 1+getDIMS().length+1+getFRX().length; }
+function totalScreens() { return 1+getDIMS().length+1+getActiveFrxCats().length+1; }
 function currentScreen() {
   if(ST.phase==='p1intro') return 0;
   if(ST.phase==='dim')     return 1+ST.dimIdx;
   if(ST.phase==='p2intro') return 1+getDIMS().length;
   if(ST.phase==='frx')     return 1+getDIMS().length+1+ST.frxIdx;
+  if(ST.phase==='ai')      return 1+getDIMS().length+1+getActiveFrxCats().length;
   return totalScreens();
 }
 
@@ -1180,14 +899,15 @@ function interpText(s) {
 }
 
 function updateProgress() {
-  const ui=L().ui; const total=totalScreens(); const cur=currentScreen();
-  document.getElementById('prog-fill').style.width=Math.round((cur/total)*100)+'%';
-  const phaseLabels={p1intro:'',dim:ui.phase1,p2intro:ui.phase1complete,frx:ui.phase2,result:ui.complete};
-  document.getElementById('prog-label').textContent=phaseLabels[ST.phase]||'';
-  const showFrac=(ST.phase!=='p1intro'&&ST.phase!=='result');
+  const ui=L().ui;
+  const total=totalScreens(); const cur=currentScreen();
+  const pct = ST.phase==='result'?100:Math.round((cur/total)*100);
+  document.getElementById('prog-fill').style.width=pct+'%';
+  const labels={p1intro:'',dim:ui.phase1,p2intro:ui.phase1done,frx:ui.phase2,ai:ui.phase3,result:ui.complete};
+  document.getElementById('prog-label').textContent=labels[ST.phase]||'';
+  const showFrac=(ST.phase==='dim'||ST.phase==='frx');
   document.getElementById('prog-frac').textContent=
     showFrac?`${cur} / ${total}`:ST.phase==='result'?`${total} / ${total}`:'';
-  if(ST.phase==='result') document.getElementById('prog-fill').style.width='100%';
 }
 
 // ══════════════════════════════════════════════════════════════════════════════
@@ -1196,17 +916,18 @@ function updateProgress() {
 function render() {
   updateProgress();
   const app=document.getElementById('app');
-  if(ST.phase==='p1intro')       app.innerHTML=renderIntro();
-  else if(ST.phase==='dim')      app.innerHTML=renderDim();
-  else if(ST.phase==='p2intro')  app.innerHTML=renderReveal();
-  else if(ST.phase==='frx')      app.innerHTML=renderFrx();
-  else if(ST.phase==='result')   {app.innerHTML=renderResult();initSpider();}
+  if(ST.phase==='p1intro')      app.innerHTML=renderIntro();
+  else if(ST.phase==='dim')     app.innerHTML=renderDim();
+  else if(ST.phase==='p2intro') app.innerHTML=renderReveal();
+  else if(ST.phase==='frx')     app.innerHTML=renderFrx();
+  else if(ST.phase==='ai')      {app.innerHTML=renderAI();bindChat();}
+  else if(ST.phase==='result')  {app.innerHTML=renderResult();initSpider();}
   window.scrollTo(0,0);
 }
 
 // ── INTRO ─────────────────────────────────────────────────────────────────────
 function renderIntro() {
-  const ui=L().ui; const intro=L().intro;
+  const intro=L().intro; const ui=L().ui;
   const stepsHtml=intro.steps.map(s=>`
     <div class="intro-step">
       <div class="is-num">${s.num}</div>
@@ -1214,21 +935,23 @@ function renderIntro() {
       <div class="is-desc">${s.desc}</div>
     </div>`).join('');
   return `<div class="intro-screen">
-    <div class="intro-eyebrow"><span class="live-dot"></span>${intro.eyebrow}</div>
+    <div class="intro-eyebrow">${intro.eyebrow}</div>
     <h1 class="intro-title">${intro.title.replace('\n','<br>')}</h1>
     <p class="intro-sub">${intro.sub}</p>
     <div class="intro-steps">${stepsHtml}</div>
     <div class="intro-cta-row">
-      <button class="btn-next" onclick="next()" style="padding:12px 28px;font-size:14px;">${ui.begin}</button>
-      <span class="intro-note">${ui.tenMin}</span>
+      <button class="btn-next" onclick="next()" style="padding:12px 26px;font-size:13.5px;">${ui.begin}</button>
+      <span class="intro-note">${intro.cta}</span>
     </div>
   </div>`;
 }
 
 // ── DIMENSION ────────────────────────────────────────────────────────────────
 function renderDim() {
-  const ui=L().ui; const dims=getDIMS(); const q=dims[ST.dimIdx]; const sel=ST.dims[q.id];
-  const opts=q.opts.map(o=>`
+  const ui=L().ui; const dims=getDIMS();
+  const q=dims[ST.dimIdx]; const sel=ST.dims[q.id];
+  let opts = q.dynOpts ? getVOPTS(ST.dims.model) : q.opts;
+  const optsHtml=opts.map(o=>`
     <div class="dim-opt ${sel===o.key?'sel':''}" onclick="setDim('${q.id}','${o.key}')">
       <div class="opt-key">${o.letter}</div>
       <div class="opt-body">
@@ -1242,7 +965,7 @@ function renderDim() {
     <div class="dim-q">
       <div class="dim-prompt">${q.prompt}</div>
       ${q.sub?`<div class="dim-sub">${q.sub}</div>`:''}
-      <div class="dim-opts">${opts}</div>
+      <div class="dim-opts">${optsHtml}</div>
     </div>
     <div class="nav">
       <button class="btn-back" onclick="back()" ${ST.dimIdx===0?'disabled':''}>${ui.back}</button>
@@ -1254,18 +977,21 @@ function renderDim() {
 // ── ARCHETYPE REVEAL ──────────────────────────────────────────────────────────
 function renderReveal() {
   const ui=L().ui; const bridge=L().revealBridge;
-  const code=getArchCode(); const arch=getARCH(code);
-  const dimLabels=L().dimLabels;
-  const dimPills=Object.entries(ST.dims).map(([k,v])=>
-    `<div class="rc-dim"><span class="rcd-l">${k}</span><span class="rcd-v">${dimLabels[k]?.[v]||v}</span></div>`
+  const code=getArchCode(); const arch=getArchetype();
+  const vertical=ST.dims.vertical||''; const vertLabel=getVerticalLabel();
+  const fullCode=vertical?`${code} · ${vertical}`:code;
+  const dimLabels=getDimLabels();
+  const dimKeys=['stage','model','vertical','growth','marketing','ops'];
+  const dimPills=dimKeys.filter(k=>ST.dims[k]).map(k=>
+    `<div class="rc-dim"><span class="rcd-l">${k}</span><span class="rcd-v">${dimLabels[k]?.[ST.dims[k]]||ST.dims[k]}</span></div>`
   ).join('');
   const bridgeLine=arch.tier==='Entry'?bridge.entry:bridge.live;
   return `<div class="reveal-screen">
     <div class="reveal-kicker">${ui.phase1Complete}</div>
     <div class="reveal-card">
-      <div class="rc-eyebrow">${ui.slcArchetype} ${code}</div>
+      <div class="rc-eyebrow">${ui.archetypeLabel} ${fullCode}</div>
       <div class="rc-name">${arch.name}</div>
-      <div class="rc-code">${code} · ${arch.tier} ${ui.configuration}</div>
+      <div class="rc-code">${fullCode} · ${arch.tier} ${ui.configuration}</div>
       <div class="rc-desc">${arch.desc}</div>
       <div class="rc-dims">${dimPills}</div>
     </div>
@@ -1279,112 +1005,216 @@ function renderReveal() {
 
 // ── FRICTION SCREEN ───────────────────────────────────────────────────────────
 function renderFrx() {
-  const ui=L().ui; const cats=getFRX(); const cat=cats[ST.frxIdx];
+  const ui=L().ui;
+  const activeCats=getActiveFrxCats(); const cat=activeCats[ST.frxIdx];
   const ratings=ST.frx[cat.id]||{}; const done=isFrxScreenComplete();
-  const segs=cats.map((c,i)=>{
+  const items=getItemsForCat(cat);
+  const segs=activeCats.map((c,i)=>{
     let cls='frx-seg';
-    if(i<ST.frxIdx)cls+=' done';
-    else if(i===ST.frxIdx)cls+=' active';
+    if(i<ST.frxIdx)cls+=' done'; else if(i===ST.frxIdx)cls+=' active';
     return `<div class="${cls}"></div>`;
   }).join('');
-  const items=cat.items.map(item=>{
+  const itemsHtml=items.map(item=>{
     const r=ratings[item.id];
     return `<div class="frx-item">
       <div class="frx-stmt">${item.stmt}</div>
       <div class="rating-row">
         <button class="r-btn r0 ${r===0?'sel':''}" onclick="setFrx('${cat.id}','${item.id}',0)">${ui.notUs}</button>
-        <button class="r-btn r1 ${r===1?'sel':''}" onclick="setFrx('${cat.id}','${item.id}',1)">${ui.weFeelThis}</button>
+        <button class="r-btn r1 ${r===1?'sel':''}" onclick="setFrx('${cat.id}','${item.id}',1)">${ui.feelThis}</button>
         <button class="r-btn r2 ${r===2?'sel':''}" onclick="setFrx('${cat.id}','${item.id}',2)">${ui.realIssue}</button>
       </div>
     </div>`;
   }).join('');
-  const isLast=ST.frxIdx===cats.length-1;
+  const isLast=ST.frxIdx===activeCats.length-1;
   return `<div class="frx-screen">
     <div class="frx-tracker">${segs}</div>
-    <div class="frx-tcount">${ST.frxIdx+1} ${ui.of} ${cats.length} ${ui.mapped}</div>
+    <div class="frx-tcount">${ST.frxIdx+1} ${ui.of} ${activeCats.length} ${ui.mapped}</div>
     <div class="frx-hdr">
       <div class="frx-cat" style="background:${cat.colorBg};color:${cat.color};">${cat.axis}</div>
       <div class="frx-title">${cat.label}</div>
       <div class="frx-desc">${cat.desc}</div>
     </div>
-    <div class="frx-card"><div class="frx-items">${items}</div></div>
+    <div class="frx-card"><div class="frx-items">${itemsHtml}</div></div>
     <div class="nav">
       <button class="btn-back" onclick="back()" ${ST.frxIdx===0?'disabled':''}>${ui.back}</button>
-      <button class="btn-next" onclick="next()" ${!done?'disabled':''}>${isLast?ui.seeResults:ui.next}</button>
+      <button class="btn-next" onclick="next()" ${!done?'disabled':''}>${isLast?ui.startAI:ui.next}</button>
     </div>
     ${done
       ?`<div class="frx-done-note">✓ ${cat.axis} ${ui.mapped}</div>`
-      :`<div class="frx-note">${ui.rateEvery}</div>`}
+      :`<div class="frx-note">${ui.rateAll}</div>`}
   </div>`;
+}
+
+// ── AI CHAT SCREEN ────────────────────────────────────────────────────────────
+function renderAI() {
+  const ui=L().ui; const ai=ST.ai;
+
+  // Initialising — no messages yet
+  if(!ai.initialized && !ai.error) {
+    return `<div class="ai-screen">
+      <div class="ai-hdr">
+        <div class="ai-eyebrow">${ui.aiEyebrow}</div>
+        <div class="ai-title">${ui.aiConnecting}</div>
+        <div class="ai-sub">${ui.aiConnectSub}</div>
+      </div>
+      <div class="chat-wrap">
+        <div class="chat-feed">
+          <div class="typing-row">
+            <div class="msg-role ai-role">${ui.aiAdvisor}</div>
+            <div class="typing-bubble">
+              <div class="typing-dot"></div>
+              <div class="typing-dot"></div>
+              <div class="typing-dot"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>`;
+  }
+
+  // Error state
+  if(ai.error && !ai.resultData) {
+    return `<div class="ai-screen">
+      <div class="ai-hdr">
+        <div class="ai-eyebrow">${ui.aiEyebrow}</div>
+        <div class="ai-title">${ui.aiTitle}</div>
+      </div>
+      <div class="ai-error-note">${ui.aiError}</div>
+      <div class="nav" style="border:none;padding-top:0;margin-top:8px;">
+        <span></span>
+        <button class="btn-next" onclick="showFallbackResult()">${ui.seeResult}</button>
+      </div>
+    </div>`;
+  }
+
+  const visibleMessages=ai.history.filter(m=>!m._hidden);
+  const msgsHtml=visibleMessages.map(m=>{
+    if(m.role==='assistant'){
+      const display=m.content.replace(/<!--SLC_RESULT_START-->[\s\S]*?<!--SLC_RESULT_END-->/g,'').trim();
+      if(!display) return '';
+      return `<div class="msg-row msg-ai">
+        <div class="msg-role ai-role">${ui.aiAdvisor}</div>
+        <div class="msg-bubble">${display.replace(/\n/g,'<br>')}</div>
+      </div>`;
+    } else {
+      return `<div class="msg-row msg-user">
+        <div class="msg-role user-role">${ui.aiYou}</div>
+        <div class="msg-bubble">${m.content.replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>')}</div>
+      </div>`;
+    }
+  }).join('');
+
+  const typingHtml=ai.isLoading?`
+    <div class="typing-row">
+      <div class="msg-role ai-role">${ui.aiAdvisor}</div>
+      <div class="typing-bubble">
+        <div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>
+      </div>
+    </div>`:'';
+  const completeHtml=ai.isComplete?`<div class="ai-complete-note">${ui.aiDone}</div>`:'';
+  const exchangeWarn=ai.nearEnd&&!ai.isComplete?`<div class="exchange-warn">${ui.aiWrapping}</div>`:'';
+  const inputDisabled=ai.isLoading||ai.isComplete;
+
+  return `<div class="ai-screen">
+    <div class="ai-hdr">
+      <div class="ai-eyebrow">${ui.aiEyebrow}</div>
+      <div class="ai-title">${ui.aiTitle}</div>
+      <div class="ai-sub">${ui.aiSub}</div>
+    </div>
+    ${completeHtml}
+    <div class="chat-wrap">
+      <div class="chat-feed" id="chat-feed">
+        ${msgsHtml}${typingHtml}
+      </div>
+      ${exchangeWarn}
+      ${!ai.isComplete?`<div class="chat-input-area">
+        <textarea class="chat-input" id="chat-input" placeholder="${ui.aiPlaceholder}" rows="1"
+          ${inputDisabled?'disabled':''}
+          onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();doSend();}"></textarea>
+        <button class="btn-send" id="btn-send" onclick="doSend()" ${inputDisabled?'disabled':''}>${ui.aiSend}</button>
+      </div>`:`<div class="chat-input-area" style="justify-content:center;">
+        <button class="btn-next" onclick="goToResult()">${ui.seeResult}</button>
+      </div>`}
+    </div>
+    <div style="margin-top:10px;text-align:center;">
+      <button class="btn-skip" onclick="skipAI()">${ui.skipAI}</button>
+    </div>
+  </div>`;
+}
+
+function bindChat() {
+  const feed=document.getElementById('chat-feed');
+  if(feed) feed.scrollTop=feed.scrollHeight;
+  const input=document.getElementById('chat-input');
+  if(input){
+    input.addEventListener('input',function(){this.style.height='auto';this.style.height=Math.min(this.scrollHeight,120)+'px';});
+    if(!ST.ai.isLoading&&!ST.ai.isComplete) input.focus();
+  }
 }
 
 // ── SPIDER SVG ────────────────────────────────────────────────────────────────
 function buildSpiderSVG(scores) {
-  const N=scores.length,CX=180,CY=180,R=130;
+  const N=scores.length,CX=180,CY=180,R=135;
   const angles=scores.map((_,i)=>(i/N)*2*Math.PI-Math.PI/2);
   const pt=(r,i)=>({x:CX+r*Math.cos(angles[i]),y:CY+r*Math.sin(angles[i])});
   const rings=[.25,.5,.75,1].map(r=>{
     const pts=scores.map((_,i)=>pt(R*r,i));
-    return `<polygon points="${pts.map(p=>`${p.x},${p.y}`).join(' ')}" fill="none" stroke="rgba(44,47,49,0.07)" stroke-width="1"/>`;
+    return `<polygon points="${pts.map(p=>`${p.x},${p.y}`).join(' ')}" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>`;
   }).join('');
   const axes=scores.map((_,i)=>{const p=pt(R,i);
-    return `<line x1="${CX}" y1="${CY}" x2="${p.x}" y2="${p.y}" stroke="rgba(44,47,49,0.07)" stroke-width="1"/>`;
+    return `<line x1="${CX}" y1="${CY}" x2="${p.x}" y2="${p.y}" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>`;
   }).join('');
   const dataPts=scores.map((s,i)=>pt(R*(s.score/100),i));
   const poly=dataPts.map(p=>`${p.x},${p.y}`).join(' ');
   const dots=dataPts.map((p,i)=>{
     const hi=scores[i].score>=60;
-    return `<circle cx="${p.x}" cy="${p.y}" r="${hi?5:3}" fill="${hi?scores[i].color:'rgba(44,47,49,0.18)'}" opacity="${hi?1:.7}"/>`;
+    return `<circle cx="${p.x}" cy="${p.y}" r="${hi?5:3}" fill="${hi?scores[i].color:'rgba(255,255,255,0.2)'}" opacity="${hi?1:.6}"/>`;
   }).join('');
   const labels=scores.map((s,i)=>{
-    const p=pt(R*1.22,i); const hi=s.score>=60;
+    const p=pt(R*1.24,i); const hi=s.score>=60;
     return `<text x="${p.x}" y="${p.y}" text-anchor="middle" dominant-baseline="middle"
       font-family="JetBrains Mono,monospace" font-size="9" font-weight="${hi?'600':'400'}"
-      letter-spacing=".08em" fill="${hi?s.color:'rgba(107,112,117,0.6)'}"
+      letter-spacing=".08em" fill="${hi?s.color:'rgba(226,232,240,0.3)'}"
     >${s.axis.toUpperCase()}</text>`;
   }).join('');
   const pctLabels=dataPts.map((p,i)=>{
     if(!scores[i].rawScore) return '';
     return `<text x="${p.x}" y="${p.y-10}" text-anchor="middle"
-      font-family="JetBrains Mono,monospace" font-size="8" fill="${scores[i].color}" opacity=".9"
+      font-family="JetBrains Mono,monospace" font-size="8" fill="${scores[i].color}" opacity=".85"
     >${scores[i].score}%</text>`;
   }).join('');
   return `<svg class="spider" width="360" height="360" viewBox="0 0 360 360">
     <defs><radialGradient id="sg" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="rgba(0,80,212,0.12)"/>
-      <stop offset="100%" stop-color="rgba(0,80,212,0.02)"/>
+      <stop offset="0%" stop-color="rgba(59,130,246,0.14)"/>
+      <stop offset="100%" stop-color="rgba(59,130,246,0.02)"/>
     </radialGradient></defs>
     ${rings}${axes}
-    <polygon points="${poly}" fill="url(#sg)" stroke="rgba(0,80,212,0.45)" stroke-width="1.5" stroke-linejoin="round"/>
+    <polygon points="${poly}" fill="url(#sg)" stroke="rgba(59,130,246,0.55)" stroke-width="1.5" stroke-linejoin="round"/>
     ${dots}${pctLabels}${labels}
   </svg>`;
 }
 
 // ── RESULT ────────────────────────────────────────────────────────────────────
 function renderResult() {
-  const ui=L().ui;
-  const code=getArchCode(); const arch=getARCH(code);
-  const dimLabels=L().dimLabels;
+  const ui=L().ui; const l=L();
+  const code=getArchCode(); const arch=getArchetype();
+  const vertical=ST.dims.vertical||''; const vertLabel=getVerticalLabel();
+  const fullCode=vertical?`${code} · ${vertical}`:code;
+  const res=ST.ai.resultData;
+  const tier=res?.tier_confirmed||arch.tier;
+  const price=TIER_PRICE[tier]||'฿4,900';
+  const confidence=res?.confidence||'standard';
+  const dimLabels=getDimLabels();
+  const dimKeys=['stage','model','vertical','growth','marketing','ops'];
+  const dimPills=dimKeys.filter(k=>ST.dims[k]).map(k=>
+    `<div class="arch-dim"><span class="adl">${k}</span><span class="adv">${dimLabels[k]?.[ST.dims[k]]||ST.dims[k]}</span></div>`
+  ).join('');
   const summary=getFrxSummary();
-  const price=TIER_PRICE[arch.tier]||'฿4,900';
-  const cats=getFRX();
-
-  // Clickable dim pills — each jumps back to that dimension question
-  const dimEntries=Object.entries(ST.dims);
-  const dimPills=dimEntries.map(([k,v],idx)=>`
-    <div class="arch-dim" onclick="goBackToDim('${k}')" title="${ui.editAnswers}">
-      <span class="adl">${k}</span>
-      <span class="adv">${dimLabels[k]?.[v]||v}</span>
-      <span class="arch-dim-edit">✎</span>
-    </div>`).join('');
-
-  const spiderData=cats.map(cat=>({
-    axis:cat.axis,score:getAxisScore(cat.id),color:cat.color,
-    rawScore:cat.items.reduce((a,i)=>a+(ST.frx[cat.id]?.[i.id]||0),0)
+  const spiderData=getActiveFrxCats().map(cat=>({
+    axis:cat.axis, score:getAxisScore(cat.id), color:cat.color,
+    rawScore:getItemsForCat(cat).reduce((a,i)=>a+(ST.frx[cat.id]?.[i.id]||0),0)
   }));
-
-  function barColor(s){return s<=30?'#4338ca':s<=55?'#b07604':'#c62b3b';}
-
+  function barColor(s){return s<=30?'#4f46e5':s<=55?'#f59e0b':'#f43f5e';}
   const axisBars=[...spiderData].sort((a,b)=>b.score-a.score).map(s=>
     `<div class="axis-row">
       <div class="axis-name">${s.axis}</div>
@@ -1394,55 +1224,63 @@ function renderResult() {
     </div>`
   ).join('');
 
-  const top=summary[0];
-  const pres=PRESCRIPTIONS_EN[top.catId];
-  const scen=pres?.getScenario(arch,isTH());
-  const cost=L().costByAxis[top.catId]||(isTH()?'ปัญหาที่สะสมเงียบๆ ตลอดเวลา':'friction that compounds quietly over time');
+  const insightHtml=res?.personalised_insight
+    ?`<div class="insight-block">
+        <div class="ib-tag">${ui.piTag}</div>
+        <div class="ib-text">${res.personalised_insight}</div>
+        <div class="confidence-badge ${confidence==='high'?'conf-high':'conf-standard'}">
+          ${confidence==='high'?ui.confHigh:ui.confStd}
+        </div>
+      </div>`
+    :`<div class="insight-block" style="border-left-color:var(--rose);">
+        <div class="ib-tag" style="color:var(--rose);">${ui.primarySignal}</div>
+        <div class="ib-text">${l.fallbackInsight(summary[0]?.axis,summary[0]?.score)}</div>
+      </div>`;
 
-  const secondary=summary.slice(1).filter(s=>s.rawScore>0).map(s=>{
-    const p=PRESCRIPTIONS_EN[s.catId]; if(!p) return '';
-    const cat=cats.find(c=>c.id===s.catId);
-    const alsoInc=p.secondaryModules?.length?`${ui.alsoIncludes} ${p.secondaryModules.slice(0,2).join(', ')}.`:'';
-    return `<div class="mod-secondary">
-      <div class="sec-pill">${ui.included}</div>
-      <div class="sec-body">
-        <div class="sec-name">${p.module}</div>
-        <div class="sec-apply">${ui.frictionIn} <em style="color:${cat?.color||'var(--primary)'};font-style:normal;">${s.axis}</em> — ${alsoInc}</div>
-        <div class="sec-onboard">${ui.configuredFor}</div>
-      </div>
-    </div>`;
-  }).join('');
+  const bridgeHtml=res?.primary_friction
+    ?`<div class="friction-bridge">
+        <div class="fb-tag">${ui.primaryFriction}${res.primary_friction}</div>
+        <div class="fb-line">${res.primary_cause||ui.rootCause}</div>
+        ${res.secondary_friction?`<div class="fb-cause" style="margin-top:6px;">${ui.secondary}<strong>${res.secondary_friction}</strong> — ${res.secondary_cause||''}</div>`:''}
+      </div>`:'';
 
+  function renderModules(list,type){
+    if(!list||!list.length) return '';
+    if(type==='priority') return list.map(m=>`<div class="mod-pri">
+      <div class="mp-tag">${ui.priorityTag}</div>
+      <div class="mp-body"><div class="mp-name">${m.name}</div><div class="mp-reason">${m.reason||''}</div></div>
+    </div>`).join('');
+    if(type==='active') return list.map(m=>`<div class="mod-act">
+      <div class="ma-tag">${ui.activeTag}</div>
+      <div class="ma-body"><div class="ma-name">${m.name}</div><div class="ma-reason">${m.reason||''}</div></div>
+    </div>`).join('');
+    if(type==='background') return list.map(m=>`<div class="mod-bg">
+      <div class="mbg-tag">${ui.monitorTag}</div>
+      <div class="mbg-body"><div class="mbg-name">${m.name}</div><div class="mbg-reason">${m.reason||''}</div></div>
+    </div>`).join('');
+    return '';
+  }
+
+  const mp=res?.module_prescription;
+  const priorityHtml=mp?.priority?.length?`<div class="r-sec">${ui.priorityModules}</div>${renderModules(mp.priority,'priority')}`:'';
+  const activeHtml=mp?.active?.length?`<div class="r-sec">${ui.activeModules}</div>${renderModules(mp.active,'active')}`:'';
+  const backgroundHtml=mp?.background?.length?`<div class="r-sec">${ui.bgModules}</div>${renderModules(mp.background,'background')}`:'';
   const flagged=summary.filter(s=>s.rawScore>0).length;
 
   return `<div class="result">
     <div class="arch-card">
-      <div class="arch-kicker">${ui.diagnosticResult} ${code}</div>
+      <div class="arch-kicker">${ui.diagResult} ${fullCode}</div>
       <div class="arch-name">${arch.name}</div>
-      <div class="arch-code">${code} · ${arch.tier} ${ui.configuration}</div>
+      <div class="arch-code">${fullCode} · ${tier} ${ui.configuration}</div>
       <div class="arch-desc">${arch.desc}</div>
       <div class="arch-dims">${dimPills}</div>
     </div>
-
-    <div class="edit-bar">
-      <div class="edit-bar-text">${ui.editNote}</div>
-      <div class="edit-bar-actions">
-        <button class="btn-edit-dim" onclick="goBackToDim('stage')">${ui.editProfileBtn}</button>
-        <button class="btn-edit-frx" onclick="goBackToFrx(0)">${ui.editFrictionBtn}</button>
-      </div>
-    </div>
-
-    <div class="insight-bridge">
-      <div class="ib-tag">${ui.primarySignal}</div>
-      <div class="ib-line">${top.axis} friction at ${top.score}% ${ui.highestCostGap}</div>
-      <div class="ib-sub">${ui.forArchetype} ${arch.name}, ${ui.thatMeans} ${cost}.</div>
-    </div>
-
+    ${insightHtml}${bridgeHtml}
     <div class="spider-wrap">
       <div class="spider-head">
         <div>
           <div class="spider-title">${ui.frictionProfile}</div>
-          <div class="spider-sub">${ui.allSevenAxes}</div>
+          <div class="spider-sub">${ui.allAxes}</div>
         </div>
         <div class="spider-legend">
           <div class="leg-item"><div class="leg-dot" style="background:var(--rose)"></div>${ui.high}</div>
@@ -1453,29 +1291,12 @@ function renderResult() {
       <div class="spider-container" id="spider-container"></div>
       <div class="axis-bars">${axisBars}</div>
     </div>
-
-    ${pres&&scen?`
-    <div class="r-sec">${ui.priorityModule} ${top.axis}</div>
-    <div class="mod-hero">
-      <div class="mod-hero-tag">◈ ${top.axis} · ${top.score}% friction</div>
-      <div class="mod-hero-headline">${scen.headline}</div>
-      <div class="scenario-box">
-        <div class="scenario-label">${ui.theSituation}</div>
-        <div class="scenario-text">${scen.situation}</div>
-      </div>
-      <div class="mod-solution">
-        <div class="mod-name-pill">${pres.module}</div>
-        <div class="mod-solve-text">${scen.resolution}</div>
-      </div>
-    </div>`:''}
-
-    ${secondary?`<div class="r-sec">${ui.additionalModules}</div>${secondary}`:''}
-
+    ${priorityHtml}${activeHtml}${backgroundHtml}
     <div class="pricing-card">
       <div>
-        <div class="p-label">${ui.yourSLCPlan}</div>
-        <div class="p-price">${price}<span class="p-price-suffix">${ui.perMonth}</span></div>
-        <div class="p-period">${arch.tier} · ${flagged} ${ui.frictionAreasFlagged}</div>
+        <div class="p-label">${ui.yourPlan}</div>
+        <div class="p-price">${price}<span style="font-size:13px;font-weight:400;color:var(--muted)">${ui.perMonth}</span></div>
+        <div class="p-period">${tier} · ${flagged} ${ui.of} ${getActiveFrxCats().length} ${ui.flagged}</div>
       </div>
       <div class="p-basis">${ui.configBuilt}</div>
       <button class="btn-waitlist" onclick="alert('${isTH()?'กำลังเปิดรายชื่อรอเร็วๆ นี้':'Waitlist coming soon.'}')">${ui.joinWaitlist}</button>
@@ -1485,58 +1306,248 @@ function renderResult() {
 }
 
 function initSpider() {
-  const data=getFRX().map(cat=>({
-    axis:cat.axis,score:getAxisScore(cat.id),color:cat.color,
-    rawScore:cat.items.reduce((a,i)=>a+(ST.frx[cat.id]?.[i.id]||0),0)
+  const data=getActiveFrxCats().map(cat=>({
+    axis:cat.axis, score:getAxisScore(cat.id), color:cat.color,
+    rawScore:getItemsForCat(cat).reduce((a,i)=>a+(ST.frx[cat.id]?.[i.id]||0),0)
   }));
   const c=document.getElementById('spider-container');
   if(c) c.innerHTML=buildSpiderSVG(data);
 }
 
 // ══════════════════════════════════════════════════════════════════════════════
+// GEMINI API — key hardcoded, no user input required
+// ══════════════════════════════════════════════════════════════════════════════
+function buildFrictionContextForAI() {
+  const result={};
+  getActiveFrxCats().forEach(cat=>{
+    // Always pass EN axis names to AI for consistent processing
+    const enCat = FRICTION_CATS_EN.find(c=>c.id===cat.id);
+    const axisKey = enCat?enCat.axis:cat.axis;
+    const items=getItemsForCat(cat);
+    const ratings=ST.frx[cat.id]||{};
+    const score=getAxisScore(cat.id);
+    const statements={};
+    items.forEach(item=>{statements[item.id]=ratings[item.id]!==undefined?ratings[item.id]:0;});
+    result[axisKey]={score,statements};
+  });
+  return result;
+}
+
+function buildSystemPrompt() {
+  const arch=getArchetype(); const code=getArchCode();
+  const vertLabel=getVerticalLabel(); const frxData=buildFrictionContextForAI();
+  const isSolo=ST.dims.ops==='X';
+  const sortedCats=Object.entries(frxData).sort((a,b)=>b[1].score-a[1].score).map(([cat,data])=>`${cat}: ${data.score}%`).join(', ');
+  const lang=ST.lang;
+
+  return `You are the SLC Business Advisor — an AI diagnostic specialist for Thai small and medium businesses. You conduct focused, intelligent interviews to understand the specific operational reality behind a business owner's friction signals.
+
+You are not a general assistant. You do not answer questions outside your scope. You are conducting a diagnostic interview that will determine which SLC modules are activated for this specific business.
+
+LANGUAGE INSTRUCTION: The user's interface language is ${lang}. ${lang==='TH'?'Conduct the entire conversation in Thai (ภาษาไทย). Use natural, professional Thai that a Thai SME owner would use daily. Do not switch to English mid-conversation.':'Conduct the conversation in English.'}
+
+Your persona:
+- Warm but precise. You ask one question at a time, clearly.
+- You speak as someone who understands Thai SME reality — you know about supplier relationships, cash flow pressure, family business dynamics, platform-based selling, and regulatory obligations.
+- You never use jargon the owner would not recognise.
+- You never say 'module', 'SLC', 'Layer 2', or 'friction score' to the user.
+- You speak as if you have been listening carefully and want to understand more.
+
+CONVERSATION RULES — follow these without exception:
+1. ASK ONE QUESTION AT A TIME. Never ask two questions in one message.
+2. WORK THROUGH CATEGORIES IN ORDER — highest friction score first. Spend 2-3 questions on categories scoring above 60%. Spend 1 question on categories scoring 40-59%. Acknowledge but do not probe categories scoring below 40%.
+3. OPEN WITH A BRIDGING STATEMENT, NOT A QUESTION. Your first message must acknowledge what the owner has already shared and frame what comes next — without revealing the scoring system.
+4. USE THE ARCHETYPE CONTEXT TO PERSONALISE. Reference their specific vertical and operational reality in every question.
+5. LISTEN FOR CAUSES, NOT SYMPTOMS. The friction score tells you WHERE it hurts. Your job is to find out WHY.
+6. NEVER OFFER SOLUTIONS DURING THE INTERVIEW.
+7. ACKNOWLEDGE ANSWERS BRIEFLY BEFORE THE NEXT QUESTION. One sentence maximum.
+8. TRACK YOUR QUESTION BUDGET. Total budget: 12-15 exchanges. If you reach exchange 12, wrap up at exchange 13. Never exceed 15.
+9. END WITH THE CONCLUSION PROTOCOL when you have enough signal or hit the budget.
+10. HARD BOUNDARIES: Never recommend specific third-party apps. Never give legal or tax advice. Never tell the owner their business is failing. Never reveal scores, percentages, or archetype codes. Never make the owner feel judged.
+
+WHEN TO CONCLUDE — output the result when:
+- All categories above 40% have been probed and root causes identified
+- Exchange count reaches 12 (wrap at 13)
+- Exchange count reaches 15 (conclude immediately)
+- User explicitly asks for the result
+- User gives disengaged answers twice in a row
+
+CLOSING MESSAGE: ${lang==='TH'?
+  `ก่อน JSON เขียนว่า: 'นั่นคือสิ่งที่ฉันต้องการ จากทุกสิ่งที่คุณแบ่งปัน — โปรไฟล์และรายละเอียดที่คุณเพิ่งบอก — ฉันกำลังรวบรวมการกำหนดค่าของคุณ พื้นที่ที่ธุรกิจของคุณต้องการความสนใจมากที่สุดคือ [พื้นที่ 2-3 อันดับแรกในภาษาธรรมดา] ผลลัพธ์เต็มรูปแบบของคุณจะแสดงว่าเครื่องมือใดแก้ไขแต่ละอย่าง และทำไม'` :
+  `Before the JSON, write: 'That gives me what I need. Based on everything you have shared — your profile and the specifics you have just walked me through — I am putting together your configuration now. The areas where your business needs the most attention are [top 2-3 areas in plain language]. Your full result will show exactly which tools address each one, and why.'`}
+
+Then immediately output the structured JSON (hidden from user — application parses it):
+<!--SLC_RESULT_START-->
+{
+  "module_prescription": {
+    "priority": [{"id": "cashflow", "name": "Rolling Cash Flow Forecast", "reason": "No forward cash visibility"}],
+    "active": [{"id": "orderhub", "name": "Order Management Hub", "reason": "No single tracking system"}],
+    "background": [{"id": "okr", "name": "OKR / Goal Tracker", "reason": "Low friction score — monitor"}]
+  },
+  "personalised_insight": "Your business is...",
+  "primary_friction": "Finance",
+  "primary_cause": "Unknown margin combined with no forward cash visibility",
+  "secondary_friction": "Operations",
+  "secondary_cause": "No single order tracking system",
+  "confidence": "high",
+  "tier_confirmed": "${arch.tier}",
+  "conversation_exchanges": 0
+}
+<!--SLC_RESULT_END-->
+
+=== DIAGNOSTIC CONTEXT ===
+BUSINESS PROFILE:
+Archetype: ${arch.name} (${code})
+Vertical: ${vertLabel}
+Tier: ${arch.tier}
+Description: ${arch.desc}
+
+FRICTION SCORES (0-100, higher = more friction):
+${Object.entries(frxData).map(([cat,data])=>`${cat}: ${data.score}%`).join('\n')}
+
+PRIORITY ORDER (sorted by score, highest first):
+${sortedCats}
+
+DETAILED FRICTION DATA:
+${JSON.stringify(frxData,null,2)}
+${isSolo?'\nNOTE: This is a SOLO (X) archetype — no staff. Do not probe People & Team questions.':''}
+=== END CONTEXT ===
+
+Begin the conversation now with your opening bridging statement.`;
+}
+
+async function callGeminiAPI() {
+  const contents=ST.ai.history.map(m=>({
+    role:m.role==='assistant'?'model':'user',
+    parts:[{text:m.content}]
+  }));
+  const res=await fetch(
+    `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`,
+    {method:'POST',headers:{'Content-Type':'application/json'},
+     body:JSON.stringify({systemInstruction:{parts:[{text:buildSystemPrompt()}]},contents,generationConfig:{maxOutputTokens:1000}})}
+  );
+  if(!res.ok){const err=await res.json().catch(()=>({}));throw new Error(err?.error?.message||`API error ${res.status}`);}
+  const data=await res.json();
+  return data.candidates[0].content.parts[0].text;
+}
+
+function extractResultJSON(text) {
+  const match=text.match(/<!--SLC_RESULT_START-->([\s\S]*?)<!--SLC_RESULT_END-->/);
+  if(!match) return null;
+  try{return JSON.parse(match[1].trim());}catch(e){console.error('Result parse error:',e);return null;}
+}
+
+async function startAIConversation() {
+  const ai=ST.ai; if(ai.initialized) return;
+  ai.history.push({role:'user',content:'Ready.',_hidden:true});
+  ai.isLoading=true; render();
+  try{
+    const msg=await callGeminiAPI();
+    ai.history.push({role:'assistant',content:msg});
+    ai.initialized=true;
+    if(msg.includes('<!--SLC_RESULT_START-->')){
+      const json=extractResultJSON(msg);
+      if(json){ai.resultData=json;ai.isComplete=true;}
+    }
+  }catch(e){console.error('AI init error:',e);ai.error=true;}
+  ai.isLoading=false; render();
+}
+
+async function doSend() {
+  const input=document.getElementById('chat-input');
+  if(!input) return;
+  const text=input.value.trim();
+  if(!text||ST.ai.isLoading||ST.ai.isComplete) return;
+  input.value=''; input.style.height='auto';
+  const ai=ST.ai;
+  ai.history.push({role:'user',content:text});
+  ai.exchangeCount++;
+  if(ai.exchangeCount>=12) ai.nearEnd=true;
+  ai.isLoading=true; render();
+  try{
+    const msg=await callGeminiAPI();
+    ai.history.push({role:'assistant',content:msg});
+    if(msg.includes('<!--SLC_RESULT_START-->')){
+      const json=extractResultJSON(msg);
+      if(json){ai.resultData=json;ai.isComplete=true;}
+    }
+  }catch(e){
+    console.error('AI send error:',e);
+    ai.error=true; ai.resultData=generateFallbackPrescription(); ai.isComplete=true;
+  }
+  ai.isLoading=false; render();
+  if(ai.isComplete) setTimeout(()=>{goToResult();},2200);
+}
+
+function goToResult() {
+  if(!ST.ai.resultData) ST.ai.resultData=generateFallbackPrescription();
+  ST.phase='result'; render();
+}
+
+function generateFallbackPrescription() {
+  const summary=getFrxSummary(); const arch=getArchetype(); const l=L();
+  const priority=[],active=[],background=[];
+  summary.forEach(cat=>{
+    const mods=FALLBACK_MODULES[cat.axis]||[];
+    if(cat.score>=60) mods.slice(0,2).forEach(m=>priority.push({...m,reason:l.fallbackReason(cat.score,cat.axis)}));
+    else if(cat.score>=40) mods.slice(0,1).forEach(m=>active.push({...m,reason:l.fallbackFallback(cat.score,cat.axis)}));
+    else mods.slice(0,1).forEach(m=>background.push({...m,reason:l.fallbackBg}));
+  });
+  const top=summary[0];
+  return {
+    module_prescription:{priority,active,background},
+    personalised_insight:l.fallbackInsightFull(arch.name,top?.axis,top?.score),
+    primary_friction:top?.axis,primary_cause:l.fallbackCause,
+    confidence:'standard',tier_confirmed:arch.tier
+  };
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
 // INTERACTIONS
 // ══════════════════════════════════════════════════════════════════════════════
-function setDim(id,val){ ST.dims[id]=val; render(); }
+function setDim(id,val){
+  if(id==='model') delete ST.dims.vertical;
+  ST.dims[id]=val; render();
+}
 function setFrx(catId,itemId,val){
   if(!ST.frx[catId]) ST.frx[catId]={};
   ST.frx[catId][itemId]=val; render();
 }
-
-// Back-navigation: jump to a specific dimension by id
-function goBackToDim(dimId) {
-  const dims=getDIMS();
-  const idx=dims.findIndex(d=>d.id===dimId);
-  if(idx===-1) return;
-  ST.phase='dim'; ST.dimIdx=idx; render();
+function skipAI(){
+  ST.ai.resultData=generateFallbackPrescription();
+  ST.ai.isComplete=true; ST.phase='result'; render();
 }
-
-// Back-navigation: jump to a specific friction category by index
-function goBackToFrx(idx) {
-  ST.phase='frx'; ST.frxIdx=idx||0; render();
+function showFallbackResult(){
+  ST.ai.resultData=generateFallbackPrescription(); ST.phase='result'; render();
 }
 
 function next() {
-  const dims=getDIMS(); const cats=getFRX();
-  if(ST.phase==='p1intro'){ ST.phase='dim'; ST.dimIdx=0; }
+  const dims=getDIMS();
+  if(ST.phase==='p1intro'){ST.phase='dim';ST.dimIdx=0;}
   else if(ST.phase==='dim'){
     if(ST.dimIdx<dims.length-1) ST.dimIdx++;
     else ST.phase='p2intro';
   }
-  else if(ST.phase==='p2intro'){ ST.phase='frx'; ST.frxIdx=0; }
+  else if(ST.phase==='p2intro'){ST.phase='frx';ST.frxIdx=0;}
   else if(ST.phase==='frx'){
-    if(ST.frxIdx<cats.length-1) ST.frxIdx++;
-    else ST.phase='result';
+    const activeCats=getActiveFrxCats();
+    if(ST.frxIdx<activeCats.length-1){ST.frxIdx++;render();return;}
+    else{
+      ST.phase='ai'; render();
+      setTimeout(()=>startAIConversation(),150);
+      return;
+    }
   }
   render();
 }
 
-function back() {
+function back(){
   const dims=getDIMS();
   if(ST.phase==='dim'){
     if(ST.dimIdx>0) ST.dimIdx--;
     else ST.phase='p1intro';
   }
-  else if(ST.phase==='p2intro'){ ST.phase='dim'; ST.dimIdx=dims.length-1; }
+  else if(ST.phase==='p2intro'){ST.phase='dim';ST.dimIdx=dims.length-1;}
   else if(ST.phase==='frx'){
     if(ST.frxIdx>0) ST.frxIdx--;
     else ST.phase='p2intro';
@@ -1544,8 +1555,10 @@ function back() {
   render();
 }
 
-function restart() {
-  ST={phase:'p1intro',dimIdx:0,dims:{},frxIdx:0,frx:{},lang:ST.lang};
+function restart(){
+  ST={phase:'p1intro',dimIdx:0,dims:{},frxIdx:0,frx:{},lang:ST.lang,
+      ai:{history:[],exchangeCount:0,isComplete:false,resultData:null,
+          isLoading:false,initialized:false,nearEnd:false,error:false}};
   window.scrollTo(0,0); render();
 }
 
