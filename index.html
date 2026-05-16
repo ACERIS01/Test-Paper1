@@ -308,7 +308,7 @@ svg.spider{overflow:visible;}
 // ══════════════════════════════════════════════════════════════════════════════
 // HARDCODED API KEY — no user input required
 // ══════════════════════════════════════════════════════════════════════════════
-const GEMINI_API_KEY = 'AIzaSyDz3f9suQa5cTW71O4U9-lSVhj9YwkHGTE';
+const GEMINI_API_KEY = 'AIzaSyAZotSIFRKuKRJTv1HiJ4eKixmEIvM_7GM';
 
 // ══════════════════════════════════════════════════════════════════════════════
 // LANGUAGE STRINGS
@@ -1453,7 +1453,7 @@ Begin the conversation now with your opening bridging statement.`;
 }
 
 async function callGeminiAPI() {
-  // v1 stable endpoint + gemini-2.0-flash
+  // v1beta endpoint + gemini-2.0-flash-exp (matches key configuration)
   // System prompt is injected as a priming user/model exchange (works on v1 without systemInstruction field)
   const systemMsg = buildSystemPrompt();
   const historyMsgs = ST.ai.history.map(m => ({
@@ -1466,7 +1466,7 @@ async function callGeminiAPI() {
     ...historyMsgs
   ];
   const res = await fetch(
-    `https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`,
+    `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`,
     {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
