@@ -1453,17 +1453,31 @@ Begin the conversation now with your opening bridging statement.`;
 }
 
 async function callGeminiAPI() {
-  const contents=ST.ai.history.map(m=>({
-    role:m.role==='assistant'?'model':'user',
-    parts:[{text:m.content}]
+  // v1 stable endpoint + gemini-2.0-flash
+  // System prompt is injected as a priming user/model exchange (works on v1 without systemInstruction field)
+  const systemMsg = buildSystemPrompt();
+  const historyMsgs = ST.ai.history.map(m => ({
+    role: m.role === 'assistant' ? 'model' : 'user',
+    parts: [{ text: m.content }]
   }));
-  const res=await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`,
-    {method:'POST',headers:{'Content-Type':'application/json'},
-     body:JSON.stringify({systemInstruction:{parts:[{text:buildSystemPrompt()}]},contents,generationConfig:{maxOutputTokens:1000}})}
+  const contents = [
+    { role: 'user',  parts: [{ text: 'SYSTEM CONTEXT (read and follow exactly):\n' + systemMsg + '\n\nAcknowledge you understand your role.' }] },
+    { role: 'model', parts: [{ text: 'Understood. I am the SLC Business Advisor. I will follow all rules exactly and begin when ready.' }] },
+    ...historyMsgs
+  ];
+  const res = await fetch(
+    `https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`,
+    {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ contents, generationConfig: { maxOutputTokens: 1200, temperature: 0.7 } })
+    }
   );
-  if(!res.ok){const err=await res.json().catch(()=>({}));throw new Error(err?.error?.message||`API error ${res.status}`);}
-  const data=await res.json();
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(err?.error?.message || `API error ${res.status}`);
+  }
+  const data = await res.json();
   return data.candidates[0].content.parts[0].text;
 }
 
